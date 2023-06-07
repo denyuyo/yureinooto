@@ -11,12 +11,13 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
 
-scope module: :public do
-  # トップとアバウト
+# scope module: :public do
+ 
   get '/', to: 'public/homes#top'
   get '/about', to: 'public/homes#about'
   
+  resources :posts, only: [:index, :create, :show, :edit, :destroy]
   
-end
+# end
 
 end

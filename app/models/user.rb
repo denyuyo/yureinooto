@@ -19,6 +19,7 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.png'
   end
+  
   def bookmarked_by(post)
     bookmarks.exists?(post_id: post.id)
   end

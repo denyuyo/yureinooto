@@ -1,16 +1,22 @@
 Rails.application.routes.draw do
   
- # 顧客用
-# URL /users/sign_in ...
+# ユーザー用
 devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
 
 # 管理者用
-# URL /admin/sign_in ...
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
 }
+
+scope module: :public do
+  # トップとアバウト
+  get '/', to: 'public/homes#top'
+  get '/about', to: 'public/homes#about'
+  
+  
+end
 
 end

@@ -17,13 +17,14 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
-  <body data-turbolinks=false>
-    <%= render 'layouts/header' %>
-    <main>
+  <body class="d-flex flex-column vh-100 backdiv",data-turbolinks=false>
+    <header><%= render 'layouts/header' %></header>
+    <main class= "mb-auto">
       <%= yield %>
     </main>
-    <%= render 'layouts/footer' %>
+    <footer><%= render 'layouts/footer' %></footer>
   </body>
 </html>

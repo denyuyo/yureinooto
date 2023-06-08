@@ -1,35 +1,61 @@
 class Public::PostsController < ApplicationController
   
+  before_action :is_matching_login_user, only: [:edit, :update]
+  
   def index
     @posts = Post.all
   end
 
   def show
+    @mypost = Post.find(params[:id])
+    # 閲覧数の追加
+    @mypost.update(viewcount: @mypost.viewcount + 1)
+  
+    @user = @mypost.user
+    @post = Post.new
+    @comment = PostComment.new
   end
 
   def edit
+    @post = Post.find(params[:id])
+  end
+  
+  def create
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to post_path(@post.id), notice: "キミの情報は頂いた！"
+    else
+      @posts = Post.all
+      render 'index'
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: '投稿情報が更新されました。'
+      redirect_to post_path(@post), notice: "うむ...！"
     else
-      render :edit
+      render "edit"
     end
   end
 
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: '投稿が削除されました。'
+    redirect_to posts_path, notice: "機密情報は保持された。"
   end
 
   private
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+  
+  def is_matching_login_user
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to posts_path
+    end
   end
 end

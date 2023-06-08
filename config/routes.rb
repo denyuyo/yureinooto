@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
 # ユーザー用
 devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -17,15 +17,15 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resources :posts, only: [:index, :show, :destroy]
     end
 
+# scope module: :public do
+
+  root to: "public/homes#top"
+  get "/about" => "public/homes#about"
+
   namespace :public do
-    root to: "homes#top"
-    get "/about" => "homes#about"
-
-    resources :posts, only: [:index, :show, :edit, :create, :destroy, :update] do
-      resource :bookmarks, only: [:create, :destroy]
-      resources :comments, only: [:create, :destroy]
-    end
-
+    resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :bookmarks, only: [:index, :create, :update, :destroy]
+    resources :comments, only: [:new, :create, :index, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
   end
 

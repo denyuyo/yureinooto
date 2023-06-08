@@ -1,33 +1,38 @@
 class Public::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @users = User.all
+    @post = Post.new
   end
 
   def show
-    # ユーザーの詳細情報を表示するための処理
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def edit
-    # プロフィール編集画面を表示するための処理
+    @user = User.find(params[:id])
   end
 
   def update
     if @user.update(user_params)
-      redirect_to profile_path, notice: 'ユーザープロフィールが更新されました。'
+      redirect_to user_path(@user.id), notice: "新しいキミになったよ！"
     else
-      render :edit
+      render "edit"
     end
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
-  end
-
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image)
+  end
+  
+  def ensure_correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
   end
 end

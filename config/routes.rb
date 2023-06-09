@@ -17,8 +17,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resources :posts, only: [:index, :show, :destroy]
     end
 
-# scope module: :public do
-
   root to: "public/homes#top"
   get "/about" => "public/homes#about"
 

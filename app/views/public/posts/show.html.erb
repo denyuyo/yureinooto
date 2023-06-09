@@ -1,0 +1,19 @@
+<h1><%= @mypost.title %></h1>
+<p><%= @mypost.content %></p>
+<p>閲覧数: <%= @mypost.viewcount %></p>
+
+<h2>コメント</h2>
+<% @mypost.comments.each do |comment| %>
+  <p><%= comment.content %></p>
+<% end %>
+
+<h2>新規コメント</h2>
+<%= form_for [@mypost, @comment] do |f| %>
+  <%= f.text_area :content %>
+  <%= f.submit "コメントする" %>
+<% end %>
+
+<% if @user == current_user %>
+  <%= link_to "編集", edit_post_path(@mypost) %>
+  <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいですか？" } %>
+<% end %>

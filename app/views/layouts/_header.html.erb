@@ -1,10 +1,11 @@
-<header style="background-color: #A5D9D6;">
+<div style="background-color: #A5D9D6;">
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <div class="row w-100">
         <div class="col-3">
           <%= link_to root_path, class: 'nav-link nav-brand' do %>
-           <h2>幽霊の足音</h2>
+            <%= image_tag "j444_15_1.png", size: "100x50" %>
+            <h2 class="title mt-2" style="font-family: 'IM Fell DW Pica SC', serif;"><font class="gold">幽霊の足音</font></h2>
           <% end %>
         </div>
         <div class="col-9">
@@ -17,9 +18,9 @@
                 <% if user_signed_in? %>
                   <!--ユーザーがログインしていたら-->
                   <span class="navbar-text text-right mr-3">ようこそマニアたち！</span>
-                  <li><%= link_to  public_users_path, class: 'nav-link text-right' do %><i class="fas fa-user-cog nisegold"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  new_public_post_path, class: 'nav-link text-right' do %><i class="fas fa-cart-arrow-down nisegold"></i>情報を呟く</li> <% end %>
-                  <li><%= link_to  public_bookmarks_path, class: 'nav-link text-right' do %><i class="fas fa-th-list nisegold"></i>ブックマーク</li> <% end %>
+                  <li><%= link_to  public_users_path,         class: 'nav-link text-right' do %><i class="fas fa-user-cog nisegold"></i>マニアたち</li> <% end %>
+                  <li><%= link_to  new_public_post_path,      class: 'nav-link text-right' do %><i class="fas fa-cart-arrow-down nisegold"></i>情報を呟く</li> <% end %>
+                  <li><%= link_to  public_bookmarks_path,     class: 'nav-link text-right' do %><i class="fas fa-th-list nisegold"></i>ブックマーク</li> <% end %>
                   <li><%= link_to  destroy_user_session_path, class: 'nav-link text-right', method: :delete do %><i class="fas fa-sign-out-alt nisegold"></i>ログアウト</li> <% end %>
                 <% elsif admin_signed_in? %>
                   <!--管理者がログインしていたら-->
@@ -29,10 +30,10 @@
                   <li><%= link_to "Log out",   destroy_admin_session_path,  class: 'nav-link text-right', method: :delete %></li>
                 <% else %>
                   <!--ログイン前画面-->
-                  <li><%= link_to "About",      about_path,                  class: 'nav-link text-right' %></li>
-                  <li><%= link_to "profile",    public_user_profile_path,           class: 'nav-link text-right' %></li>
-                  <li><%= link_to "Sign in?",   new_user_registration_path,  class: 'nav-link text-right' %></li>
-                  <li><%= link_to "alert",      about_path,                  class: 'nav-link text-right' %></li>
+                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-th-list nisegold"></i>About</li> <% end %>
+                  <li><%= link_to  public_users_path,    class: 'nav-link text-right' do %><i class="fas fa-user-cog nisegold"></i>profile</li> <% end %>
+                  <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right' do %><i class="fas fa-sign-out-alt nisegold"></i>Sign in?</li> <% end %>
+                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-cart-arrow-down nisegold"></i>alert</li> <% end %>
                 <% end %>
               </ul>
             </div>
@@ -41,4 +42,4 @@
       </div>
     </div>
   </nav>
-</header>
+</divr>

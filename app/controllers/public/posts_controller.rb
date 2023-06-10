@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
 
     @user = @mypost.user
     @post = Post.new
-    @comment = PostComment.new
+    @comment = Comment.new
   end
 
   def edit
@@ -31,6 +31,7 @@ class Public::PostsController < ApplicationController
       redirect_to public_post_path(@post.id), notice: "キミの情報は頂いた！"
     else
       @posts = Post.all
+      flash.now[:alert] = "なぬっ...!そうきたか"
       render 'index'
     end
   end
@@ -47,7 +48,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_posts_path, notice: "機密情報は保持された。"
+    redirect_to public_posts_path, notice: "機密情報は保持された"
   end
 
   private

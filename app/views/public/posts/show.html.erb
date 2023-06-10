@@ -1,19 +1,43 @@
-<h1><%= @mypost.title %></h1>
-<p><%= @mypost.content %></p>
-<p>閲覧数: <%= @mypost.viewcount %></p>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+</head>
 
-<h2>コメント</h2>
-<% @mypost.comments.each do |comment| %>
-  <p><%= comment.content %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1><%= @mypost.title %></h1>
+      <p><%= @mypost.content %></p>
+      <p style="font-family: 'M PLUS Rounded 1c', serif;">閲覧数: <%= @mypost.viewcount %></p>
+    </div>
+  </div>
 
-<h2>新規コメント</h2>
-<%= form_for [@mypost, @comment] do |f| %>
-  <%= f.text_area :content %>
-  <%= f.submit "コメントする" %>
-<% end %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <p style="font-family: 'M PLUS Rounded 1c', serif;">コメント</p>
+      <% @mypost.comments.each do |comment| %>
+        <p><%= comment.content %></p>
+      <% end %>
+    </div>
+  </div>
+  
+  <br>
 
-<% if @user == current_user %>
-  <%= link_to "編集", edit_post_path(@mypost) %>
-  <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいですか？" } %>
-<% end %>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h3 style="font-family: 'M PLUS Rounded 1c', serif;">コメントする？</h3>
+      <%= form_for :post_comment, url: public_comments_path do |f| %>
+        <%= f.text_area :content, class: "form-control", rows: 3 %>
+        <%= f.submit "コメントする", class: "btn btn-primary mt-3" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <% if @user == current_user %>
+        <%= link_to "編集", edit_public_post_path(@mypost), class: "btn btn-secondary mr-2" %>
+        <%= link_to "削除", public_post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;">投稿の編集</h3>
+
+<%= form_for(@post) do |f| %>
+  <div class="form-group">
+    <%= f.label :title, style="font-family: 'Monomaniac One', sans-serif;" %>
+    <%= f.text_field :title, class: "form-control", style="font-family: 'Monomaniac One', sans-serif;" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, style="font-family: 'Monomaniac One', sans-serif;" %>
+    <%= f.text_area :content, class: "form-control", style="font-family: 'Monomaniac One', sans-serif;" %>
+  </div>
+
+  <%= f.submit "更新", class: "btn btn-primary", style="font-family: 'Monomaniac One', sans-serif;" %>
+<% end %>

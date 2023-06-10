@@ -1,23 +1,23 @@
-<h3>新規投稿</h3>
+<h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;">つぶやく</h3>
 
 <%= form_for [:public, @post], html: { class: 'form' } do |f| %>
   <div class="form-group">
-    <%= f.label :title %>
+    <%= f.label :title, style: "font-family: 'Monomaniac One', sans-serif;" %>
     <div class="col-sm-6">
-      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.text_field :title, class: 'form-control', style: "font-family: 'Monomaniac One', sans-serif;" %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= f.label :content %>
+    <%= f.label :content, style: "font-family: 'Monomaniac One', sans-serif;" %>
     <div class="col-sm-6">
-      <%= f.text_area :content, class: 'form-control' %>
+      <%= f.text_area :content, class: 'form-control', style: "font-family: 'Monomaniac One', sans-serif;" %>
     </div>
   </div>
 
   <div class="text-align: right;">
-     <%= f.submit "投稿する", class: 'btn btn-primary' %>
+     <%= f.submit "投稿する", class: 'btn btn-primary', style: "font-family: 'Monomaniac One', sans-serif;" %>
      <% end %>
   </div>
 
-<%= link_to "戻る", public_posts_path, class: 'btn btn-secondary' %>
+<%= link_to "戻る", public_posts_path, class: 'btn btn-secondary', style: "font-family: 'Monomaniac One', sans-serif;" %>

@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :tag, optional: true
   
-  has_many_attached :images
+  has_one_attached :images
   
   validates :title, presence: true, length: { minimum: 1,maximum: 30 }
   validates :content, presence: true, length: { minimum: 1,maximum: 500 }

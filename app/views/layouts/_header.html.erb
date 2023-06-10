@@ -5,7 +5,7 @@
         <div class="col-3">
           <%= link_to root_path, class: 'nav-link nav-brand' do %>
             <%= image_tag "j444_15_1.png", size: "100x50" %>
-            <h2 class="title mt-2" style="font-family: 'IM Fell DW Pica SC', serif;"><font class="gold">幽霊の足音</font></h2>
+            <h2 class="title mt-2" style="font-family: 'DotGothic16', sans-serif;"><font class="none">幽霊の足音</font></h2>
           <% end %>
         </div>
         <div class="col-9">
@@ -17,23 +17,23 @@
               <ul class="navbar-nav ml-5">
                 <% if user_signed_in? %>
                   <!--ユーザーがログインしていたら-->
-                  <span class="navbar-text text-right mr-3">ようこそマニアたち！</span>
-                  <li><%= link_to  public_users_path,         class: 'nav-link text-right' do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  new_public_post_path,      class: 'nav-link text-right' do %><i class="fas fa-pen-alt"></i>情報を呟く</li> <% end %>
-                  <li><%= link_to  public_bookmarks_path,     class: 'nav-link text-right' do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
-                  <li><%= link_to  destroy_user_session_path, class: 'nav-link text-right', method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
+                  <span  style="font-family: 'Monomaniac One', sans-serif; font-size: 24px; text-align: left;">ようこそマニアたち！</span>
+                  <li><%= link_to  public_users_path,          class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                  <li><%= link_to  new_public_post_path,       class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pen-alt"></i>つぶやく</li> <% end %>
+                  <li><%= link_to  public_bookmarks_path,      class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
+                  <li><%= link_to  destroy_user_session_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
                 <% elsif admin_signed_in? %>
                   <!--管理者がログインしていたら-->
-                  <li><%= link_to "mania's",   admin_users_path,            class: 'nav-link text-right' %></li>
-                  <li><%= link_to "comment's", admin_comments_path,         class: 'nav-link text-right' %></li>
-                  <li><%= link_to "murmur's",  admin_posts_path,            class: 'nav-link text-right' %></li>
-                  <li><%= link_to "Log out",   destroy_admin_session_path,  class: 'nav-link text-right', method: :delete %></li>
+                  <li><%= link_to  admin_users_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                  <li><%= link_to  admin_comments_path,         class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-mail-bulk"></i>コメントたち</li> <% end %>
+                  <li><%= link_to  admin_posts_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-list-alt"></i>きみつじこう</li> <% end %>
+                  <li><%= link_to  destroy_admin_session_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
                 <% else %>
                   <!--ログイン前画面-->
-                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-paw"></i> About</li> <% end %>
-                  <li><%= link_to  public_users_path,    class: 'nav-link text-right' do %><i class="fas fa-user-friends"></i> users</li> <% end %>
-                  <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right' do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
-                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
+                  <li><%= link_to  about_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-paw"></i> About</li> <% end %>
+                  <li><%= link_to  public_users_path,           class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-user-friends"></i> users</li> <% end %>
+                  <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
+                  <li><%= link_to  about_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
                 <% end %>
               </ul>
             </div>
@@ -42,4 +42,4 @@
       </div>
     </div>
   </nav>
-</divr>
+</div>

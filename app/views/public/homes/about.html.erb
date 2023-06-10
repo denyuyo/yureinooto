@@ -1,1 +1,46 @@
-<h1>about</h1>
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Mouse Follow Cat Animation</title>
+  <style>
+    .wrapper {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+    
+    .cat {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <%= image_tag "白い子ネコ.png", class: "cat" %>
+    <!--<img class="cat" src="assets/images/白い子ネコ.png" alt="Cat">-->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cat = document.querySelector('.cat');
+      const wrapper = document.querySelector('.wrapper');
+      const catSize = cat.offsetWidth;
+      const catHalfSize = catSize / 2;
+
+      wrapper.addEventListener('mousemove', (e) => {
+        const x = e.clientX - wrapper.offsetLeft;
+        const y = e.clientY - wrapper.offsetTop;
+
+        const catX = x - catHalfSize;
+        const catY = y - catHalfSize;
+
+        cat.style.transform = `translate(${catX}px, ${catY}px)`;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -18,10 +18,10 @@
                 <% if user_signed_in? %>
                   <!--ユーザーがログインしていたら-->
                   <span class="navbar-text text-right mr-3">ようこそマニアたち！</span>
-                  <li><%= link_to  public_users_path,         class: 'nav-link text-right' do %><i class="fas fa-user-cog nisegold"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  new_public_post_path,      class: 'nav-link text-right' do %><i class="fas fa-cart-arrow-down nisegold"></i>情報を呟く</li> <% end %>
-                  <li><%= link_to  public_bookmarks_path,     class: 'nav-link text-right' do %><i class="fas fa-th-list nisegold"></i>ブックマーク</li> <% end %>
-                  <li><%= link_to  destroy_user_session_path, class: 'nav-link text-right', method: :delete do %><i class="fas fa-sign-out-alt nisegold"></i>ログアウト</li> <% end %>
+                  <li><%= link_to  public_users_path,         class: 'nav-link text-right' do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                  <li><%= link_to  new_public_post_path,      class: 'nav-link text-right' do %><i class="fas fa-pen-alt"></i>情報を呟く</li> <% end %>
+                  <li><%= link_to  public_bookmarks_path,     class: 'nav-link text-right' do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
+                  <li><%= link_to  destroy_user_session_path, class: 'nav-link text-right', method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
                 <% elsif admin_signed_in? %>
                   <!--管理者がログインしていたら-->
                   <li><%= link_to "mania's",   admin_users_path,            class: 'nav-link text-right' %></li>
@@ -30,10 +30,10 @@
                   <li><%= link_to "Log out",   destroy_admin_session_path,  class: 'nav-link text-right', method: :delete %></li>
                 <% else %>
                   <!--ログイン前画面-->
-                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-th-list nisegold"></i>About</li> <% end %>
-                  <li><%= link_to  public_users_path,    class: 'nav-link text-right' do %><i class="fas fa-user-cog nisegold"></i>profile</li> <% end %>
-                  <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right' do %><i class="fas fa-sign-out-alt nisegold"></i>Sign in?</li> <% end %>
-                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-cart-arrow-down nisegold"></i>alert</li> <% end %>
+                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-paw"></i> About</li> <% end %>
+                  <li><%= link_to  public_users_path,    class: 'nav-link text-right' do %><i class="fas fa-user-friends"></i> users</li> <% end %>
+                  <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right' do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
+                  <li><%= link_to  about_path,                  class: 'nav-link text-right' do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
                 <% end %>
               </ul>
             </div>

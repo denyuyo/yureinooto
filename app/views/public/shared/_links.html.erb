@@ -1,7 +1,7 @@
 <% if controller_name != 'sessions' %>
-  <%= link_to "Log in", user_session_path %><br />
+  <%= link_to "Log in", user_session_path, style: "font-family: 'Monomaniac One', sans-serif;" %><br />
 <% end %>
 
 <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_user_registration_path %><br />
+  <%= link_to "Sign up", new_user_registration_path, style: "font-family: 'Monomaniac One', sans-serif;" %><br />
 <% end %>

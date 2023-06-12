@@ -28,10 +28,6 @@ class Public::BookmarksController < ApplicationController
 
   private
 
-  def set_bookmark
-    @bookmark = current_user.bookmarks.find(params[:id])
-  end
-
   def bookmark_params
     params.require(:bookmark).permit(:title, :url)
   end

@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to public_post_path(@post.id), notice: "キミの情報は頂いた！"
+      redirect_to post_path(@post.id), notice: "キミの情報は頂いた！"
     else
       @posts = Post.all
       flash.now[:alert] = "なぬっ...!そうきたか"
@@ -39,7 +39,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to public_post_path(@post), notice: "うむ...！"
+      redirect_to post_path(@post), notice: "うむ...！"
     else
       render "edit"
     end
@@ -48,7 +48,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to public_posts_path, notice: "機密情報は保持された"
+    redirect_to posts_path, notice: "機密情報は保持された"
   end
 
   private
@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def is_matching_login_user
     post = Post.find(params[:id])
     unless post.user.id == current_user.id
-      redirect_to public_posts_path
+      redirect_to posts_path
     end
   end
 end

@@ -26,7 +26,7 @@
                   <!--ユーザーがログインしていたら-->
                   <span  style="font-family: 'Monomaniac One', sans-serif; font-size: 24px; text-align: left;">ようこそマニアたち！</span>
                   <li><%= link_to  users_path,                            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  posts_path,                            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pen-alt"></i>つぶやく</li> <% end %>
+                  <li><%= link_to  posts_path,                            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pen-alt"></i>つぶやき</li> <% end %>
                   <li><%= link_to  bookmarks_user_path(current_user.id),  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
                   <li><%= link_to  destroy_user_session_path,             class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
                 <% elsif admin_signed_in? %>

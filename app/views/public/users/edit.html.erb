@@ -1,30 +1,59 @@
-<%= form_for([:public, @user], url: public_user_path(@user), multipart: true) do |f| %>
-  <div class="form-group">
-    <%= f.label :name, "ユーザーネーム", style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= f.text_field :name, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
-  </div>
+<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
+  <%= form_for([:public, @user], url: user_path(@user), multipart: true) do |f| %>
+    <% if @user.profile_image.attached? %>
+      <div class="form-group">
+        <%= image_tag @user.profile_image.variant(resize: "200x200"), class: "profile-image-preview", style: "border-radius: 50%;" %>
+      </div>
+    <% end %>
+    
+    <div class="form-group">
+      <%= f.label :name, "ユーザーネーム", style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.text_field :name, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :email, style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.email_field :email, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :password, style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.password_field :password, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    </div>
+  
+    <div class="form-group">
+      <%= f.label :password_confirmation, style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.password_field :password_confirmation, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :profile_image, style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.file_field :profile_image, class: "form-control-file", style: "font-family: 'Monomaniac One', sans-serif;", onchange: "previewImage(this);" %>
+    </div>
+    <div id="profile-image-preview-container"></div>
+  
+    <%= f.submit "更新", class: "btn btn-primary", style: "font-family: 'Monomaniac One', sans-serif;" %>
+  <% end %>
+  
+  <%= link_to "戻る", user_path(@user), class: "btn btn-secondary", style: "font-family: 'Monomaniac One', sans-serif;" %>
+</div>
 
-  <div class="form-group">
-    <%= f.label :email, style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= f.email_field :email, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
-  </div>
+<script>
+  function previewImage(input) {
+    var previewContainer = document.getElementById("profile-image-preview-container");
+    previewContainer.innerHTML = "";
 
-  <div class="form-group">
-    <%= f.label :password, style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= f.password_field :password, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
-  </div>
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
-  <div class="form-group">
-    <%= f.label :password_confirmation, style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= f.password_field :password_confirmation, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
-  </div>
+      reader.onload = function (e) {
+        var previewImage = document.createElement("img");
+        previewImage.setAttribute("src", e.target.result);
+        previewImage.setAttribute("class", "profile-image-preview");
+        previewContainer.appendChild(previewImage);
+      }
 
-  <div class="form-group">
-    <%= f.label :profile_image, style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= f.file_field :profile_image, class: "form-control-file", style: "font-family: 'Monomaniac One', sans-serif;" %>
-  </div>
-
-  <%= f.submit "更新", class: "btn btn-primary", style: "font-family: 'Monomaniac One', sans-serif;" %>
-<% end %>
-
-<%= link_to "戻る", public_user_path(@user), class: "btn btn-secondary", style: "font-family: 'Monomaniac One', sans-serif;" %>
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>

@@ -1,17 +1,39 @@
-<div class="container">
+<div class="container", style="font-family: 'Monomaniac One', sans-serif;">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <h1 style="font-family: 'M PLUS Rounded 1c', serif;"><%= @mypost.title %></h1>
-      <p style="font-family: 'M PLUS Rounded 1c', serif;"><%= @mypost.content %></p>
-      <p style="font-family: 'M PLUS Rounded 1c', serif;">閲覧数: <%= @mypost.viewcount %></p>
+      <h1><%= @mypost.title %></h1>
+      <p><%= @mypost.content %></p>
+      <p>閲覧数: <%= @mypost.viewcount %></p>
     </div>
   </div>
 
+  <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
+    <div class="col-md-8 offset-md-2">
+      <p>コメント</p>
+      <% @mypost.comments.each do |comment| %>
+        <p><%= comment.content %></p>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
+    <div class="col-md-8 offset-md-2">
+      <p>ブックマーク: <%= @bookmark_count %></p>
+    </div>
+  </div>
+  
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <p style="font-family: 'M PLUS Rounded 1c', serif;">コメント</p>
-      <% @mypost.comments.each do |comment| %>
-        <p style="font-family: 'M PLUS Rounded 1c', serif;"><%= comment.content %></p>
+      <% if @mypost.bookmarked?(current_user) %>
+          <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
+          <%= link_to post_bookmarks_path(@mypost.id), method: :delete do %>
+              <span style="color:red;">♡︎</span>
+          <% end %>
+      <% else %>
+          <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
+          <%= link_to post_bookmarks_path(@mypost.id), method: :post do %>
+              <span>♡︎</span>
+          <% end %>
       <% end %>
     </div>
   </div>
@@ -20,21 +42,21 @@
 
   <% if user_signed_in? && current_user == @user %>
 
-  <div class="row">
+  <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
     <div class="col-md-8 offset-md-2">
-      <h3 style="font-family: 'M PLUS Rounded 1c', serif;">コメントする？</h3>
+      <h3>コメントする？</h3>
       <%= form_for([@mypost, @comment]) do |f| %>
-        <%= f.text_area :content, class: "form-control", rows: 3, style: "font-family: 'M PLUS Rounded 1c', serif;" %>
-        <%= f.submit "コメントする", class: "btn btn-primary mt-3", style: "font-family: 'M PLUS Rounded 1c', serif;" %>
+        <%= f.text_area :content, class: "form-control", rows: 3 %>
+        <%= f.submit "コメントする", class: "btn btn-primary mt-3" %>
       <% end %>
     </div>
   </div>
 
- <div class="row">
+ <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
     <div class="col-md-8 offset-md-2">
       <% if @user == current_user %>
-        <%= link_to "編集", edit_post_path(@mypost), class: "btn btn-secondary mr-2", style: "font-family: 'M PLUS Rounded 1c', serif;" %>
-        <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger", style: "font-family: 'M PLUS Rounded 1c', serif;" %>
+        <%= link_to "編集", edit_post_path(@mypost), class: "btn btn-secondary mr-2" %>
+        <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger" %>
       <% end %>
     </div>
   </div>

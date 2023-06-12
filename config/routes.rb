@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  get 'searches/search'
 
 # ユーザー用
 devise_for :users, skip: [:passwords], controllers: {

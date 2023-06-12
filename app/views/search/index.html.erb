@@ -1,0 +1,27 @@
+<div class="container", style="font-family: 'Monomaniac One', sans-serif;">
+  <h1>検索結果</h1>
+
+  <% if @range == "ユーザー" %>
+    <% if @users.any? %>
+      <h2>ユーザー</h2>
+      <ul>
+        <% @users.each do |user| %>
+          <li><%= user.name %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>該当するユーザーは見つかりませんでした。</p>
+    <% end %>
+  <% else %>
+    <% if @posts.any? %>
+      <h2>投稿</h2>
+      <ul>
+        <% @posts.each do |post| %>
+          <li><%= post.title %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>該当する投稿は見つかりませんでした。</p>
+    <% end %>
+  <% end %>
+</div>

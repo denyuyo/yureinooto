@@ -12,8 +12,8 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { minimum: 1,maximum: 30 }
   validates :content, presence: true, length: { minimum: 1,maximum: 500 }
   
-  def bookmarked_by(user)
-    bookmarks.exists?(user_id: user.id)
+  def bookmarked?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
   
   def get_image(width, height)

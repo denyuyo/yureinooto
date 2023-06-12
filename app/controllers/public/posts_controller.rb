@@ -11,6 +11,7 @@ class Public::PostsController < ApplicationController
     @user = @mypost.user
     @post = Post.new
     @comment = Comment.new
+    @bookmark_count = @mypost.bookmarks.count
   end
 
   def edit

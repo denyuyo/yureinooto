@@ -3,13 +3,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one_attached :profile_image
+  
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
   validates :name, presence: true
-
-  has_one_attached :profile_image
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -21,6 +21,10 @@ class User < ApplicationRecord
 
   def bookmarked_by(post)
     bookmarks.exists?(post_id: post.id)
+  end
+  
+  def self.looks(word)
+    User.where("name LIKE ?", "%#{word}%")
   end
 
 end

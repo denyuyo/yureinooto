@@ -1,1 +1,14 @@
-<h1>bookmarks</h1>
+<h1 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;">ブックマーク</h1>
+
+<% @bookmarks.each do |bookmark| %>
+  <div class="card mb-3">
+    <div class="card-body", style= "font-family: 'Monomaniac One', sans-serif;">
+      <h5 class="card-title"><%= bookmark.post.title %></h5>
+      <p class="card-text"><%= bookmark.post.content %></p>
+      <p class="card-text">投稿者: <%= bookmark.post.user.name %></p>
+      <p class="card-text">作成日時: <%= bookmark.post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+      <%= link_to "詳細", post_path(bookmark.post), class: "btn btn-primary" %>
+      <%= link_to "ブックマーク解除", bookmarks_user_path(bookmark), method: :delete, class: "btn btn-danger", remote: true, data: { confirm: "本当にブックマークを解除しますか？" } %>
+    </div>
+  </div>
+<% end %>

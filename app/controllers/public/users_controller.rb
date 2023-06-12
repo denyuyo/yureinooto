@@ -16,6 +16,13 @@ class Public::UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+  
+    if params[:user][:profile_image].present?
+      # アップロードされたファイルを保存する処理
+      @user.profile_image.attach(params[:user][:profile_image])
+    end
+  
     if @user.update(user_params)
       redirect_to user_path(@user.id), notice: "新しいキミになったよ！"
     else

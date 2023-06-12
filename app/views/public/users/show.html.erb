@@ -1,15 +1,23 @@
-<h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;"><%= @user.name %>の詳細</h3>
+<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
+  <h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;"><%= @user.name %>さんのプロフィール</h3>
 
-<p style="font-family: 'Monomaniac One', sans-serif;"><strong>Email:</strong> <%= @user.email %></p>
-<p style="font-family: 'Monomaniac One', sans-serif;"><strong>作成日時:</strong> <%= @user.created_at %></p>
-
-<h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 30px;">投稿一覧</h3>
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= link_to post.title, post_path(post) %></li>
+  <% if @user.profile_image.attached? %>
+    <%= image_tag url_for(@user.profile_image.variant(resize: "100x100")), class: "profile-image", style: "border-radius: 40%;" %>
+  <% else %>
+    <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
   <% end %>
-</ul>
 
-<% if user_signed_in? && current_user == @user %>
-  <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary", style: "font-family: 'Monomaniac One', sans-serif;" %>
-<% end %>
+  <p style="font-family: 'Monomaniac One', sans-serif;"><strong>Email:</strong> <%= @user.email %></p>
+  <p style="font-family: 'Monomaniac One', sans-serif;"><strong>作成日時:</strong> <%= @user.created_at %></p>
+
+  <h3 style="font-family: 'Monomaniac One', sans-serif;">つぶやき</h3>
+  <ul style="font-family: 'Monomaniac One', sans-serif;">
+    <% @posts.each do |post| %>
+      <li><%= link_to post.title, post_path(post) %></li>
+    <% end %>
+  </ul>
+
+  <% if user_signed_in? && current_user == @user %>
+    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right", style: "font-family: 'Monomaniac One', sans-serif;" %>
+  <% end %>
+</div>

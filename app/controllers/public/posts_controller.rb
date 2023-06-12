@@ -1,5 +1,4 @@
 class Public::PostsController < ApplicationController
-
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
@@ -8,9 +7,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @mypost = Post.find(params[:id])
-    # 閲覧数の追加
     @mypost.update(viewcount: @mypost.viewcount + 1)
-
     @user = @mypost.user
     @post = Post.new
     @comment = Comment.new
@@ -58,8 +55,10 @@ class Public::PostsController < ApplicationController
   end
 
   def is_matching_login_user
-    post = Post.find(params[:id])
-    unless post.user.id == current_user.id
+    post_id = params[:id].to_i
+    @post = Post.find_by(id: post_id, user_id: current_user.id)
+    
+    if @post.nil?
       redirect_to posts_path
     end
   end

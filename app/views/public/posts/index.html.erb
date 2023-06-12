@@ -20,4 +20,6 @@
   <% end %>
 </div>
 
-<%= link_to "新規投稿", new_post_path, class: "btn btn-success", style: "font-family: 'Monomaniac One', sans-serif;" %>
+<% if user_signed_in? %>
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-success", style: "font-family: 'Monomaniac One', sans-serif;" %>
+<% end %>

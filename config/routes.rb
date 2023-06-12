@@ -17,14 +17,19 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       resources :posts, only: [:index, :show, :destroy]
     end
 
-  root to: "public/homes#top"
-  get "/about" => "public/homes#about"
-
-  namespace :public do
-    resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :bookmarks, only: [:index, :create, :update, :destroy]
-    resources :comments, only: [:new, :create, :index, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
+  scope module: :public do
+    resources :users, only:[:index, :show, :update, :edit, :show] do
+      member do
+        get 'bookmarks' =>'bookmarks#index'
+        get 'comments' =>'comments#index'
+      end
+    end
+    resources :posts, only:[:show, :index, :create, :destroy, :new, :edit, :update] do
+      resource :bookmarks, only: [:create, :destroy]
+      resources :comments, only:[:create, :destroy]
+    end
+    root to: 'homes#top'
+    get "/about" => "homes#about"
   end
 
 end

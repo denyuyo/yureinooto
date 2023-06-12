@@ -13,11 +13,11 @@
           <p class="card-text", style= "font-family: 'Monomaniac One', sans-serif;"><%= post.content %></p>
           <p class="card-text", style= "font-family: 'Monomaniac One', sans-serif;">投稿者: <%= post.user.name %></p>
           <p class="card-text", style= "font-family: 'Monomaniac One', sans-serif;">作成日時: <%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
-          <%= link_to "詳細", public_post_path(post), class: "btn btn-primary" %>
+          <%= link_to "詳細", post_path(post), class: "btn btn-primary" %>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
-<%= link_to "新規投稿", new_public_post_path, class: "btn btn-success", style: "font-family: 'Monomaniac One', sans-serif;" %>
+<%= link_to "新規投稿", new_post_path, class: "btn btn-success", style: "font-family: 'Monomaniac One', sans-serif;" %>

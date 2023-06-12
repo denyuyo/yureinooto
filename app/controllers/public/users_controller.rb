@@ -30,9 +30,13 @@ class Public::UsersController < ApplicationController
   end
   
   def ensure_correct_user
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
+    if current_user.nil?
+      redirect_to edit_user_path
+    else
+      @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to user_path(current_user.id), notice: "他のユーザーの情報は編集できません"
+      end
     end
   end
 end

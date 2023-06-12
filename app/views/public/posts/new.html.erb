@@ -1,6 +1,6 @@
 <h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;">つぶやく</h3>
 
-<%= form_for [:public, @post], html: { class: 'form' } do |f| %>
+<%= form_for [ @post], html: { class: 'form' } do |f| %>
   <div class="form-group">
     <%= f.label :title, style: "font-family: 'Monomaniac One', sans-serif;" %>
     <div class="col-sm-6">
@@ -20,4 +20,4 @@
      <% end %>
   </div>
 
-<%= link_to "戻る", public_posts_path, class: 'btn btn-secondary', style: "font-family: 'Monomaniac One', sans-serif;" %>
+<%= link_to "戻る", posts_path, class: 'btn btn-secondary', style: "font-family: 'Monomaniac One', sans-serif;" %>

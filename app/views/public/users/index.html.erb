@@ -1,1 +1,25 @@
-<h1>users/index</h1>
+<h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;">マニアたち</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th style= "font-family: 'Monomaniac One', sans-serif;">ユーザーネーム</th>
+      <th style= "font-family: 'Monomaniac One', sans-serif;">Eメール</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td style="font-family: 'Monomaniac One', sans-serif;">
+          <%= image_tag user.get_profile_image(50, 50), class: "profile-image" if user.profile_image.attached? %>
+          <%= user.name %>
+        </td>
+        <td style="font-family: 'Monomaniac One', sans-serif;"><%= user.email %></td>
+        <td>
+          <%= link_to "詳細", user_path(user), class: "btn btn-primary", style: "font-family: 'Monomaniac One', sans-serif;" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

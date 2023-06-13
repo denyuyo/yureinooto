@@ -1,0 +1,13 @@
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <h2>コメント一覧</h2>
+  <% @comments.each do |comment| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= comment.user.name %></h5>
+        <p class="card-text"><%= comment.content %></p>
+        <p class="card-text"><small class="text-muted"><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small></p>
+        <p class="card-text">つぶやき: <%= link_to comment.post.title, post_path(comment.post) %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

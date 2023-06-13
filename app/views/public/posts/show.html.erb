@@ -1,4 +1,4 @@
-<div class="container", style="font-family: 'Monomaniac One', sans-serif;">
+<div class="container", style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <h1><%= @mypost.title %></h1>
@@ -7,16 +7,16 @@
     </div>
   </div>
 
-  <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
+  <div class="row">
     <div class="col-md-8 offset-md-2">
       <p>コメント</p>
       <% @mypost.comments.each do |comment| %>
-        <p><%= comment.content %></p>
+        <p style="color: #5599dd;"><%= comment.content %></p>
       <% end %>
     </div>
   </div>
 
-  <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
+  <div class="row">
     <div class="col-md-8 offset-md-2">
       <p>ブックマーク: <%= @bookmark_count %></p>
     </div>
@@ -42,22 +42,24 @@
 
   <% if user_signed_in? && current_user == @user %>
 
-  <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
+  <div class="row">
     <div class="col-md-8 offset-md-2">
       <h3>コメントする？</h3>
       <%= form_for([@mypost, @comment]) do |f| %>
         <%= f.text_area :content, class: "form-control", rows: 3 %>
-        <%= f.submit "コメントする", class: "btn btn-primary mt-3" %>
+        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress" %>
       <% end %>
     </div>
   </div>
 
- <div class="row", style="font-family: 'Monomaniac One', sans-serif;">
+  <div class="row">
     <div class="col-md-8 offset-md-2">
       <% if @user == current_user %>
-        <%= link_to "編集", edit_post_path(@mypost), class: "btn btn-secondary mr-2" %>
-        <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger" %>
+        <%= link_to "改訂", edit_post_path(@mypost), class: "btn btn-secondary mt-2 button-depress" %>
+        <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger button-depress mt-2 mx-1" %>
       <% end %>
     </div>
   </div>
+
 <% end %>
+</div>

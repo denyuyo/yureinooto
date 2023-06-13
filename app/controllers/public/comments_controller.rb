@@ -8,7 +8,10 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
+  
+    if @comment.content.blank?
+      redirect_to post_path(@post), alert: "コメントの内容を入力してください"
+    elsif @comment.save
       redirect_to post_path(@post), notice: "コメントを送信しました"
     else
       flash.now[:alert] = "コメントの送信に失敗しました"
@@ -18,8 +21,16 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
-    redirect_to request.referer
+    
+    puts "コメントのID: #{@comment.id}"
+    puts "現在のユーザーID: #{current_user.id}"
+    
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      redirect_to request.referer, notice: "コメントを削除しました"
+    else
+      redirect_to request.referer
+    end
   end
 
   private

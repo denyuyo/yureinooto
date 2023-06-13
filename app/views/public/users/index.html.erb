@@ -1,24 +1,26 @@
-<h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;">マニアたち</h3>
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 22px; margin-bottom: 11px;">
+  <h3>マニアたち</h3>
 
-<table class="table", style= "font-family: 'Monomaniac One', sans-serif;">
-  <thead>
-    <tr>
-      <th></th>
-      <th>ユーザーネーム</th>
-      <th>Eメール</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= image_tag user.get_profile_image(50, 50), style: "border-radius: 20%;", class: "profile-image" if user.profile_image.attached? %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to "詳細", user_path(user), class: "btn btn-primary" %>
-        </td>
+        <th></th>
+        <th>ユーザーネーム</th>
+        <th>Eメール</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_profile_image(50, 50), style: "border-radius: 20%;", class: "profile-image" if user.profile_image.attached? %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to "詳細", user_path(user), class: "btn btn-primary button-depress" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,10 +1,9 @@
 class Public::CommentsController < ApplicationController
 
   def index
-    @user = User.find(params[:id])
-    @comments = Comment.where(user_id: @user.id)
+    @comments = Comment.all
   end
-  
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
@@ -16,7 +15,7 @@ class Public::CommentsController < ApplicationController
       render 'public/posts/show'
     end
   end
-  
+
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

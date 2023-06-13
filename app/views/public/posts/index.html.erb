@@ -27,5 +27,6 @@
   <% if user_signed_in? %>
     <%= link_to "つぶやく？", new_post_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
     <%= link_to "コメントたち", comments_user_path(current_user), class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
   <% end %>
 </div>

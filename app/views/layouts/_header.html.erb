@@ -15,7 +15,7 @@
             </button>
             <div class="col search_form", style="font-family: 'Monomaniac One', sans-serif;">
               <%= form_with url: searches_search_path, local: true, method: :get do |f| %>
-                <%= f.select :range, options_for_select([['ユーザー'], ['つぶやき']]) %>
+                <%= f.select :range, options_for_select([['ユーザー'], ['つぶやき'], ['タグ']]) %>
                 <%= f.text_field :word %>
                 <%= f.submit "さがす", class: 'btn　btn-sm btn-primary' %>
               <% end %>

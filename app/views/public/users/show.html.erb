@@ -18,6 +18,6 @@
   </ul>
 
   <% if user_signed_in? && current_user == @user %>
-    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
   <% end %>
 </div>

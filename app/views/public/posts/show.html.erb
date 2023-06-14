@@ -1,4 +1,4 @@
-<div class="container", style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <h1><%= @mypost.title %></h1>
@@ -24,16 +24,16 @@
 
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <% if @mypost.bookmarked?(current_user) %>
-          <!--一致するレコードが存在する＝すでにいいね済みの場合はdestroyアクションへ-->
-          <%= link_to post_bookmarks_path(@mypost.id), method: :delete do %>
-              <span style="color:red;">♡︎</span>
-          <% end %>
-      <% else %>
-          <!--一致するレコードが存在しない＝まだいいねしていない場合はcreateアクションへ-->
-          <%= link_to post_bookmarks_path(@mypost.id), method: :post do %>
-              <span>♡︎</span>
-          <% end %>
+      <% if user_signed_in? && current_user && @mypost.bookmarked?(current_user) %>
+        <!-- すでにいいね済みの場合はdestroyアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost.id), method: :delete do %>
+          <span style="color:red;">♡︎</span>
+        <% end %>
+      <% elsif user_signed_in? %>
+        <!-- まだいいねしていない場合はcreateアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost.id), method: :post do %>
+          <span>♡︎</span>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -61,5 +61,5 @@
     </div>
   </div>
 
-<% end %>
+  <% end %>
 </div>

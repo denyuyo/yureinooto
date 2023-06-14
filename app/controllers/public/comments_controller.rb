@@ -8,10 +8,12 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
-  
+
     if @comment.content.blank?
       redirect_to post_path(@post), alert: "コメントの内容を入力してください"
     elsif @comment.save
+      # コメントが保存された後に通知を作成・送信
+      @post.create_notification_comment!(current_user, @comment.id)
       redirect_to post_path(@post), notice: "コメントを送信しました"
     else
       flash.now[:alert] = "コメントの送信に失敗しました"

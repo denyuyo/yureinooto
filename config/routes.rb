@@ -34,5 +34,5 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get "/about" => "homes#about"
     resources :tags, only:[:create, :index, :show, :destroy]
   end
-
+    resources :notifications, only: :index
 end

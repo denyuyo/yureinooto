@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  
+
+  get 'guests/user_guest'
+  get 'guests/admin_guest'
   get 'searches/search'
 
 # ユーザー用
@@ -33,6 +35,10 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to: 'homes#top'
     get "/about" => "homes#about"
     resources :tags, only:[:create, :index, :show, :destroy]
+    put "/users/:id/hide" => "users#hide", as: 'users_hide'
   end
+
     resources :notifications, only: :index
+    post '/guests/user_login', to: 'guests#user_guest'
+    post '/guests/admin_login', to: 'guests#admin_guest'
 end

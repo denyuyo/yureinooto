@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_guest_user, only: [:edit]
 
   def index
     @users = User.all
@@ -29,6 +30,16 @@ class Public::UsersController < ApplicationController
       render "edit"
     end
   end
+  
+  def hide
+		@user = User.find(params[:id])
+		#is_deletedカラムにフラグを立てる(defaultはfalse)
+  	@user.update(is_deleted: true)
+  	#ログアウトさせる
+  	reset_session
+  	flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+  	redirect_to root_path
+	end
 
   private
 
@@ -44,6 +55,13 @@ class Public::UsersController < ApplicationController
       unless @user == current_user
         redirect_to user_path(current_user.id), notice: "他のユーザーの情報は編集できません"
       end
+    end
+  end
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+    redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 end

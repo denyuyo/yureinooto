@@ -1,9 +1,9 @@
-<div class="container" style="margin-top: 33px; margin-bottom: 22px; font-family: 'Monomaniac One', sans-serif;">
-  <h3>きみへのアクション</h3>
-
-  <% if @notifications.blank? %>
-    <p>ここは静まりかえっている</p>
-  <% else %>
-    <%= render partial: 'notifications/notification', collection: @notifications %>
-  <% end %>
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 22px; margin-bottom: 11px;">
+  <div class="row">
+    <% if @notifications_index.present? %>
+    <%= render "notifications", notifications_index: @notifications_index %>
+    <% else %>
+    <p>ここは沈まりかえっている</p>
+    <% end %>
+  </div>
 </div>

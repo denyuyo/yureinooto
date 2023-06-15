@@ -1,49 +1,31 @@
-<div class="col-md-6 mx-auto">
-    <ul>
-      <% @notifications.each do |notification| %>
-        <li>
-          <% visitor = notification.visitor %>
-          <% visited = notification.visited %>
-
-          <span>
-            <%= link_to user_path(visitor) do %>
-              <%= image_tag avatar_url(visitor).to_s, class: "icon_mini" %>
-              <strong>
-                <%= visitor.name %>
-              </strong>
-            <% end %>
-            さんが
-          </span>
-
-          <% case notification.action %>
-          <% when 'like' %>
-            <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>
-            にいいねしました
-          <% when 'comment' %>
-            <% if notification.post.user_id == visited.id %>
-              <%= link_to "あなたの投稿", notification.post, style: "font-weight: bold;" %>
-            <% else %>
-              <span>
-                <%= link_to post_path(notification.post) do %>
-                  <%= image_tag avatar_url(notification.post.user).to_s, class: "icon_mini" %>
-                  <strong>
-                    <%= notification.post.user.name + 'さんの投稿' %>
-                  </strong>
-                <% end %>
-              </span>
-            <% end %>
-            にコメントしました
-            <p class="text-muted mb-0">
-              <%= Comment.find_by(id: notification.comment_id)&.comment %>
-            </p>
+<div class="col">
+  <% notifications_index.each do |notification| %>
+    <table class="table">
+      <tr>
+      <% when 'bookmark' %>
+        <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+        をブックマークしました
+      <% when 'comment' %>
+        <% if notification.post.user_id == notification.visited.id %>
+          <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+        <% else %>
+          <%= link_to post_path(notification.post) do %>
+            <%= image_tag notification.post.user.get_profile_image(80, 80) %>
+            <strong><%= notification.post.user.name + 'さんのつぶやき' %></strong>
           <% end %>
-
-          <span class="small text-muted text-right">
-            <%= time_ago_in_words(notification.created_at).upcase %>
-          </span>
-        </li>
-        <hr>
+        <% end %>にコメントしました
+        <% if notification.post_comment.present? %>
+          <p style="background-color: #000; opacity: 0.5;">
+            <%= notification.post_comment.comment %>
+          </p>
+        <% end %>
       <% end %>
-    </ul>
+      </tr>
+      <tr>
+        <div style="opacity: 0.5;">
+          <%= notification.how_long_ago %>
+        </div>
+      </tr>
+    </table>
   <% end %>
 </div>

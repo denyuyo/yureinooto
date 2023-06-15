@@ -10,7 +10,6 @@
   <div class="field">
     <%= f.label :password, style: "font-family: 'Monomaniac One', sans-serif;" %><br />
     <%= f.password_field :password, autocomplete: "current-password", style: "font-family: 'Monomaniac One', sans-serif;" %>
-    
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -23,6 +22,10 @@
   <div class="actions">
     <%= f.submit "Log in", style: "font-family: 'Monomaniac One', sans-serif;" %>
   </div>
+<% end %>
+
+<%= form_with url: guests_user_login_path, method: :post do %>
+  <%= submit_tag 'ゲストログイン' %>
 <% end %>
 
 <%= render "public/shared/links" %>

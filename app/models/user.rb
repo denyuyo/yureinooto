@@ -29,4 +29,9 @@ class User < ApplicationRecord
   def self.looks(word)
     User.where("name LIKE ?", "%#{word}%")
   end
+  
+   # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 end

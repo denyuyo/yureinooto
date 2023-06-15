@@ -1,9 +1,8 @@
 class Public::PostsController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update, :bookmark]
 
   def index
     @posts = Post.all
-
   end
 
   def show
@@ -60,7 +59,7 @@ class Public::PostsController < ApplicationController
 
   def is_matching_login_user
     post_id = params[:id].to_i
-    @post = Post.find_by(id: post_id, tag_id:, user_id: current_user.id)
+    @post = Post.find_by(id: post_id, user_id: current_user.id)
     
     if @post.nil?
       redirect_to posts_path

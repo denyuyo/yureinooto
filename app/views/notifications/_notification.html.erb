@@ -1,0 +1,31 @@
+<div class="col">
+  <% notifications_index.each do |notification| %>
+    <table class="table">
+      <tr>
+      <% when 'bookmark' %>
+        <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+        をブックマークしました
+      <% when 'comment' %>
+        <% if notification.post.user_id == notification.visited.id %>
+          <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+        <% else %>
+          <%= link_to post_path(notification.post) do %>
+            <%= image_tag notification.post.user.get_profile_image(80, 80) %>
+            <strong><%= notification.post.user.name + 'さんのつぶやき' %></strong>
+          <% end %>
+        <% end %>にコメントしました
+        <% if notification.post_comment.present? %>
+          <p style="background-color: #000; opacity: 0.5;">
+            <%= notification.post_comment.comment %>
+          </p>
+        <% end %>
+      <% end %>
+      </tr>
+      <tr>
+        <div style="opacity: 0.5;">
+          <%= notification.how_long_ago %>
+        </div>
+      </tr>
+    </table>
+  <% end %>
+</div>

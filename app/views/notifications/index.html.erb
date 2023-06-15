@@ -1,0 +1,9 @@
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 22px; margin-bottom: 11px;">
+  <div class="row">
+    <% if @notifications_index.present? %>
+    <%= render "notifications", notifications_index: @notifications_index %>
+    <% else %>
+    <p>ここは沈まりかえっている</p>
+    <% end %>
+  </div>
+</div>

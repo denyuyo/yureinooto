@@ -13,7 +13,11 @@
   <h3 style="font-family: 'Monomaniac One', sans-serif;">つぶやき</h3>
   <ul style="font-family: 'Monomaniac One', sans-serif;">
     <% @posts.each do |post| %>
-      <li><%= link_to post.title, post_path(post) %></li>
+      <% if current_user || @user == current_user %>
+        <li><%= link_to post.title, post_path(post), id: "access-denied-link" %></li>
+      <% else %>
+        <li><%= link_to post.title, "#", onclick: "showAccessDeniedMessage(event);" %></li>
+      <% end %>
     <% end %>
   </ul>
 
@@ -21,3 +25,63 @@
     <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
   <% end %>
 </div>
+
+<script>
+  function showAccessDeniedMessage(event) {
+    event.preventDefault();
+
+    const alertContainer = document.createElement("div");
+    alertContainer.classList.add("access-denied-alert");
+
+    const alertMessage = document.createElement("p");
+    alertMessage.textContent = "アクセス権限がないようだ。ログインする？";
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "閉じる";
+    closeButton.addEventListener("click", function() {
+      alertContainer.remove();
+    });
+
+    alertContainer.appendChild(alertMessage);
+    alertContainer.appendChild(closeButton);
+
+    document.querySelector(".container").appendChild(alertContainer);
+  }
+</script>
+
+<style>
+  .access-denied-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .access-denied-alert p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+  }
+
+  .access-denied-alert button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .access-denied-alert button:hover {
+    background-color: #ccc;
+  }
+</style>

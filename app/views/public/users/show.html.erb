@@ -4,10 +4,13 @@
     <h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;"><%= @user.name %>さんのプロフィール</h3>
     <!-- 以下省略 -->
   <% else %>
-    <p>このユーザーは退会済みです。</p>
+    <p class="withdrawn-status" style="font-family: 'DotGothic16', sans-serif;">このユーザーは退会済みです</p>
   <% end %>
+  <br>
 
-  <% if @user.profile_image.attached? %>
+   <% if @user.withdrawn? %>
+    <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
+  <% elsif @user.profile_image.attached? %>
     <%= image_tag url_for(@user.profile_image.variant(resize: "100x100")), class: "profile-image", style: "border-radius: 40%;" %>
   <% else %>
     <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
@@ -94,5 +97,13 @@
 
   .access-denied-alert button:hover {
     background-color: #ccc;
+  }
+  
+  .withdrawn-status {
+    display: inline-block;
+    background-color: #e75555; /* 赤色 */
+    color: #f4f4f4;
+    padding: 8px;
+    border-radius: 4px;
   }
 </style>

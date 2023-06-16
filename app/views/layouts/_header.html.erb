@@ -27,11 +27,6 @@
                 <%= f.submit "さがす", class: 'btn　btn-sm btn-primary' %>
               <% end %>
             </div>
-            <div class="col" style="margin-top: 20px; margin-left: 10px;">
-              <% if user_signed_in? %>
-                <%= render partial: 'partial/circle' %>
-              <% end %>
-            </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
               <ul class="navbar-nav ml-5">
                 <% if user_signed_in? %>
@@ -53,6 +48,11 @@
                   <li><%= link_to  users_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-user-friends"></i> users</li> <% end %>
                   <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
                   <li><%= link_to  about_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
+                <% end %>
+                <% if user_signed_in? %>
+                  <li class="nav-link text-right">
+                    <%= render partial: 'partial/circle' %>
+                  </li>
                 <% end %>
               </ul>
             </div>

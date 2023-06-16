@@ -17,6 +17,15 @@ class Public::TagsController < ApplicationController
     end
   end
   
+  def update
+    @tag = Tag.find(params[:id])
+    if @tag.update(tag_params)
+      redirect_to tags_path, notice: "タグを更新しました"
+    else
+      render :index
+    end
+  end
+  
   def search
     @tags = Tag.where("tag_name LIKE ?", "%#{params[:keyword]}%")
   end

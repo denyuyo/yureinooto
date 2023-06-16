@@ -19,46 +19,16 @@
   <h3 style="font-family: 'Monomaniac One', sans-serif;">つぶやき</h3>
   <ul style="font-family: 'Monomaniac One', sans-serif;">
     <% @posts.each do |post| %>
-      <% if current_user || @user == current_user %>
-        <li><%= link_to post.title, post_path(post), id: "access-denied-link" %></li>
-      <% else %>
-        <li><%= link_to post.title, "#", onclick: "showAccessDeniedMessage(event);" %></li>
-      <% end %>
+        <li><%= link_to post.title, admin_post_path(post), id: "access-denied-link" %></li>
     <% end %>
   </ul>
-
-  <% if user_signed_in? && current_user == @user %>
-    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
-  <% end %>
-
-  <% if user_signed_in? && @user.id == current_user.id %>
-  		<%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-  <% end %>
-
+  
+    <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+  	<%= link_to "退会", users_hide_path, method: :put, "data-confirm" => "本当に退会させますか？", class: "btn btn-danger", style: "font-family: 'Monomaniac One', sans-serif;" %>
+  	<% if @user.is_deleted %>
+      <%= link_to "復活", revive_admin_user_path(@user), method: :put, class: "btn btn-primary" %>
+    <% end %>
 </div>
-
-<script>
-  function showAccessDeniedMessage(event) {
-    event.preventDefault();
-
-    const alertContainer = document.createElement("div");
-    alertContainer.classList.add("access-denied-alert");
-
-    const alertMessage = document.createElement("p");
-    alertMessage.textContent = "アクセス権限がないようだ。ログインする？";
-
-    const closeButton = document.createElement("button");
-    closeButton.textContent = "閉じる";
-    closeButton.addEventListener("click", function() {
-      alertContainer.remove();
-    });
-
-    alertContainer.appendChild(alertMessage);
-    alertContainer.appendChild(closeButton);
-
-    document.querySelector(".container").appendChild(alertContainer);
-  }
-</script>
 
 <style>
   .access-denied-alert {
@@ -95,4 +65,21 @@
   .access-denied-alert button:hover {
     background-color: #ccc;
   }
+  
 </style>
+
+<script>
+  // app/assets/javascripts/confirm_dialog.js
+document.addEventListener("DOMContentLoaded", function() {
+  const links = document.querySelectorAll("[data-confirm]");
+  links.forEach(function(link) {
+    link.addEventListener("click", function(event) {
+      const message = link.getAttribute("data-confirm");
+      if (!confirm(message)) {
+        event.preventDefault();
+      }
+    });
+  });
+});
+
+</script>

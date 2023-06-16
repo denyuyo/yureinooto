@@ -3,9 +3,16 @@
     <div class="container">
       <div class="row w-100">
         <div class="col-3">
-          <%= link_to root_path, class: 'nav-link nav-brand' do %>
-            <%= image_tag "j444_15_1.png", size: "100x50" %>
-            <h2 class="title mt-2" style="font-family: 'DotGothic16', sans-serif;"><font class="none">幽霊の足音</font></h2>
+          <% if current_admin %>
+            <%= link_to admin_root_path, class: 'nav-link nav-brand' do %>
+              <%= image_tag "j444_15_1.png", size: "100x50" %>
+              <h2 class="title mt-2" style="font-family: 'DotGothic16', sans-serif;"><font class="none">幽霊の足音</font></h2>
+            <% end %>
+          <% else %>
+            <%= link_to root_path, class: 'nav-link nav-brand' do %>
+              <%= image_tag "j444_15_1.png", size: "100x50" %>
+              <h2 class="title mt-2" style="font-family: 'DotGothic16', sans-serif;"><font class="none">幽霊の足音</font></h2>
+            <% end %>
           <% end %>
         </div>
         <div class="col-9">
@@ -21,7 +28,9 @@
               <% end %>
             </div>
             <div class="col" style="margin-top: 20px; margin-left: 10px;">
-              <%= render partial: 'partial/circle' %>
+              <% if user_signed_in? %>
+                <%= render partial: 'partial/circle' %>
+              <% end %>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
               <ul class="navbar-nav ml-5">
@@ -35,8 +44,8 @@
                 <% elsif admin_signed_in? %>
                   <!--管理者がログインしていたら-->
                   <li><%= link_to  admin_users_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  admin_comments_path,         class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-mail-bulk"></i>コメントたち</li> <% end %>
-                  <li><%= link_to  admin_posts_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-list-alt"></i>きみつじこう</li> <% end %>
+                  <li><%= link_to  admin_posts_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-mail-bulk"></i>つぶやきたち</li> <% end %>
+                  <li><%= link_to  admin_tags_path,             class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-list-alt"></i>タグたち</li> <% end %>
                   <li><%= link_to  destroy_admin_session_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
                 <% else %>
                   <!--ログイン前画面-->

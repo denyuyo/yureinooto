@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
   end
-  
+
   def new
     @post = Post.new
     @tag = Tag.new
@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def is_matching_login_user
     post_id = params[:id].to_i
     @post = Post.find_by(id: post_id, user_id: current_user.id)
-    
+
     if @post.nil?
       redirect_to posts_path
     end

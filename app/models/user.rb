@@ -34,4 +34,8 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
+  
+  def withdrawn?
+    is_deleted
+  end
 end

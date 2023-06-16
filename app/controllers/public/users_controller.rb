@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit]
+  before_action :hide_withdrawn_user
 
   def index
     @users = User.all
@@ -40,7 +41,12 @@ class Public::UsersController < ApplicationController
   	flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
   	redirect_to root_path
 	end
+	
+	def hide_withdrawn_user
+    redirect_to(root_path) if current_user&.withdrawn?
+  end
 
+	
   private
 
   def user_params

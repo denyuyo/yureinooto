@@ -1,10 +1,12 @@
 ja:
-  enums:
-    post:
-    
-    
+  datetime:
+    distance_in_words:
+      x_minutes: "%{count}分"
+      about_x_hours: "%{count}時間"
+      x_days: "%{count}日"
+      about_x_months: "%{count}ヶ月"
+
   bookmark:
     desing:
       place-of-worship: "<i class='fas fa-place-of-worship' style='color: #5cbc79;'></i>"
       space-shuttle: "<i class='fas fa-space-shuttle' style='color: #83a8e7;'></i>"
-      

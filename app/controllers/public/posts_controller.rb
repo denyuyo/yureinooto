@@ -26,6 +26,7 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+    post_params = params.require(:post).permit(:title, :content, tag_ids: [])
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save

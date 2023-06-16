@@ -10,6 +10,7 @@ class Public::PostsController < ApplicationController
     @mypost.update(viewcount: @mypost.viewcount + 1)
     @user = @mypost.user
     @post = Post.new
+    @tags = @mypost.tags
     @comment = Comment.new
     @bookmark_count = @mypost.bookmarks.count
   end
@@ -49,6 +50,13 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path, notice: "機密情報は保持された"
+  end
+  
+  def update_tags
+    @post = Post.find(params[:id])
+    selected_tag_ids = Array(params[:tag_ids]) # 複数のタグを配列として受け取るため、Array() メソッドで変換します
+    @post.tags = Tag.where(id: selected_tag_ids)
+    redirect_to post_path(@post), notice: "タグを更新しました"
   end
 
   private

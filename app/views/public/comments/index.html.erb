@@ -8,9 +8,7 @@
         <p class="card-text"><%= comment.content %></p>
         <p class="card-text"><small class="text-muted"><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></small></p>
         <p class="card-text">つぶやき: <%= link_to comment.post.title, post_path(comment.post) %></p>
-        <% if comment.user_id == current_user.id %> <!-- コメントの所有者のみに削除リンクを表示 -->
           <%= link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-        <% end %>
       </div>
     </div>
   <% end %>

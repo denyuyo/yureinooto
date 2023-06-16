@@ -1,0 +1,20 @@
+<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
+  <div class="row" style= "font-family: 'Monomaniac One', sans-serif;">
+    <% @tags.each do |tag|%>
+      <%= link_to admin_tag_path(tag), class: "btn btn-outline-info rounded-pill m-1" do %>
+        <i class="fas fa-tag"></i>
+        <%= tag.tag_name %>
+      <% end %>
+      <%= link_to admin_tag_path(tag), method: :delete, class: "mr-2" do %>
+        <i class="fas fa-trash fa-sm"></i>
+      <% end %>
+    <% end %>
+    <div class="bottom_btn">
+    <h3>タグをつくる?</h3>
+    <%= form_with model: Tag, url: admin_tags_path, class: "form-inline", local: true do |f| %>
+      <%= f.text_field :tag_name, placeholder: "タグ", class: "form-control mr-2" %>
+      <%= f.submit "このタグにきめた", class:"btn btn-info button-depress", size:30 %>
+    <% end %>
+    </div>
+  </div>
+</div>

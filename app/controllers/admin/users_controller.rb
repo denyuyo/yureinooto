@@ -6,6 +6,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def update
@@ -19,6 +20,22 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+  end
+  
+  def revive
+    @user = User.find(params[:id])
+  
+    if @user.update(is_deleted: false)
+      flash[:notice] = "ユーザーが復活しました。"
+      redirect_to admin_user_path(@user)
+    else
+      flash[:alert] = "ユーザーの復活に失敗しました。"
+      redirect_to root_path
+    end
+  end
+  
+  def hide_withdrawn_user
+    redirect_to(root_path) if current_user&.withdrawn?
   end
 
   private

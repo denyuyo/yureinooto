@@ -16,10 +16,20 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 }
 
   namespace :admin do
-      resources :users, only: [:index, :show, :destroy]
-      resources :comments, only: [:index, :show, :destroy]
-      resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only:[:index, :destroy, :show] do
+      get 'bookmarks' =>'bookmarks#index'
+      get 'comments' =>'comments#index'
     end
+
+    resources :users, only:[:index, :show, :edit, :update] do
+      member do
+        put :revive
+      end
+    end
+
+    root to: 'homes#top'
+    resources :tags,   only:[:create, :index, :show, :destroy]
+  end
 
   scope module: :public do
     resources :users, only:[:index, :show, :update, :edit, :show] do

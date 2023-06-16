@@ -1,0 +1,10 @@
+ja:
+  enums:
+    post:
+    
+    
+  bookmark:
+    desing:
+      place-of-worship: "<i class='fas fa-place-of-worship' style='color: #5cbc79;'></i>"
+      space-shuttle: "<i class='fas fa-space-shuttle' style='color: #83a8e7;'></i>"
+      

@@ -1,31 +1,42 @@
 <div class="col">
-  <% notifications_index.each do |notification| %>
+  <% notifications.each do |notification| %>
     <table class="table">
       <tr>
-      <% case notification.action %>
-        <% when 'bookmark' %>
-          <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
-          をブックマークしました
-        <% when 'comment' %>
-          <% if notification.post.user_id == notification.visited.id %>
-            <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
-          <% else %>
-            <%= link_to post_path(notification.post) do %>
-              <%= image_tag notification.post.user.get_profile_image(80, 80) %>
-              <strong><%= notification.post.user.name + 'さんのつぶやき' %></strong>
+        <td>
+          <% case notification.action %>
+            <% when 'bookmark' %>
+              <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+              をブックマークしました
+            <% when 'comment' %>
+              <% if notification.post.user_id == notification.visited.id %>
+                <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+              <% else %>
+                <%= link_to post_path(notification.post) do %>
+                  <%= image_tag notification.post.user.get_profile_image(80, 80) %>
+                  <strong><%= notification.post.user.name + 'さんのつぶやき' %></strong>
+                <% end %>
+              <% end %>にコメントしました
+              <% if notification.post_comment.present? %>
+                <p style="background-color: #000; opacity: 0.5;">
+                  <%= notification.post_comment.comment %>
+                </p>
+              <% end %>
             <% end %>
-          <% end %>にコメントしました
-          <% if notification.post_comment.present? %>
-            <p style="background-color: #000; opacity: 0.5;">
-              <%= notification.post_comment.comment %>
-            </p>
+        </td>
+        <td style="font-family: 'DotGothic16', sans-serif;">
+          <% if notification.checked %>
+            <div style="color: #999;">既読</div>
+          <% else %>
+            未読
           <% end %>
-        <% end %>
+        </td>
       </tr>
       <tr>
-        <div style="opacity: 0.5;">
-          <%= how_long_ago(notification.created_at) %>
-        </div>
+        <td colspan="2">
+          <div style="opacity: 0.5;">
+            <%= how_long_ago(notification.created_at) %>
+          </div>
+        </td>
       </tr>
     </table>
   <% end %>

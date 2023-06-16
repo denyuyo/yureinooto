@@ -7,6 +7,9 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
       t.integer :comment_id
       t.string :action, default: '', null: false
       t.boolean :checked, default: false, null: false
+      
+       # Add null: true to bookmark_id
+      t.references :bookmark, null: true, foreign_key: true
 
       t.timestamps
     end

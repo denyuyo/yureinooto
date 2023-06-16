@@ -1,6 +1,6 @@
 class Public::NotificationsController < ApplicationController
   
   def index
-    @notifications = set_user.notifications
+    @notifications = current_user.notifications
   end
 end

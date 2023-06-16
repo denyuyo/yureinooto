@@ -2,6 +2,7 @@ class Bookmark < ApplicationRecord
   
   belongs_to :user
   belongs_to :post
+  has_many :notifications, dependent: :destroy
   
   def create_notification_bookmark(current_user)
     # 「ブックマーク」通知が既に存在するかどうかをチェック

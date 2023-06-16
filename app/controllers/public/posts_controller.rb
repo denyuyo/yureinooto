@@ -52,7 +52,7 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path, notice: "機密情報は保持された"
   end
-  
+
   def update_tags
     @post = Post.find(params[:id])
     selected_tag_ids = Array(params[:tag_ids]) # 複数のタグを配列として受け取るため、Array() メソッドで変換します

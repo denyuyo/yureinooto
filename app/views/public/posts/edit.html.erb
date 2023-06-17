@@ -1,7 +1,7 @@
 <div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <h3 style="font-size: 33px;">つぶやきの改訂</h3>
 
-  <%= form_for(@post) do |f| %>
+  <%= form_for(@post, html: { multipart: true }) do |f| %>
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
@@ -12,6 +12,46 @@
       <%= f.text_area :content, class: "form-control" %>
     </div>
 
+    <div class="form-group">
+      <%= f.label :images %>
+      <div id="image-preview" class="row"></div>
+      <%= f.file_field :images, class: "form-control-file", multiple: true, id: "image-upload" %>
+    </div>
+
     <%= f.submit "これでいい?", class: "btn btn-primary button-depress" %>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const imageUploadField = document.getElementById("image-upload");
+    const imagePreview = document.getElementById("image-preview");
+
+    imageUploadField.addEventListener("change", function() {
+      imagePreview.innerHTML = ""; // 一旦プレビューをクリア
+
+      const files = Array.from(imageUploadField.files); // 選択されたファイル一覧を取得
+
+      files.forEach(function(file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+          const img = document.createElement("img");
+          img.src = event.target.result;
+          img.classList.add("img-fluid");
+          img.style.margin = "5px";
+          imagePreview.appendChild(img);
+        }
+
+        reader.readAsDataURL(file);
+      });
+    });
+  });
+</script>
+
+<style>
+  #image-preview img {
+    max-width: 200px; /* 画像の最大幅 */
+    max-height: 200px; /* 画像の最大高さ */
+  }
+</style>

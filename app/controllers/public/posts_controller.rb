@@ -62,10 +62,6 @@ class Public::PostsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(:title, :content)
-  end
-
   def is_matching_login_user
     post_id = params[:id].to_i
     @post = Post.find_by(id: post_id, user_id: current_user.id)
@@ -73,5 +69,9 @@ class Public::PostsController < ApplicationController
     if @post.nil?
       redirect_to posts_path
     end
+  end
+  
+  def post_params
+    params.require(:post).permit(:title, :content, images: [])
   end
 end

@@ -10,6 +10,9 @@
       <div class="col-md-6">
         <div class="card mb-4">
           <div class="card-body">
+            <% if post.images.attached? %>
+              <%= image_tag post.images.first, class: "card-img-top" %>
+            <% end %>
             <h5 class="card-title"><%= post.title %></h5>
             <p class="card-text"><%= post.content %></p>
             <p class="card-text">投稿主: <%= post.user.name %></p>
@@ -34,3 +37,11 @@
     <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
   <% end %>
 </div>
+
+<style>
+  .card-img-top {
+    width: 100%; /* 画像の幅 */
+    height: 200px; /* 画像の高さ */
+    object-fit: cover; /* アスペクト比を保ったまま画像を表示 */
+  }
+</style>

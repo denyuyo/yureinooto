@@ -1,4 +1,15 @@
 <div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  
+  <% if @mypost.images.attached? %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <% @mypost.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <h1><%= @mypost.title %></h1>
@@ -37,7 +48,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <p>タグ:</p>
@@ -46,7 +57,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <% if current_user && current_user.id == @mypost.user.id %>
     <div style="width: 83%; margin-left: auto;">
       <%= form_tag update_tags_post_path, method: :patch, style: "margin-top: 17px;" do %>
@@ -55,7 +66,6 @@
       <% end %>
     </div>
   <% end %>
-
 
   <br>
 
@@ -81,4 +91,5 @@
   </div>
 
   <% end %>
+
 </div>

@@ -1,27 +1,31 @@
-<h2>Log in</h2>
+<h2 style= "font-family: 'Monomaniac One', sans-serif;">Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: user_session_path(resource_name)) do |f| %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.email_field :name, autofocus: true, autocomplete: "name" %>
+    <%= f.label :name, "ユーザーネーム", style: "font-family: 'Monomaniac One', sans-serif;" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "font-family: 'Monomaniac One', sans-serif;" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.label :password, style: "font-family: 'Monomaniac One', sans-serif;" %><br />
+    <%= f.password_field :password, autocomplete: "current-password", style: "font-family: 'Monomaniac One', sans-serif;" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.check_box :remember_me, style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.label :remember_me, style: "font-family: 'Monomaniac One', sans-serif;" %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", style: "font-family: 'Monomaniac One', sans-serif;" %>
   </div>
+<% end %>
+
+<%= form_with url: guests_user_login_path, method: :post do %>
+  <%= submit_tag 'ゲストログイン' %>
 <% end %>
 
 <%= render "public/shared/links" %>

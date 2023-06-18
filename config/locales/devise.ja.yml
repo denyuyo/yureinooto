@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください"
+            name:
+              blank: "ユーザーネームを入力してください"
+      messages:
+        blank: "入力してください"
+  errors:
+    messages:
+      too_short: "%{attribute}は%{count}文字以上で入力してください"

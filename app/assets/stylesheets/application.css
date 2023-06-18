@@ -13,15 +13,3 @@
  *= require_tree .
  *= require_self
  */
- 
- @font-face {
-  font-family: 'New Tegomin';
-  src: url('/app/assets/fonts/new-tegomin.woff2') format('woff2'),  /* フォントファイルのパスを指定 */
-       url('/app/assets/fonts/new-tegomin.woff') format('woff');   /* 必要に応じて、他のフォーマットも指定 */
-  font-weight: normal;
-  font-style: normal;
-}
-
-h2 {
-  font-family: 'New Tegomin', sans-serif;  /* New Tegominフォントを適用 */
-}

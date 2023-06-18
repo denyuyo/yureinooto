@@ -1,0 +1,47 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
+  <div class="row" style= "font-family: 'Monomaniac One', sans-serif;">
+    <% @posts.each do |post| %>
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-body">
+            <% if post.images.attached? %>
+              <%= image_tag post.images.first, class: "card-img-top" %>
+            <% end %>
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text"><%= post.content %></p>
+            <p class="card-text">投稿主: <%= post.user.name %></p>
+            <p class="card-text">作成日時: <%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+            <% post.tags.each do |tag| %>
+              <span class="badge badge-primary" style="margin-bottom: 10px;"><%= tag.tag_name %></span>
+            <% end %>
+              <br>
+            <%= link_to "詳細", post_path(post), class: "btn btn-secondary button-depress" %>
+            <div class="col-3" id="favorite_buttons_<%= post.id %>">
+              <%= render "public/bookmarks/bookmark", post: post %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <% if user_signed_in? %>
+    <%= link_to "つぶやく？", new_post_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    <%= link_to "コメントたち", comments_user_path(current_user), class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+  <% end %>
+</div>
+
+<style>
+  .card-img-top {
+    width: 100%; /* 画像の幅 */
+    height: 200px; /* 画像の高さ */
+    object-fit: cover; /* アスペクト比を保ったまま画像を表示 */
+  }
+</style>

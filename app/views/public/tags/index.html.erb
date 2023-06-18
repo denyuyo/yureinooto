@@ -1,0 +1,10 @@
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <h2>タグたち</h2>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li>
+        <%= link_to tag.tag_name, tag_path(tag) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

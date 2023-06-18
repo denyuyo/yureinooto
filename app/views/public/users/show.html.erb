@@ -1,0 +1,109 @@
+<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
+  <% unless @user.withdrawn? %>
+    <!-- ユーザープロフィールの表示コード -->
+    <h3 style="font-family: 'Monomaniac One', sans-serif; font-size: 33px;"><%= @user.name %>さんのプロフィール</h3>
+    <!-- 以下省略 -->
+  <% else %>
+    <p class="withdrawn-status" style="font-family: 'DotGothic16', sans-serif;">このユーザーは退会済みです</p>
+  <% end %>
+  <br>
+
+   <% if @user.withdrawn? %>
+    <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
+  <% elsif @user.profile_image.attached? %>
+    <%= image_tag url_for(@user.profile_image.variant(resize: "100x100")), class: "profile-image", style: "border-radius: 40%;" %>
+  <% else %>
+    <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
+  <% end %>
+
+  <p style="font-family: 'Monomaniac One', sans-serif;"><strong>Email:</strong> <%= @user.email %></p>
+  <p style="font-family: 'Monomaniac One', sans-serif;"><strong>作成日時:</strong> <%= @user.created_at %></p>
+
+  <h3 style="font-family: 'Monomaniac One', sans-serif;">つぶやき</h3>
+  <ul style="font-family: 'Monomaniac One', sans-serif;">
+    <% @posts.each do |post| %>
+      <% if current_user || @user == current_user %>
+        <li><%= link_to post.title, post_path(post), id: "access-denied-link" %></li>
+      <% else %>
+        <li><%= link_to post.title, "#", onclick: "showAccessDeniedMessage(event);" %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <% if user_signed_in? && current_user == @user %>
+    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+  <% end %>
+
+  <% if user_signed_in? && @user.id == current_user.id %>
+  		<%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+  <% end %>
+
+</div>
+
+<script>
+  function showAccessDeniedMessage(event) {
+    event.preventDefault();
+
+    const alertContainer = document.createElement("div");
+    alertContainer.classList.add("access-denied-alert");
+
+    const alertMessage = document.createElement("p");
+    alertMessage.textContent = "アクセス権限がないようだ。ログインする？";
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "閉じる";
+    closeButton.addEventListener("click", function() {
+      alertContainer.remove();
+    });
+
+    alertContainer.appendChild(alertMessage);
+    alertContainer.appendChild(closeButton);
+
+    document.querySelector(".container").appendChild(alertContainer);
+  }
+</script>
+
+<style>
+  .access-denied-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .access-denied-alert p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+  }
+
+  .access-denied-alert button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .access-denied-alert button:hover {
+    background-color: #ccc;
+  }
+  
+  .withdrawn-status {
+    display: inline-block;
+    background-color: #e75555; /* 赤色 */
+    color: #f4f4f4;
+    padding: 8px;
+    border-radius: 4px;
+  }
+</style>

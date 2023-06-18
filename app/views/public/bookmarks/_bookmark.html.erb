@@ -1,0 +1,11 @@
+<% if post.bookmarked?(current_user) %>
+  <%= link_to bookmarks_user_path(post), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red; font-size: 16px;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+<% else %>
+  <%= link_to post_bookmarks_path(post), method: :post, remote: true do %>
+    <i class="far fa-heart" aria-hidden="true" style="font-size: 16px;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+<% end %>

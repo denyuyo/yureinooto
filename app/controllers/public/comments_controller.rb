@@ -1,39 +1,41 @@
 class Public::CommentsController < ApplicationController
-  
-  before_action :set_post, only: [:new, :create]
-  before_action :set_comment, only: [:destroy]
-
-  def new
-    @comment = Comment.new
-  end
-
-  def create
-    @comment = @post.comments.build(comment_params)
-    if @comment.save
-      redirect_to post_path(@post), notice: 'コメントが投稿されました。'
-    else
-      redirect_to post_path(@post), alert: 'コメントの投稿に失敗しました。'
-    end
-  end
 
   def index
     @comments = Comment.all
   end
 
+  def create
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new(comment_params)
+    @comment.user_id = current_user.id
+
+    if @comment.content.blank?
+      redirect_to post_path(@post), alert: "コメントの内容を入力してください"
+    elsif @comment.save
+      # コメントが保存された後に通知を作成・送信
+      @post.create_notification_comment!(current_user, @comment)
+      redirect_to post_path(@post), notice: "コメントを送信しました"
+    else
+      flash.now[:alert] = "コメントの送信に失敗しました"
+      render 'public/posts/show'
+    end
+  end
+
   def destroy
-    @comment.destroy
-    redirect_to comments_path, notice: 'コメントが削除されました。'
+    @comment = Comment.find(params[:id])
+    
+    puts "コメントのID: #{@comment.id}"
+    puts "現在のユーザーID: #{current_user.id}"
+    
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      redirect_to request.referer, notice: "コメントを削除しました"
+    else
+      redirect_to request.referer
+    end
   end
 
   private
-
-  def set_post
-    @post = Post.find(params[:post_id])
-  end
-
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
 
   def comment_params
     params.require(:comment).permit(:content)

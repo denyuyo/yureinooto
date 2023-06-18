@@ -1,0 +1,39 @@
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <% if @range == "ユーザー" %>
+    <% if @users.present? %>
+      <h2 class="text-center">"<%=@word %>"のユーザーを見つけたよ!</h2>
+      <h2>ユーザー</h2>
+      <ul>
+        <% @users.each do |user| %>
+          <li><%= user.name %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2 class="text-center">"<%=@word %>"というユーザーはいないみたい</h2>
+    <% end %>
+  <% elsif @range == "つぶやき" %>
+    <% if @posts.present? %>
+      <h2 class="text-center">"<%=@word %>"のつぶやきをみつけたよ!</h2>
+      <h2>つぶやき</h2>
+      <ul>
+        <% @posts.each do |post| %>
+          <li><%= link_to post.title, post_path(post) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2 class="text-center">"<%=@word %>"というつぶやきはまだないようだ...</h2>
+    <% end %>
+  <% elsif @range == "タグ" %>
+    <% if @tags.present? %>
+      <h2 class="text-center">"<%=@word %>"のタグをみつけたよ!</h2>
+      <h2>タグ</h2>
+      <ul>
+        <% @tags.each do |tag| %>
+          <li><%= link_to tag.tag_name, tag_path(tag) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h2 class="text-center">"<%=@word %>"というタグはまだないようだ...</h2>
+    <% end %>
+  <% end %>
+</div>

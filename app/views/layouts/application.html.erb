@@ -14,16 +14,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.css">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
-  <body data-turbolinks=false>
-    <%= render 'layouts/header' %>
-    <main>
+  <body class="d-flex flex-column vh-100 backdiv",data-turbolinks=false>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+    <%= render 'layouts/loading' %>
+    <header><%= render 'layouts/header' %></header>
+    <%= render 'layouts/flash' %>
+    <main class= "mb-auto">
       <%= yield %>
     </main>
-    <%= render 'layouts/footer' %>
+    <footer><%= render 'layouts/footer' %></footer>
   </body>
 </html>
+
+<style>
+  .button-depress {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #66cdaa;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Monomaniac One', sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.button-depress:hover {
+  transform: translateY(3px);
+}
+</style>

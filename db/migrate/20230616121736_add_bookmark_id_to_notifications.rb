@@ -1,5 +1,6 @@
 class AddBookmarkIdToNotifications < ActiveRecord::Migration[6.1]
   def change
-    add_reference :notifications, :bookmark, null: false, foreign_key: true
+    add_column :notifications, :bookmark_id, :integer, null: false, default: 0
+    add_index :notifications, :bookmark_id
   end
 end

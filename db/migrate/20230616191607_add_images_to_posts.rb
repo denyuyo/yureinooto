@@ -1,19 +1,20 @@
 class AddImagesToPosts < ActiveRecord::Migration[6.1]
   def change
-    add_column :posts, :images, :json
-
+    # 既存のカラムを削除
     remove_column :posts, :images, :json
 
+    # active_storage_attachments テーブルを作成
     create_table :active_storage_attachments do |t|
       t.string :name, null: false
-      t.references :record, null: false, polymorphic: true, index: false
-      t.references :blob, null: false
+      t.integer :record_id, null: false
+      t.string :record_type, null: false
+      t.integer :blob_id, null: false
       t.datetime :created_at, null: false
 
       t.index [:record_type, :record_id, :name, :blob_id], name: "index_active_storage_attachments_uniqueness", unique: true
-      t.foreign_key :active_storage_blobs, column: :blob_id
     end
 
+    # active_storage_blobs テーブルを作成
     create_table :active_storage_blobs do |t|
       t.string :key, null: false
       t.string :filename, null: false
@@ -25,5 +26,8 @@ class AddImagesToPosts < ActiveRecord::Migration[6.1]
 
       t.index [:key], name: "index_active_storage_blobs_on_key", unique: true
     end
+
+    # 外部キー制約を追加
+    add_foreign_key :active_storage_attachments, :active_storage_blobs, column: :blob_id
   end
 end

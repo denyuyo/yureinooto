@@ -6,10 +6,5 @@ class CreateBookmarks < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-
-    add_foreign_key :bookmarks, :users
-    add_foreign_key :bookmarks, :posts
-    add_index :bookmarks, :user_id
-    add_index :bookmarks, :post_id
   end
 end

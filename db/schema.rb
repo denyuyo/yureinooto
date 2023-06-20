@@ -58,8 +58,6 @@ ActiveRecord::Schema.define(version: 2023_06_16_121736) do
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_bookmarks_on_post_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -114,8 +112,4 @@ ActiveRecord::Schema.define(version: 2023_06_16_121736) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookmarks", "posts"
-  add_foreign_key "bookmarks", "users"
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
 end

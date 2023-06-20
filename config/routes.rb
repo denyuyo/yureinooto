@@ -18,8 +18,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     resources :posts, only:[:index, :destroy, :show] do
       get 'bookmarks' =>'bookmarks#index'
-      get 'comments' =>'comments#index'
     end
+    resources :comments, only:[:index]
 
     resources :users, only:[:index, :show, :edit, :update] do
       member do

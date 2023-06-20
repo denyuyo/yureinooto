@@ -32,8 +32,5 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.index [:blob_id, :variation_digest], name: "index_active_storage_variant_records_uniqueness", unique: true
       t.index :blob_id
     end
-
-    add_foreign_key :active_storage_attachments, :active_storage_blobs, column: :blob_id
-    add_foreign_key :active_storage_variant_records, :active_storage_blobs, column: :blob_id
   end
 end

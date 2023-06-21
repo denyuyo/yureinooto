@@ -1,11 +1,11 @@
 <div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   
-  <% if @mypost.images.attached? %>
+  <% if @mypost.image.attached? %>
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <% @mypost.images.each do |image| %>
-          <%= image_tag image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
-        <% end %>
+        <% #@mypost.images.each do |image| %>
+          <%= image_tag @mypost.image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
+        <% #end %>
       </div>
     </div>
   <% end %>

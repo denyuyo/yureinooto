@@ -23,17 +23,21 @@
   </div>
 </div>
 
-<div class="position-sticky; margin-top: 50px;">
-  <div class="col-3">
-    <%= link_to root_path, class: 'nav-link nav-brand' do %>
-      <%= image_tag "j449_1_4.png" %>
-    <% end %>
+<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
+
+  <p class="textTitle">どこか、遠くへ。</p>
+  <p class="typeWriter">そうだ。遠くへ行こう。<br>明日、明後日。明明後日。<br>気の向くままに。</p>
+  
+  <div class="balloon4">
+    <p style="font-family: 'DotGothic16', sans-serif;">法隆寺でも見に行く？</p>
   </div>
-</div>
+  
+  <div id="topSnack">
+    <div class="topSnackFace"><img src="https://dubdesign.net/wp-content/uploads/2020/04/face2.svg" alt="face"></div>
+    <div class="topSnackMessege"><p>ここにスナックバーのメッセージが表示されます。ここにスナックバーのメッセージが表示されます。ここにスナックバーのメッセージが表示されます。</p></div>
+    <button id="topSnackClose">&#10005;</button>
+  </div>
 
-
-<div class="balloon4">
-  <p style="font-family: 'DotGothic16', sans-serif;">法隆寺でも見に行く？</p>
 </div>
 
 
@@ -49,7 +53,7 @@
   border-radius: 30px;
 }
 
-.balloon4:before {  
+.balloon4:before {
   content: "";
   position: absolute;
   left: -38px;
@@ -71,12 +75,10 @@
   border-radius: 50%;
 }
 .balloon4 p {
-  margin: 0; 
+  margin: 0;
   padding: 0;
 }
-</style>
 
-<style>
   /*===========
 .loop-
 ===========*/
@@ -201,4 +203,235 @@ a._a:hover {
   display: block;
   clear: both;
 }
+
+
+
+p.textTitle {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.08rem;
+    margin-bottom: 0;
+}
+
+.typeWriter {
+  font-size: 1.2rem;
+  color: #313131;
+  text-align: center;
+  margin: 0 !important;
+  min-height: 120px;
+}
+
+.typeWriter > span {
+  border-right: 2px solid;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
+}
+
+
+#topSnack {
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    bottom: -140px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    max-width: 600px;
+    padding: 20px 25px;
+    border-radius: 5px;
+    background: rgb(189,185,255);
+    background: linear-gradient(90deg, rgba(189,185,255,1) 0%, rgba(103,184,255,1) 100%);
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    filter: drop-shadow(0px 2px 8px #ddd);
+    transition: 0.8s ease-in-out;
+}
+#topSnack.show {
+    bottom: 40px;
+}
+.topSnackFace {
+    border-radius: 9999px;
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 180px;
+}
+.topSnackMessege {
+    padding-right: 20px;
+}
+.topSnackMessege p {
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.04rem;
+}
+button#topSnackClose {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+button#topSnackClose:hover {
+    opacity: 0.6;
+}
+
+
+
+.topCurtainbg {
+    display: block;
+    content: "";
+    position:fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    background-color: #313131;
+    animation-name:curtainAnime;
+    animation-duration:1.2s;
+    animation-timing-function:ease-in-out;
+    animation-fill-mode:forwards;
+}
+
+@keyframes curtainAnime {
+	0% {
+		transform-origin:top;
+		transform:scaleY(0);
+	}
+	50% {
+		transform-origin:top;
+		transform:scaleY(1);
+	}
+	50.001% {
+		transform-origin:bottom;
+	}
+	100% {
+		transform-origin:bottom;
+		transform:scaleY(0);
+	}
+}
+
+.fadeout {
+  animation : fadeOut 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#container{
+	opacity: 0;/*はじめは透過0に*/
+}
+
+/*bodyにpageOnクラスがついたら出現*/
+body.pageOn #container{
+	animation-name:PageAnimeOn;
+	animation-duration:1s;
+	animation-delay: 0.8s;
+	animation-fill-mode:forwards;
+	opacity: 0;
+}
+
+@keyframes PageAnimeOn{
+	0% {
+	opacity: 0;
+	}
+	100% {
+	opacity: 1;
+}
+}
 </style>
+
+<script>
+  const doObserve = (element) => {
+  const targets = document.querySelectorAll('.typeWriter'); /* ターゲットの指定 */
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0
+  };
+  const observer = new IntersectionObserver((items) => {
+    items.forEach((item) => {
+      if (item.isIntersecting) {
+
+  const typeWriter = selector => {
+    const el = document.querySelector(selector);
+    const text = el.innerHTML;
+  
+    (function _type(i = 0) {
+      if (i === text.length) return;
+      el.innerHTML = text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
+      setTimeout(() => _type(i + 1), 150);
+    })();
+  };
+  
+  typeWriter(".typeWriter");
+        } else {
+          item.target.classList.remove('typing'); /* 表示域から外れた時にターゲットから削除するclassの指定 */
+        }
+      });
+    }, options);
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+  };
+  doObserve('.observe_target');
+
+
+  // ページのロードが終わったらtoast表示
+  const snack = document.getElementById("topSnack"); // toastのID指定
+  window.addEventListener('load', () => { //ロード完了後イベント開始
+    snack.className = "show"; // snackbarを表示
+  });
+  
+  // バツをクリックで非表示
+  const snackClose = document.getElementById("topSnack"); // toastのID指定
+  snackClose.addEventListener('click', () => { //クリックでイベント開始
+    snack.classList.remove('show'); // snackbarを非表示
+  });
+  
+  
+  // bodyタグを取得
+  const documentBody = document.querySelector('body');
+  // body直下にオーバーレイの要素を作成
+  var newElement = document.createElement("div");
+  newElement.setAttribute("class","topCurtainbg");
+  documentBody.prepend(newElement);
+  // オーバーレイの次に要素を作成
+  var coverElement = document.createElement("div");
+  coverElement.setAttribute("id","container");
+  newElement.prepend(coverElement);
+  // bodyタグにclassを付与
+  documentBody.classList.add('pageOn');
+  
+  // 1.5秒経ったらオーバーレイ非表示
+  setTimeout(function(){ 
+      newElement.style.display = "none";
+    }, 1500);
+  
+  // ページ遷移時にフェードアウト
+  window.addEventListener("beforeunload", () => {
+    documentBody.classList.add('fadeout');
+    setTimeout(function(){ 
+      documentBody.style.display = "none"; 
+    }, 1000);
+  }, false);
+</script>

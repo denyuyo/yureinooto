@@ -1,0 +1,195 @@
+<div class="wrapper">
+  <div class="sample-swiper carousel no-shadow">
+    <div class="swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide Slide2">
+          <div class="item2 itemBlue"><%= image_tag("fiyorudo.jpg", alt: "") %></div>
+        </div>
+        <div class="swiper-slide Slide2">
+          <div class="item2 itemRed"><%= image_tag("moren.jpg", alt: "") %></div>
+        </div>
+        <div class="swiper-slide Slide2">
+          <div class="item2 itemBlack"><%= image_tag("tagimaha.jpg", alt: "") %></div>
+        </div>
+        <div class="swiper-slide Slide2">
+          <div class="item2 itemBlue"><%= image_tag("huji.jpg", alt: "") %></div>
+        </div>
+        <div class="swiper-slide Slide2">
+          <div class="item2 itemRed"><%= image_tag("ierou.jpg", alt: "") %></div>
+        </div>
+        <div class="swiper-slide Slide2">
+          <div class="item2 itemBlack"><%= image_tag("yokusou.jpg", alt: "") %></div>
+        </div>
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <!-- Slider main container -->
+  </div>
+</div>
+<br></br>
+<section class="someTabs" data-tabs="">
+  <nav class="tabs__nav">
+    <a href="#" class="tabs__item active" data-tab="">Section1-1</a>
+    <a href="#" class="tabs__item" data-tab="">Section1-2</a>
+    <a href="#" class="tabs__item" data-tab="">Section1-3</a>
+    <a class="Tabs__presentation-slider" role="presentation"></a>
+  </nav>
+  <div class="tabs__body">
+    <div class="tabs__content active" data-tab-content=""><p>Section1-1</p><p>山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。山路を登りな</p></div>
+        <div class="tabs__content" data-tab-content=""><p>Section1-2</p><p>山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。山路を登りな</p></div>
+        <div class="tabs__content" data-tab-content=""><p>Section1-3</p><p>山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。山路を登りな</p></div>
+  </div>
+</section>
+<section class="someTabs" data-tabs="">
+  <nav class="tabs__nav">
+    <a href="#" class="tabs__item active" data-tab="">Section1-1</a>
+    <a href="#" class="tabs__item" data-tab="">Section1-2</a>
+    <a href="#" class="tabs__item" data-tab="">Section1-3</a>
+    <a class="Tabs__presentation-slider" role="presentation"></a>
+  </nav>
+  <div class="tabs__body">
+    <div class="tabs__content active" data-tab-content=""><p>Section1-1</p><p>山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。山路を登りな</p></div>
+        <div class="tabs__content" data-tab-content=""><p>Section1-2</p><p>山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。山路を登りな</p></div>
+        <div class="tabs__content" data-tab-content=""><p>Section1-3</p><p>山路を登りながら、こう考えた。智に働けば角が立つ。情に棹させば流される。意地を通せば窮屈だ。とかくに人の世は住みにくい。住みにくさが高じると、安い所へ引き越したくなる。どこへ越しても住みにくいと悟った時、詩が生れて、画が出来る。山路を登りな</p></div>
+  </div>
+</section>
+
+<style>
+.swiper-wrapper {
+  display: flex;
+}
+
+
+[data-tab-content]{
+  display: none
+}
+
+[data-tab-content].active{
+  display: block;
+}
+
+nav.tabs__nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1rem;
+    border: none;
+    box-shadow: 0 7px 34px rgb(50 50 93 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+    border-radius: 3px;
+    background: #FFF;
+}
+a.tabs__item {
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    text-decoration: none;
+}
+a.tabs__item.active {
+    position: relative;
+    z-index: 1;
+    color: #FFF;
+}
+.tabs__item:first-child.active ~ .Tabs__presentation-slider {
+  transform: translateX(0) scaleX(0.333);
+}
+.tabs__item:nth-child(2).active ~ .Tabs__presentation-slider {
+  transform: translateX(33.333%) scaleX(0.333);
+}
+.tabs__item:nth-child(3).active ~ .Tabs__presentation-slider {
+  transform: translateX(calc(33.333% * 2)) scaleX(0.333);
+}
+.Tabs__presentation-slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+  transition: transform 0.25s;
+  background: linear-gradient( 45deg , #bdb9ff, #67b8ff);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tabs__content.active {
+    animation: fadeIn 0.7s ease 0s 1 normal;
+}
+</style>
+
+<script>
+  const swiper = new Swiper(".swiper-container", {
+  pagination: {
+    el: ".swiper-pagination",
+  },
+  // 前後スライドボタンを表示
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  loop: true, // ループの有効化
+  slidesPerView: 3.0,
+  slidesPerGroup: 1,
+  initialSlide: 1,
+  spaceBetween: 15,
+  centeredSlides : true,
+});
+
+function matchHeight(elements) {
+ const target = Array.from(document.querySelectorAll(elements));
+ const heightList = [];
+ target.forEach(element => {
+  const height = element.clientHeight;
+  heightList.push(height);
+ });
+ const maxHeight = Math.max.apply(null,heightList);
+ target.forEach(element => {
+  element.style.height = maxHeight + 'px'; // 最大高さに揃える
+ });
+}
+
+matchHeight('.item2');
+
+
+const tabsElems = document.querySelectorAll("[data-tabs]");
+
+if(tabsElems.length > 0){
+  for (let i = 0; i < tabsElems.length; i++) {
+  let tab = tabsElems[i];
+  let tabBtnElems = tab.querySelectorAll("[data-tab]");
+  let tabContentElems = tab.querySelectorAll("[data-tab-content]");
+  for (let i = 0; i < tabBtnElems.length; i++) {
+    let tabBtn = tabBtnElems[i];
+    let tabContent = tabContentElems[i];
+    tabBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      for (let i = 0; i < tabBtnElems.length; i++) {
+       tabBtnElems[i].classList.remove('active');
+       tabContentElems[i].classList.remove('active');
+      }
+      tabBtn.classList.add('active');
+      tabContent.classList.add('active');
+    });
+  }
+}
+}
+</script>

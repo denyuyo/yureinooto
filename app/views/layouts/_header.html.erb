@@ -47,7 +47,7 @@
                   <li><%= link_to  about_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-paw"></i> About</li> <% end %>
                   <li><%= link_to  users_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-user-friends"></i> users</li> <% end %>
                   <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
-                  <li><%= link_to  about_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
+                  <li><%= link_to   alert_path,                 class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
                 <% end %>
                 <% if user_signed_in? %>
                   <li class="nav-link text-right">

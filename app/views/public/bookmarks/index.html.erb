@@ -1,6 +1,7 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
-  <h1 style="font-size: 33px;">ブックマーク</h1>
-  
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <h1 style="font-size: 33px; margin-bottom: 22px;"><i class="fas fa-ghost"></i><p>ブックマーク数: <%= @bookmarks.count %>件</p>
+</h1>
+
   <% @bookmarks.each do |bookmark| %>
     <div class="card mb-3">
       <div class="card-body">
@@ -13,7 +14,7 @@
             <span class="badge badge-primary" style="margin-bottom: 10px; font-size: 13px;"><%= tag.tag_name %></span>
           <% end %>
         </div>
-        <%= link_to "詳細", post_path(bookmark.post), class: "btn btn-primary button-depress" %>
+        <%= link_to "詳細", post_path(bookmark.post), class: "btn btn-secondary button-depress" %>
       </div>
     </div>
   <% end %>

@@ -1,0 +1,186 @@
+<ul class="slider">
+  <li><img src="https://gahag.net/img/201511/07s/gahag-0023031204-1.jpg" alt="金閣寺"></li>
+  <li><img src="https://gahag.net/img/201509/25s/gahag-0007660474-1.jpg" alt="エッフェル塔"></li>
+  <li><img src="https://gahag.net/img/201602/21s/gahag-0058601592-1.jpg" alt="姫路城"></li>
+  <li><img src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-8/img/img_04.jpg" alt=""></li>
+  <li><img src="https://gahag.net/img/201512/19s/gahag-0037985251-1.jpg" alt="イエローストーン国立公園"></li>
+  <li><img src="https://gahag.net/img/201510/27s/gahag-0018961392-1.jpg" alt="マチュ・ピチュ"></li>
+</ul>
+
+<br></br>
+
+<div class="wrapper">
+  <section class="someTabs" data-tabs="">
+    <nav class="tabs__nav">
+      <a href="#" class="tabs__item active" data-tab=""></a>
+      <a href="#" class="tabs__item" data-tab=""></a>
+      <a href="#" class="tabs__item" data-tab=""></a>
+      <a class="Tabs__presentation-slider" role="presentation"></a>
+    </nav>
+    <div class="tabs__body">
+      <div class="tabs__content active" data-tab-content=""></p><p>🚧 安全第一！探索は冒険だけど、無謀な行動は控えましょう。立ち入り禁止エリアや危険な場所には近づかないでください。ヒーロー気取りは怪我のもとです。</p></div>
+      <div class="tabs__content" data-tab-content=""><p>🕵️‍♂️ 法律の番人！無断侵入やプライベートプロパティへの侵害はダメダメです。廃墟を楽しむにはルールを守りましょう。警察官との特別なご縁はお探しにならないでください。</p></div>
+      <div class="tabs__content" data-tab-content=""><p>💬 コミュニティは仲良く！他のユーザーとの交流は楽しいものです。しかし、悪口や攻撃的な発言はおやめください。心が狭いと建造物の魅力も感じられなくなりますよ。</p></div>
+    </div>
+  </section>
+  <section class="someTabs" data-tabs="">
+    <nav class="tabs__nav">
+      <a href="#" class="tabs__item active" data-tab=""></a>
+      <a href="#" class="tabs__item" data-tab=""></a>
+      <a href="#" class="tabs__item" data-tab=""></a>
+      <a class="Tabs__presentation-slider" role="presentation"></a>
+    </nav>
+    <div class="tabs__body">
+      <div class="tabs__content active" data-tab-content=""><p>🗣 バズをつくらず正確に！情報共有は正確さが大事です。デマやウワサを拡散しないように気をつけましょう。</p></div>
+      <div class="tabs__content" data-tab-content=""><p>🐈</p></div>
+      <div class="tabs__content" data-tab-content=""><p>♻️ 環境保護の騎士！建造物を訪れる際は、ゴミを持ち帰りましょう。自然の破壊は避け、公共の福祉に貢献しましょう。</p></div>
+    </div>
+  </section>
+</div>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-8/js/6-1-8.js"></script>
+</body>
+
+<style>
+.swiper-wrapper {
+  display: flex;
+}
+
+
+[data-tab-content]{
+  display: none
+}
+
+[data-tab-content].active{
+  display: block;
+}
+
+nav.tabs__nav {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1rem;
+    border: none;
+    box-shadow: 0 7px 34px rgb(50 50 93 / 10%), 0 3px 6px rgb(0 0 0 / 8%);
+    border-radius: 3px;
+    background: #FFF;
+}
+a.tabs__item {
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    text-decoration: none;
+}
+a.tabs__item.active {
+    position: relative;
+    z-index: 1;
+    color: #FFF;
+}
+.tabs__item:first-child.active ~ .Tabs__presentation-slider {
+  transform: translateX(0) scaleX(0.333);
+}
+.tabs__item:nth-child(2).active ~ .Tabs__presentation-slider {
+  transform: translateX(33.333%) scaleX(0.333);
+}
+.tabs__item:nth-child(3).active ~ .Tabs__presentation-slider {
+  transform: translateX(calc(33.333% * 2)) scaleX(0.333);
+}
+.Tabs__presentation-slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+  transition: transform 0.25s;
+  background: linear-gradient( 45deg , #bdb9ff, #67b8ff);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.tabs__content.active {
+    animation: fadeIn 0.7s ease 0s 1 normal;
+}
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider img {
+    width:100%;/*スライダー内の画像を横幅100%に*/
+    height:auto;
+}
+
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+
+.slider .slick-slide {
+    margin:0 10px;/*スライド左右の余白調整*/
+}
+</style>
+
+<script>
+const tabsElems = document.querySelectorAll("[data-tabs]");
+
+if(tabsElems.length > 0){
+  for (let i = 0; i < tabsElems.length; i++) {
+  let tab = tabsElems[i];
+  let tabBtnElems = tab.querySelectorAll("[data-tab]");
+  let tabContentElems = tab.querySelectorAll("[data-tab-content]");
+  for (let i = 0; i < tabBtnElems.length; i++) {
+    let tabBtn = tabBtnElems[i];
+    let tabContent = tabContentElems[i];
+    tabBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      for (let i = 0; i < tabBtnElems.length; i++) {
+       tabBtnElems[i].classList.remove('active');
+       tabContentElems[i].classList.remove('active');
+      }
+      tabBtn.classList.add('active');
+      tabContent.classList.add('active');
+    });
+  }
+}
+}
+
+	$('.slider').slick({
+		arrows: false,//左右の矢印はなし
+		autoplay: true,//自動的に動き出すか。初期値はfalse。
+		autoplaySpeed: 0,//自動的に動き出す待ち時間。初期値は3000ですが今回の見せ方では0
+		speed: 6900,//スライドのスピード。初期値は300。
+		infinite: true,//スライドをループさせるかどうか。初期値はtrue。
+		pauseOnHover: false,//オンマウスでスライドを一時停止させるかどうか。初期値はtrue。
+		pauseOnFocus: false,//フォーカスした際にスライドを一時停止させるかどうか。初期値はtrue。
+		cssEase: 'linear',//動き方。初期値はeaseですが、スムースな動きで見せたいのでlinear
+		slidesToShow: 4,//スライドを画面に4枚見せる
+		slidesToScroll: 1,//1回のスライドで動かす要素数
+		responsive: [
+			{
+			breakpoint: 769,//モニターの横幅が769px以下の見せ方
+			settings: {
+				slidesToShow: 2,//スライドを画面に2枚見せる
+			}
+		},
+		{
+			breakpoint: 426,//モニターの横幅が426px以下の見せ方
+			settings: {
+				slidesToShow: 1.5,//スライドを画面に1.5枚見せる
+			}
+		}
+	]
+	});
+</script>

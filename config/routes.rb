@@ -44,6 +44,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     end
     root to: 'homes#top'
     get "/about" => "homes#about"
+    get '/alert' => 'homes#alert'
     resources :tags, only:[:create, :index, :show, :update]
     patch 'posts/:id/update_tags', to: 'posts#update_tags', as: 'update_tags_post'
     put "/users/:id/hide" => "users#hide", as: 'users_hide'

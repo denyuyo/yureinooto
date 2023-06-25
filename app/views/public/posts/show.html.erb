@@ -1,11 +1,9 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   
   <% if @mypost.image.attached? %>
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <% #@mypost.images.each do |image| %>
-          <%= image_tag @mypost.image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
-        <% #end %>
+        <%= image_tag @mypost.image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
       </div>
     </div>
   <% end %>
@@ -76,7 +74,7 @@
       <h3>コメントする？</h3>
       <%= form_for([@mypost, @comment]) do |f| %>
         <%= f.text_area :content, class: "form-control", rows: 3 %>
-        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress" %>
+        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
       <% end %>
     </div>
   </div>

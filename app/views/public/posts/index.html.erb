@@ -4,8 +4,8 @@
   </div>
 <% end %>
 
-<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
-  <div class="row" style= "font-family: 'Monomaniac One', sans-serif;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <div class="row">
     <% @posts.each do |post| %>
       <div class="col-md-6">
         <div class="card mb-4">
@@ -32,9 +32,9 @@
   </div>
   
   <% if user_signed_in? %>
-    <%= link_to "つぶやく？", new_post_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= link_to "コメントたち", comments_user_path(current_user), class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
-    <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
+    <%= link_to "つぶやく？", new_post_path, class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
+    <%= link_to "コメントたち", comments_user_path(current_user), class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
+    <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
   <% end %>
 </div>
 

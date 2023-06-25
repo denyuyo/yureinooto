@@ -1,4 +1,4 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   
   <% if @mypost.image.attached? %>
     <div class="row">
@@ -74,7 +74,7 @@
       <h3>コメントする？</h3>
       <%= form_for([@mypost, @comment]) do |f| %>
         <%= f.text_area :content, class: "form-control", rows: 3 %>
-        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress" %>
+        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
       <% end %>
     </div>
   </div>

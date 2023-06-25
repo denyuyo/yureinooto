@@ -14,4 +14,12 @@ class GuestsController < ApplicationController
   sign_in admin
   redirect_to root_path, notice: 'ゲスト管理者としてログインしました'
   end
+  
+  def destroy
+    if
+      current_user.guest_user?
+      current_user.destroy
+    end
+    super
+  end
 end

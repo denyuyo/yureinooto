@@ -34,7 +34,7 @@
     <div class="form-group">
       <%= f.label :image, style: "font-family: 'Yusei Magic', sans-serif;" %>
       <div class="col-sm-6">
-        <%= f.file_field :image, class: 'form-control' %>
+        <%= f.file_field :image, class: 'form-control', accept: ".jpeg, .png" %>
         <br>
         <div id="image-preview"></div>
       </div>

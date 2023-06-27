@@ -1,9 +1,3 @@
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-
 <div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <div class="row">
     <% @posts.each do |post| %>
@@ -20,7 +14,7 @@
             <% post.tags.each do |tag| %>
               <span class="badge badge-primary" style="margin-bottom: 10px;"><%= tag.tag_name %></span>
             <% end %>
-              <br>
+            <br>
             <%= link_to "詳細", post_path(post), class: "btn btn-secondary button-depress" %>
             <div class="col-3" id="favorite_buttons_<%= post.id %>">
               <%= render "public/bookmarks/bookmark", post: post %>
@@ -36,6 +30,9 @@
     <%= link_to "コメントたち", comments_user_path(current_user), class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
     <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
   <% end %>
+  <div class="pagination-container">
+    <%= paginate @posts, theme: 'twitter-bootstrap-4', class: 'custom-pagination' %>
+  </div>
 </div>
 
 <style>
@@ -44,4 +41,32 @@
     height: 200px; /* 画像の高さ */
     object-fit: cover; /* アスペクト比を保ったまま画像を表示 */
   }
+  
+  .pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-pagination .page-item {
+  margin: 0 5px;
+}
+
+.custom-pagination .page-link {
+  border-radius: 5px;
+  padding: 6px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-pagination .page-link:focus {
+  box-shadow: none;
+}
+
 </style>

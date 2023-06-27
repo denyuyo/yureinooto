@@ -17,44 +17,46 @@
         </div>
         <div class="col-9">
           <div class="row w-100 justify-content-end">
-            <button class="navbar-toggler" style="color:#F5FFFA;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            </button>
-            <div class="col search_form", style="font-family: 'Monomaniac One', sans-serif;">
+            <div class="col search_form" style="font-family: 'Monomaniac One', sans-serif;">
               <%= form_with url: searches_search_path, local: true, method: :get do |f| %>
                 <%= f.select :range, options_for_select([['ユーザー'], ['つぶやき'], ['タグ']]) %>
                 <%= f.text_field :word %>
-                <%= f.submit "さがす", class: 'btn　btn-sm btn-primary' %>
+                <%= f.submit "さがす", class: 'btn btn-sm btn-primary' %>
               <% end %>
             </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-              <ul class="navbar-nav ml-5">
-                <% if user_signed_in? %>
-                  <!--ユーザーがログインしていたら-->
-                  <span  style="font-family: 'Monomaniac One', sans-serif; font-size: 24px; text-align: left;">ようこそマニアたち！</span>
-                  <li><%= link_to  users_path,                            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  posts_path,                            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pen-alt"></i>つぶやき</li> <% end %>
-                  <li><%= link_to  bookmarks_user_path(current_user.id),  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
-                  <li><%= link_to  destroy_user_session_path,             class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
-                <% elsif admin_signed_in? %>
-                  <!--管理者がログインしていたら-->
-                  <li><%= link_to  admin_users_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
-                  <li><%= link_to  admin_posts_path,            class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-mail-bulk"></i>つぶやきたち</li> <% end %>
-                  <li><%= link_to  admin_tags_path,             class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-list-alt"></i>タグたち</li> <% end %>
-                  <li><%= link_to  destroy_admin_session_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
-                <% else %>
-                  <!--ログイン前画面-->
-                  <li><%= link_to  about_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-paw"></i> About</li> <% end %>
-                  <li><%= link_to  users_path,                  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-user-friends"></i> users</li> <% end %>
-                  <li><%= link_to  new_user_registration_path,  class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
-                  <li><%= link_to   alert_path,                 class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pepper-hot"></i> alert</li> <% end %>
-                <% end %>
-                <% if user_signed_in? %>
-                  <li class="nav-link text-right">
-                    <%= render partial: 'partial/circle' %>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
+          
+            <nav class="navbar">
+              <button class="navbar-toggler col-1 offset-9 navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                  <% if user_signed_in? %>
+                    <!--ユーザーがログインしていたら-->
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to users_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to posts_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pen-alt"></i>つぶやき</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to bookmarks_user_path(current_user.id), class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to destroy_user_session_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
+                  <% elsif admin_signed_in? %>
+                    <!--管理者がログインしていたら-->
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to admin_users_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to admin_posts_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-mail-bulk"></i>つぶやきたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to admin_tags_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-list-alt"></i>タグたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to destroy_admin_session_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
+                  <% else %>
+                    <!--ログイン前画面-->
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to about_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-paw"></i> About</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to new_user_registration_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
+                  <% end %>
+                  <% if user_signed_in? %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip">
+                      <%= render partial: 'partial/circle' %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </nav>
+            
           </div>
         </div>
       </div>

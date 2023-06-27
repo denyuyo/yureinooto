@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :bookmark]
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(3)
   end
 
   def show
@@ -26,15 +26,17 @@ class Public::PostsController < ApplicationController
   end
 
   def create
-    # post_params = params.require(:post).permit(:title, :content, tag_ids: [])
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    selected_tag_ids = Array(params[:post][:tag_ids]) # 選択されたタグのIDを取得します
+    @post.tags = Tag.where(id: selected_tag_ids) # タグを関連付けます
+  
     if @post.save
       redirect_to post_path(@post.id), notice: "キミの情報は頂いた！"
     else
-      @posts = Post.all
+      @tags = Tag.all
       flash.now[:alert] = "なぬっ...!そうきたか"
-      render 'index'
+      render :new
     end
   end
 
@@ -43,14 +45,15 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "うむ...！"
     else
-      render "edit"
+      render :edit
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: "機密情報は保持された"
+    flash.now[:alert] = "機密情報は保持された"
+    redirect_to posts_path
   end
 
   def update_tags

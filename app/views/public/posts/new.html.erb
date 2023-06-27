@@ -34,7 +34,7 @@
     <div class="form-group">
       <%= f.label :image, style: "font-family: 'Yusei Magic', sans-serif;" %>
       <div class="col-sm-6">
-        <%= f.file_field :image, class: 'form-control', accept: ".jpeg, .png" %>
+        <%= f.file_field :image, class: 'form-control', accept: ".jpg, .png", id: "post_image" %>
         <br>
         <div id="image-preview"></div>
       </div>
@@ -59,25 +59,24 @@
 </div>
 
 <script>
-　 // DOMが完全にロードされた後に実行
-　 document.addEventListener("DOMContentLoaded", function ()
-　 {
-　 // "new-tag-form"である要素を取得し、表示/非表示を切り替える
-　 // "new-tag-link"である要素を取得し、フォームを表示する
+  // DOMが完全にロードされた後に実行
+  document.addEventListener("DOMContentLoaded", function () {
+    // "new-tag-form"である要素を取得し、表示/非表示を切り替える
+    // "new-tag-link"である要素を取得し、フォームを表示する
     const newTagForm = document.getElementById("new-tag-form");
     const newTagLink = document.getElementById("new-tag-link");
-   //  click"イベントリスナーを登録。リンク要素がクリックされた時に指定された関数が実行される
+    // click"イベントリスナーを登録。リンク要素がクリックされた時に指定された関数が実行される
     newTagLink.addEventListener("click", function (e) {
-   //  イベントのデフォルトの動作をキャンセル。ページ遷移が行われなくなる
+      // イベントのデフォルトの動作をキャンセル。ページ遷移が行われなくなる
       e.preventDefault();
-   // 表示スタイルを"block"に設定。これにより、フォームが表示される
+      // 表示スタイルを"block"に設定。これにより、フォームが表示される
       newTagForm.style.display = "block";
     });
-   // ドキュメント全体に対して"click"イベントリスナーを登録。ドキュメント内のどの要素がクリックされても指定された関数が実行される
+    // ドキュメント全体に対して"click"イベントリスナーを登録。ドキュメント内のどの要素がクリックされても指定された関数が実行される
     document.addEventListener("click", function (e) {
-   // クリックイベントが発生した要素がnewTagForm要素自体やnewTagLink要素ではない場合に指定されたコードを実行する
+      // クリックイベントが発生した要素がnewTagForm要素自体やnewTagLink要素ではない場合に指定されたコードを実行する
       if (!newTagForm.contains(e.target) && e.target !== newTagLink) {
-   // 表示スタイルを"none"に設定。これにより、フォームが非表示になる
+        // 表示スタイルを"none"に設定。これにより、フォームが非表示になる
         newTagForm.style.display = "none";
       }
     });

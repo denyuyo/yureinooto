@@ -1,15 +1,18 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <% if @range == "ユーザー" %>
     <% if @users.present? %>
       <h2 class="text-center">"<%=@word %>"のユーザーを見つけたよ!</h2>
       <h2>ユーザー</h2>
       <ul>
         <% @users.each do |user| %>
-          <li><%= user.name %></li>
+          <li><%= link_to user.name, user_path(user) %></li>
         <% end %>
       </ul>
     <% else %>
-      <h2 class="text-center">"<%=@word %>"というユーザーはいないみたい</h2>
+      <h2 class="text-center">"<%=@word %>"さんにアクセスする権限がありません</h2>
+      <div class="text-center" style="margin-top: 40px;">
+        <%= image_tag "no_user.png", size: "150x150" %>
+      </div>
     <% end %>
   <% elsif @range == "つぶやき" %>
     <% if @posts.present? %>
@@ -17,11 +20,18 @@
       <h2>つぶやき</h2>
       <ul>
         <% @posts.each do |post| %>
-          <li><%= link_to post.title, post_path(post) %></li>
+          <% if current_user %>
+            <li><%= link_to post.title, post_path(post), id: "access-denied-link" %></li>
+          <% else %>
+            <li><%= link_to post.title, "#", onclick: "showAccessDeniedMessage(event);" %></li>
+          <% end %>
         <% end %>
       </ul>
     <% else %>
-      <h2 class="text-center">"<%=@word %>"というつぶやきはまだないようだ...</h2>
+      <h2 class="text-center">"<%=@word %>"は現在総意建設中のようです</h2>
+      <div class="text-center" style="margin-top: 40px;">
+        <%= image_tag "no_search.png", size: "150x150" %>
+      </div>
     <% end %>
   <% elsif @range == "タグ" %>
     <% if @tags.present? %>
@@ -29,11 +39,78 @@
       <h2>タグ</h2>
       <ul>
         <% @tags.each do |tag| %>
-          <li><%= link_to tag.tag_name, tag_path(tag) %></li>
+          <% if current_user %>
+            <li><%= link_to tag.tag_name, tag_path(tag), id: "access-denied-link" %></li>
+          <% else %>
+            <li><%= link_to tag.tag_name, "#", onclick: "showAccessDeniedMessage(event);" %></li>
+          <% end %>
         <% end %>
       </ul>
     <% else %>
-      <h2 class="text-center">"<%=@word %>"というタグはまだないようだ...</h2>
+      <h2 class="text-center">"<%=@word %>"は埋め立てられてしまった</h2>
+      <div class="text-center" style="margin-top: 40px;">
+        <%= image_tag "no_tag.png", size: "180x130" %>
+      </div>
     <% end %>
   <% end %>
 </div>
+
+<script>
+  function showAccessDeniedMessage(event) {
+    event.preventDefault();
+
+    const alertContainer = document.createElement("div");
+    alertContainer.classList.add("access-denied-alert");
+
+    const alertMessage = document.createElement("p");
+    alertMessage.textContent = "アクセス権限がないようだ。ログインする？";
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "閉じる";
+    closeButton.addEventListener("click", function() {
+      alertContainer.remove();
+    });
+
+    alertContainer.appendChild(alertMessage);
+    alertContainer.appendChild(closeButton);
+
+    document.querySelector(".container").appendChild(alertContainer);
+  }
+</script>
+
+<style>
+  .access-denied-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .access-denied-alert p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+  }
+
+  .access-denied-alert button {
+    background-color: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .access-denied-alert button:hover {
+    background-color: #ccc;
+  }
+</style>

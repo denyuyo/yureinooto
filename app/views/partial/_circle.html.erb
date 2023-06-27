@@ -1,10 +1,53 @@
-<%= link_to notifications_path do %>
+<%= link_to notifications_path, class: "notification-button" do %>
   <% if unchecked_notifications.any? %>
-    <span class="fa-stack">
-      <i class="far fa-bell fa-lg fa-stack-2x" style="font-size: 1.5em;"></i>
-      <i class="fas fa-circle n-circle fa-stack-1x"></i>
+    <span class="notification-icon fa-stack">
+      <i class="far fa-bell fa-lg fa-stack-2x" style="position: relative; left: 5px; bottom: 3px;"></i>
+      <i class="fas fa-circle fa-stack-1x"></i>
     </span>
+    <span class="notification-label" style="font-family: 'Yusei Magic', sans-serif; font-size: 14px;">通知(<%= unchecked_notifications.count %>)</span>
   <% else %>
-    <i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>
+    <i class="far fa-bell fa-lg"></i>
+    <span class="notification-label" style="font-family: 'Yusei Magic', sans-serif', sans-serif;">通知</span>
   <% end %>
 <% end %>
+
+<style>
+  .notification-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease;
+  }
+  
+  .notification-button:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .notification-icon {
+    position: relative;
+  }
+  
+  .notification-icon .fa-stack-2x {
+    font-size: 1.5em;
+  }
+  
+  .notification-icon .fa-stack-1x {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8em;
+    color: #ff5252;
+  }
+  
+  .notification-label {
+    margin-left: 8px;
+  }
+</style>

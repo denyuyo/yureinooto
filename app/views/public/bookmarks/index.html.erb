@@ -1,0 +1,21 @@
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <h1 style="font-size: 33px; margin-bottom: 22px;"><i class="fas fa-ghost"></i><p>ブックマーク数: <%= @bookmarks.count %>件</p>
+</h1>
+
+  <% @bookmarks.each do |bookmark| %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= bookmark.post.title %></h5>
+        <p class="card-text"><%= bookmark.post.content %></p>
+        <p class="card-text">投稿主: <%= bookmark.post.user.name %></p>
+        <p class="card-text">作成日時: <%= bookmark.post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+        <div class="selected-tags">
+          <% bookmark.post.tags.each do |tag| %>
+            <span class="badge badge-primary" style="margin-bottom: 10px; font-size: 13px;"><%= tag.tag_name %></span>
+          <% end %>
+        </div>
+        <%= link_to "詳細", post_path(bookmark.post), class: "btn btn-secondary button-depress" %>
+      </div>
+    </div>
+  <% end %>
+</div>

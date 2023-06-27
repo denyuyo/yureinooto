@@ -1,3 +1,5 @@
+<%= flash[:error] %>
+
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -21,6 +23,10 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
+<% end %>
+
+<%= form_with url: guests_admin_login_path, method: :post do %>
+  <%= submit_tag 'ゲストログイン' %>
 <% end %>
 
 <%= render "admin/shared/links" %>

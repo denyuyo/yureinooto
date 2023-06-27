@@ -1,0 +1,93 @@
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  
+  <% if @mypost.image.attached? %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <%= image_tag @mypost.image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1><%= @mypost.title %></h1>
+      <p><%= @mypost.content %></p>
+      <p>閲覧数: <%= @mypost.viewcount %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <p>コメント</p>
+      <% @mypost.comments.each do |comment| %>
+        <p style="color: #5599dd;"><%= comment.content %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <p>ブックマーク: <%= @bookmark_count %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <% if user_signed_in? && current_user && @mypost.bookmarked?(current_user) %>
+        <!-- すでにいいね済みの場合はdestroyアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost.id), method: :delete do %>
+          <span style="color:red;">♡︎</span>
+        <% end %>
+      <% elsif user_signed_in? %>
+        <!-- まだいいねしていない場合はcreateアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost.id), method: :post do %>
+          <span>♡︎</span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <p>タグ:</p>
+      <% @mypost.tags.each do |tag| %>
+         <span class="badge badge-primary"><%= tag.tag_name %></span>
+      <% end %>
+    </div>
+  </div>
+
+  <% if current_user && current_user.id == @mypost.user.id %>
+    <div style="width: 83%; margin-left: auto;">
+      <%= form_tag update_tags_post_path, method: :patch, style: "margin-top: 17px;" do %>
+        <%= select_tag 'tag_ids[]', options_from_collection_for_select(Tag.all, :id, :tag_name, selected: @mypost.tags.map(&:id)), multiple: true, style: "width: 40%; padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;" %>
+        <%= submit_tag 'タグを変更', style: "margin-top: 10px; padding: 8px 16px; font-size: 14px; color: #fff; background-color: #5599dd; border: none; border-radius: 4px; cursor: pointer;", class: "tag-submit" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <br>
+
+  <% if user_signed_in? %>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h3>コメントする？</h3>
+      <%= form_for([@mypost, @comment]) do |f| %>
+        <%= f.text_area :content, class: "form-control", rows: 3 %>
+        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <% if @user == current_user %>
+        <%= link_to "改訂", edit_post_path(@mypost), class: "btn btn-secondary mt-2 button-depress" %>
+        <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger button-depress mt-2 mx-1" %>
+      <% end %>
+    </div>
+  </div>
+
+  <% end %>
+
+</div>

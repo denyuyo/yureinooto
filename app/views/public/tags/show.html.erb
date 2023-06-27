@@ -1,0 +1,11 @@
+<div class="container" style="font-family: 'Klee One', cursive;
+font-family: 'Yusei Magic', sans-serif; margin-top: 20px;">
+  <h3>タグ編集</h3>
+  <%= form_for(@tag, url: tag_path(@tag), method: :patch) do |f| %>
+    <div class="form-group">
+      <%= f.label :tag_name, class: "form-label" %>
+      <%= f.text_field :tag_name, class: "form-control" %>
+    </div>
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  <% end %>
+</div>

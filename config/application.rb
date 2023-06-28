@@ -21,5 +21,8 @@ module Ooo
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # アセットパイプラインの設定
+    config.assets.enabled = true
+    config.assets.version = '1.0'
   end
 end

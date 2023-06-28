@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   validates :name, presence: true
+  validates :email, uniqueness: true
 
   def get_profile_image(width, height)
     unless profile_image.attached?

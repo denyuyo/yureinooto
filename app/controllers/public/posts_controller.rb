@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :bookmark]
 
   def index
-    @posts = Post.page(params[:page]).per(3)
+    @posts = Post.page(params[:page]).per(4)
   end
 
   def show

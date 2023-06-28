@@ -1,4 +1,4 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 22px; margin-bottom: 11px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 22px; margin-bottom: 11px;">
   <h3>マニアたち</h3>
 
   <table class="table">
@@ -8,6 +8,7 @@
         <th>ユーザーネーム</th>
         <th>Eメール</th>
         <th>ステータス</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +17,8 @@
           <td><%= image_tag user.get_profile_image(50, 50), style: "border-radius: 20%;", class: "profile-image" if user.profile_image.attached? %></td>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
-          <td>
+          <td style="font-family: 'DotGothic16', sans-serif;"><%= user.withdrawn? ? "<span style='color: red;'>退会済み</span>".html_safe : "" %></td>
+          <td style="font-family: 'DotGothic16', sans-serif;">
             <%= link_to "詳細", admin_user_path(user), class: "btn btn-primary button-depress" %>
           </td>
         </tr>

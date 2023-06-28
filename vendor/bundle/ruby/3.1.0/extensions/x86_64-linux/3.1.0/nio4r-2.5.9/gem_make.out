@@ -29,7 +29,7 @@ In file included from nio4r_ext.c:6:0:
 In file included from nio4r_ext.c:6:0:
 ../libev/ev.c:573:48: warning: "/*" within comment [-Wcomment]
  /*#define MIN_INTERVAL  0.00000095367431640625 /* 1/2**20, good till 2200 */
-                                                 
+
 ../libev/ev.c:691:7: warning: "__OPTIMIZE_SIZE__" is not defined, evaluates to 0 [-Wundef]
    #if __OPTIMIZE_SIZE__
        ^~~~~~~~~~~~~~~~~
@@ -222,10 +222,10 @@ In file included from nio4r_ext.c:6:0:
 ../libev/ev.c: At top level:
 ../libev/ev.c:5682:27: warning: "/*" within comment [-Wcomment]
  /* EV_STAT     0x00001000 /* stat data changed */
-                            
+
 ../libev/ev.c:5683:27: warning: "/*" within comment [-Wcomment]
  /* EV_EMBED    0x00010000 /* embedded event loop needs sweep */
-                            
+
 cc1: warning: unrecognized command line option ‘-Wno-self-assign’
 cc1: warning: unrecognized command line option ‘-Wno-parentheses-equality’
 cc1: warning: unrecognized command line option ‘-Wno-constant-logical-operand’

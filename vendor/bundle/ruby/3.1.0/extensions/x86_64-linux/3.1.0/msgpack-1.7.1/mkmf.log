@@ -4,7 +4,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -15,7 +15,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: #include <ruby/st.h>
 /* end */
 
@@ -31,7 +31,7 @@ compilation terminated.
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: #include <st.h>
 /* end */
 
@@ -54,9 +54,9 @@ cc1: warning: unrecognized command line option ‘-Wno-cast-function-type’
 checked program was:
 /* begin */
  1: #include "ruby.h"
- 2: 
+ 2:
  3: #include <ruby.h>
- 4: 
+ 4:
  5: /*top*/
  6: extern int t(void);
  7: int main(int argc, char **argv)
@@ -65,7 +65,7 @@ checked program was:
 10:     int (* volatile tp)(void)=(int (*)(void))&t;
 11:     printf("%d", (*tp)());
 12:   }
-13: 
+13:
 14:   return !!argv[argc];
 15: }
 16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_enc_interned_str; return !p; }
@@ -75,9 +75,9 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
  1: #include "ruby.h"
- 2: 
+ 2:
  3: #include <ruby.h>
- 4: 
+ 4:
  5: /*top*/
  6: extern int t(void);
  7: int main(int argc, char **argv)
@@ -86,7 +86,7 @@ checked program was:
 10:     int (* volatile tp)(void)=(int (*)(void))&t;
 11:     printf("%d", (*tp)());
 12:   }
-13: 
+13:
 14:   return !!argv[argc];
 15: }
 16: extern void rb_enc_interned_str();
@@ -112,9 +112,9 @@ cc1: warning: unrecognized command line option ‘-Wno-cast-function-type’
 checked program was:
 /* begin */
  1: #include "ruby.h"
- 2: 
+ 2:
  3: #include <ruby.h>
- 4: 
+ 4:
  5: /*top*/
  6: extern int t(void);
  7: int main(int argc, char **argv)
@@ -123,7 +123,7 @@ checked program was:
 10:     int (* volatile tp)(void)=(int (*)(void))&t;
 11:     printf("%d", (*tp)());
 12:   }
-13: 
+13:
 14:   return !!argv[argc];
 15: }
 16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_hash_new_capa; return !p; }
@@ -136,9 +136,9 @@ collect2: error: ld returned 1 exit status
 checked program was:
 /* begin */
  1: #include "ruby.h"
- 2: 
+ 2:
  3: #include <ruby.h>
- 4: 
+ 4:
  5: /*top*/
  6: extern int t(void);
  7: int main(int argc, char **argv)
@@ -147,7 +147,7 @@ checked program was:
 10:     int (* volatile tp)(void)=(int (*)(void))&t;
 11:     printf("%d", (*tp)());
 12:   }
-13: 
+13:
 14:   return !!argv[argc];
 15: }
 16: extern void rb_hash_new_capa();
@@ -162,7 +162,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -177,7 +177,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -192,7 +192,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -207,7 +207,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -222,7 +222,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -237,7 +237,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -252,7 +252,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];
@@ -267,7 +267,7 @@ LD_LIBRARY_PATH=.:/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib:/opt/sqlite/sqlite3/
 checked program was:
 /* begin */
 1: #include "ruby.h"
-2: 
+2:
 3: int main(int argc, char **argv)
 4: {
 5:   return !!argv[argc];

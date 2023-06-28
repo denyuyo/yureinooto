@@ -51,7 +51,7 @@
     <div class="col-md-8 offset-md-2">
       <p>タグ:</p>
       <% @mypost.tags.each do |tag| %>
-         <span class="badge badge-primary"><%= tag.tag_name %></span>
+        <span class="badge badge-primary"><%= tag.tag_name %></span>
       <% end %>
     </div>
   </div>
@@ -68,26 +68,24 @@
   <br>
 
   <% if user_signed_in? %>
-
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h3>コメントする？</h3>
-      <%= form_for([@mypost, @comment]) do |f| %>
-        <%= f.text_area :content, class: "form-control", rows: 3 %>
-        <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
-      <% end %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h3>コメントする？</h3>
+        <%= form_for([@mypost, @comment]) do |f| %>
+          <%= f.text_area :content, class: "form-control", rows: 3 %>
+          <%= f.submit "コメントする", class: "btn btn-primary mt-3 button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <% if @user == current_user %>
-        <%= link_to "改訂", edit_post_path(@mypost), class: "btn btn-secondary mt-2 button-depress" %>
-        <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger button-depress mt-2 mx-1" %>
-      <% end %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <% if @user == current_user %>
+          <%= link_to "改訂", edit_post_path(@mypost), class: "btn btn-secondary mt-2 button-depress" %>
+          <%= link_to "削除", post_path(@mypost), method: :delete, data: { confirm: "削除してもよろしいか？" }, class: "btn btn-danger button-depress mt-2 mx-1" %>
+        <% end %>
+      </div>
     </div>
-  </div>
-
   <% end %>
 
 </div>

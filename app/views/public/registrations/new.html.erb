@@ -37,6 +37,12 @@
     <%= form_with url: guests_user_login_path, method: :post, style: "margin-top: 20px;" do %>
       <%= submit_tag 'ゲストログイン', class: 'guest_login_btn' %>
     <% end %>
+    
+    <div class="actions" style="margin-bottom: 20px; margin-top: 20px;">
+      <%= form_with url: admin_session_path, method: :post, style: "margin-top: 20px;" do %>
+        <%= submit_tag '管理者ログイン', class: 'my_submit_btn' %>
+      <% end %>
+    </div>
 
   <%= render "public/shared/links" %>
 </div>

@@ -1,5 +1,4 @@
-<div class="container" style="font-family: 'Klee One', cursive;
-font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <%= form_for([:public, @user], url: user_path(@user), multipart: true) do |f| %>
     <% if @user.profile_image.attached? %>
       <div class="form-group">
@@ -8,34 +7,34 @@ font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
     <% end %>
     
     <div class="form-group">
-      <%= f.label :name, "ユーザーネーム", style: "font-family: 'Monomaniac One', sans-serif;" %>
-      <%= f.text_field :name, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.label :name, "ユーザーネーム" %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
   
     <div class="form-group">
-      <%= f.label :email, style: "font-family: 'Monomaniac One', sans-serif;" %>
-      <%= f.email_field :email, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "form-control" %>
     </div>
   
     <div class="form-group">
-      <%= f.label :password, style: "font-family: 'Monomaniac One', sans-serif;" %>
-      <%= f.password_field :password, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "form-control" %>
     </div>
   
     <div class="form-group">
-      <%= f.label :password_confirmation, style: "font-family: 'Monomaniac One', sans-serif;" %>
-      <%= f.password_field :password_confirmation, class: "form-control", style: "font-family: 'Monomaniac One', sans-serif;" %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
     </div>
     
     <div class="form-group">
-      <%= f.label :profile_image, style: "font-family: 'Monomaniac One', sans-serif;" %>
-      <%= f.file_field :profile_image, class: "form-control-file", style: "font-family: 'Monomaniac One', sans-serif;", onchange: "previewImage(this);" %>
+      <%= f.label :profile_image %>
+      <%= f.file_field :profile_image, class: "form-control-file", onchange: "previewImage(this);" %>
     </div>
     <div id="profile-image-preview-container"></div>
      
     <div class="text-align: right;">
-      <%= f.submit "更新", class: "btn btn-primary button-depress", style: "font-family: 'Monomaniac One', sans-serif;" %>
-      <%= link_to user_path(@user),  class: 'btn btn-secondary button-depress', style: "font-family: 'Monomaniac One', sans-serif;" do %>
+      <%= f.submit "更新", class: "btn btn-primary button-depress" %>
+      <%= link_to user_path(@user),  class: 'btn btn-secondary button-depress' do %>
         <i class="fas fa-undo-alt"></i>
       <% end %>
     </div>

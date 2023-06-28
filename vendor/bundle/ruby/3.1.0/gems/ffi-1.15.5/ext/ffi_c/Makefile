@@ -65,7 +65,7 @@ bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
 
 
-CC_WRAPPER = 
+CC_WRAPPER =
 CC = gcc
 CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
@@ -79,29 +79,29 @@ CSRCFLAG = $(empty)
 
 RUBY_EXTCONF_H = extconf.h
 cflags   = $(optflags) $(debugflags) $(warnflags)
-cxxflags = 
+cxxflags =
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
-warnflags = 
-cppflags = 
+warnflags =
+cppflags =
 CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) $(cflags)  -fPIC  $(ARCH_FLAG)
-INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) 
-DEFS     = 
+INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
+DEFS     =
 CPPFLAGS = -DRUBY_EXTCONF_H=\"$(RUBY_EXTCONF_H)\"  $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS)   $(ARCH_FLAG)
 ldflags  = -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed  -pthread
-dldflags = -Wl,--compress-debug-sections=zlib 
-ARCH_FLAG = 
+dldflags = -Wl,--compress-debug-sections=zlib
+ARCH_FLAG =
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -shared
 LDSHAREDXX = $(CXX) -shared
 AR = gcc-ar
-EXEEXT = 
+EXEEXT =
 
 RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
 RUBY_SO_NAME = ruby
-RUBYW_INSTALL_NAME = 
+RUBYW_INSTALL_NAME =
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
@@ -125,31 +125,31 @@ TOUCH = exit >
 
 #### End of system configuration section. ####
 
-preload = 
+preload =
 libpath = . $(libdir)
 LIBPATH =  -L. -L$(libdir) -Wl,-rpath,$(libdir)
-DEFFILE = 
+DEFFILE =
 
 CLEANFILES = mkmf.log
-DISTCLEANFILES = 
-DISTCLEANDIRS = 
+DISTCLEANFILES =
+DISTCLEANDIRS =
 
-extout = 
-extout_prefix = 
-target_prefix = 
-LOCAL_LIBS = 
+extout =
+extout_prefix =
+target_prefix =
+LOCAL_LIBS =
 LIBS = $(LIBRUBYARG_SHARED) -lffi  -lffi -lm  -lc
 ORIG_SRCS = AbstractMemory.c ArrayType.c Buffer.c Call.c ClosurePool.c DynamicLibrary.c Function.c FunctionInfo.c LastError.c LongDouble.c MappedType.c MemoryPointer.c MethodHandle.c Platform.c Pointer.c Struct.c StructByValue.c StructLayout.c Thread.c Type.c Types.c Variadic.c ffi.c
-SRCS = $(ORIG_SRCS) 
+SRCS = $(ORIG_SRCS)
 OBJS = AbstractMemory.o ArrayType.o Buffer.o Call.o ClosurePool.o DynamicLibrary.o Function.o FunctionInfo.o LastError.o LongDouble.o MappedType.o MemoryPointer.o MethodHandle.o Platform.o Pointer.o Struct.o StructByValue.o StructLayout.o Thread.o Type.o Types.o Variadic.o ffi.o
 HDRS = $(srcdir)/AbstractMemory.h $(srcdir)/ArrayType.h $(srcdir)/Call.h $(srcdir)/ClosurePool.h $(srcdir)/DynamicLibrary.h $(srcdir)/Function.h $(srcdir)/LastError.h $(srcdir)/LongDouble.h $(srcdir)/MappedType.h $(srcdir)/MemoryPointer.h $(srcdir)/MethodHandle.h $(srcdir)/Platform.h $(srcdir)/Pointer.h $(srcdir)/Struct.h $(srcdir)/StructByValue.h $(srcdir)/Thread.h $(srcdir)/Type.h $(srcdir)/Types.h $(srcdir)/compat.h $(srcdir)/extconf.h $(srcdir)/rbffi.h $(srcdir)/rbffi_endian.h
-LOCAL_HDRS = 
+LOCAL_HDRS =
 TARGET = ffi_c
 TARGET_NAME = ffi_c
 TARGET_ENTRY = Init_$(TARGET_NAME)
 DLLIB = $(TARGET).so
-EXTSTATIC = 
-STATIC_LIB = 
+EXTSTATIC =
+STATIC_LIB =
 
 TIMESTAMP_DIR = .
 BINDIR        = $(bindir)

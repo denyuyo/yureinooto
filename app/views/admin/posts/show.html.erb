@@ -1,4 +1,13 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  
+  <% if @post.image.attached? %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <%= image_tag @post.image.variant(resize_to_limit: [600, 600]), class: "img-fluid", style: "max-width: 100%;" %>
+      </div>
+    </div>
+  <% end %>
+  
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <h1><%= @post.title %></h1>

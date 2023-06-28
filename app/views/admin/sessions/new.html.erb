@@ -1,32 +1,94 @@
-<%= flash[:error] %>
-
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <h2>Log in</h2>
+  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :email, "Eメール" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "remember-me-checkbox-label", style: "padding: 10px; width: 100%;" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password, "パスワード" %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: "remember-me-checkbox-label", style: "padding: 10px; width: 100%;" %>
+    </div>
+  
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me, class: "remember-me-checkbox-input" %>
+        <%= f.label :remember_me, class: "remember-me-checkbox-label" %>
+      </div>
+    <% end %>
+  
+    <div class="actions" style="margin-bottom: 20px; margin-top: 20px;">
+      <%= f.submit "Log in", class: "my_submit_btn" %>
     </div>
   <% end %>
+  
+  <%= form_with url: guests_admin_login_path, method: :post, style: "margin-top: 20px;" do %>
+    <%= submit_tag 'ゲストログイン', class: 'guest_login_btn' %>
+  <% end %>
+  
+  <%= render "admin/shared/links" %>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+<style>
+  .my_submit_btn {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+  background: #f0db40;
+  filter: drop-shadow(0px 2px 4px #ccc);
+  border-radius: 3px;
+  letter-spacing: 0.04rem;
+  }
+  
+  .my_submit_btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-<%= form_with url: guests_admin_login_path, method: :post do %>
-  <%= submit_tag 'ゲストログイン' %>
-<% end %>
+.guest_login_btn {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  padding: 10px 25px;
+  color: #313131;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+  background: #f0db40;
+  filter: drop-shadow(0px 2px 4px #ccc);
+  border-radius: 3px;
+  letter-spacing: 0.04rem;
+  /* ホバー時のスタイル */
+   cursor: pointer;
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .guest_login_btn:hover {
+    transform: translate3d(0, -4px, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* remember_meのスタイル */
+  .remember-me-checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
 
-<%= render "admin/shared/links" %>
+.remember-me-checkbox-input {
+  margin-right: 10px;
+}
+
+.remember-me-checkbox-label {
+  color: #5782c7;
+  font-weight: bold;
+}
+
+</style>

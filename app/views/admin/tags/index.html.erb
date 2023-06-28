@@ -1,6 +1,6 @@
-<div class="container" style="margin-top: 33px; margin-bottom: 22px;">
-  <div class="row" style= "font-family: 'Monomaniac One', sans-serif;">
-    <% @tags.each do |tag|%>
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <div class="row">
+    <% @tags.each do |tag| %>
       <%= link_to admin_tag_path(tag), class: "btn btn-outline-info rounded-pill m-1" do %>
         <i class="fas fa-tag"></i>
         <%= tag.tag_name %>
@@ -9,12 +9,13 @@
         <i class="fas fa-trash fa-sm"></i>
       <% end %>
     <% end %>
-    <div class="bottom_btn">
+  </div>
+  
+  <div class="bottom_btn" style="margin-top: 44px;">
     <h3>タグをつくる?</h3>
     <%= form_with model: Tag, url: admin_tags_path, class: "form-inline", local: true do |f| %>
       <%= f.text_field :tag_name, placeholder: "タグ", class: "form-control mr-2" %>
-      <%= f.submit "このタグにきめた", class:"btn btn-info button-depress", size:30 %>
+      <%= f.submit "このタグにきめた", class: "btn btn-info button-depress", size: 30 %>
     <% end %>
-    </div>
   </div>
 </div>

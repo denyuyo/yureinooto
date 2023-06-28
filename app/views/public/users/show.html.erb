@@ -1,5 +1,4 @@
-<div class="container" style="font-family: 'Klee One', cursive;
-font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   <% unless @user.withdrawn? %>
     <!-- ユーザープロフィールの表示コード -->
     <h3><%= @user.name %>さんのプロフィール</h3>
@@ -32,13 +31,11 @@ font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
   </ul>
 
   <% if user_signed_in? && current_user == @user %>
-    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Klee One', cursive;
-font-family: 'Yusei Magic', sans-serif;" %>
+    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
   <% end %>
 
   <% if user_signed_in? && @user.id == current_user.id %>
-  		<%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger", style: "font-family: 'Klee One', cursive;
-font-family: 'Yusei Magic', sans-serif;" %>
+  		<%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger", style: "font-family: 'Yusei Magic', sans-serif;" %>
   <% end %>
 
 </div>

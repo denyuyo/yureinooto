@@ -33,21 +33,40 @@ user_id = user_ids.sample # ランダムに1つのuser_idを選択
 
 posts = Post.create!(
   [
-    {user_id: user_id, title: "タージ・マハル", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "真っ白い外観が、チョコレートのお城みたいで特別な雰囲気に浸れます"},
-    {user_id: user_id, title: "厳島神社", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "水位が浅いときはもう少し近くで鳥居を拝めそう")},
-    {user_id: user_id, title: "済州火山島と溶岩洞窟群", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "韓国で初めて登録された世界自然遺産です。絶滅の危機にさらされている稀少な動植物が多数生息しており、「韓国のハワイ」とも呼ばれています")},
-    {user_id: user_id, title: "ヴァルカモニカの岩絵群", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "ヴァルカモニカはイタリアの渓谷で、棒人間やトナカイのような絵が8000年間に渡って岩に描かれ続けました")},
-    {user_id: user_id, title: "ケルン大聖堂", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "ステンドグラスがドット絵みたいで、懐かしのレトロゲームを思い出した")},
-    {user_id: user_id, title: "モスクワのクレムリンと赤の広場", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "クレムリンはロシア語で「城塞」を意味します。赤の広場では軍事パレードなども行われており、ソ連時代にはレーニンの遺体を安置したレーニン廟が中心とされていました")},
-    {user_id: user_id, title: "青海可可西里（フフシル）", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "山がかき氷みたいできれいだった。あとヤギみたいに角がまっすぐの鹿がいて、ちょっとびっくりした")},
-    {user_id: user_id, title: "白神山地", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
-    content: "森のにおいがして、心が落ち着いた。また行きたい")}
+    { user_id: user_id, 
+      title: "タージ・マハル", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/taj-mahal.jpg"), filename:"sample-post1.jpg"), 
+      content: "真っ白い外観が、チョコレートのお城みたいで特別な雰囲気に浸れます"
+    },
+    { user_id: user_id, 
+      title: "厳島神社", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
+      content: "水位が浅いときはもう少し近くで鳥居を拝めそう")
+    },
+    { user_id: user_id, title: "済州火山島と溶岩洞窟群", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
+      content: "韓国で初めて登録された世界自然遺産です。絶滅の危機にさらされている稀少な動植物が多数生息しており、「韓国のハワイ」とも呼ばれています")
+    },
+    { user_id: user_id, 
+      title: "ヴァルカモニカの岩絵群", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
+      content: "ヴァルカモニカはイタリアの渓谷で、棒人間やトナカイのような絵が8000年間に渡って岩に描かれ続けました")
+    },
+    { user_id: user_id, title: "ケルン大聖堂", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
+      content: "ステンドグラスがドット絵みたいで、懐かしのレトロゲームを思い出した")},
+    { user_id: user_id, title: "モスクワのクレムリンと赤の広場", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/belfry.jpg"), filename:"sample-post1.jpg"), 
+      content: "クレムリンはロシア語で「城塞」を意味します。赤の広場では軍事パレードなども行われており、ソ連時代にはレーニンの遺体を安置したレーニン廟が中心とされていました")
+    },
+    { user_id: user_id, 
+      title: "青海可可西里（フフシル）", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/dolomites.jpg"), filename:"sample-post1.jpg"), 
+      content: "山がかき氷みたいできれいだった。あとヤギみたいに角がまっすぐの鹿がいて、ちょっとびっくりした")
+    },
+    { user_id: user_id, 
+      title: "白神山地", 
+      image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), 
+      content: "森のにおいがして、心が落ち着いた。また行きたい")
+    }
   ]
 )

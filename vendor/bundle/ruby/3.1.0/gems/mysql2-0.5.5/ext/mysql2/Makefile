@@ -32,8 +32,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20230628-6361-d8qpkr
-sitelibdir = $(DESTDIR)./.gem.20230628-6361-d8qpkr
+sitearchdir = $(DESTDIR)./.gem.20230628-24311-m83hhn
+sitelibdir = $(DESTDIR)./.gem.20230628-24311-m83hhn
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -65,7 +65,7 @@ bindir = $(exec_prefix)/bin
 archdir = $(rubyarchdir)
 
 
-CC_WRAPPER = 
+CC_WRAPPER =
 CC = gcc
 CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
@@ -77,31 +77,31 @@ OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
 CSRCFLAG = $(empty)
 
-RUBY_EXTCONF_H = 
+RUBY_EXTCONF_H =
 cflags   = $(optflags) $(debugflags) $(warnflags)
-cxxflags = 
+cxxflags =
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
 warnflags = -Wall -Wextra -Wdeprecated-declarations -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wmisleading-indentation -Wpointer-arith -Wwrite-strings -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wundef
-cppflags = 
+cppflags =
 CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) $(cflags)  -fPIC -Wno-compound-token-split-by-macro -Wno-bad-function-cast -Wno-conditional-uninitialized -Wno-covered-switch-default -Wno-declaration-after-statement -Wno-disabled-macro-expansion -Wno-documentation-unknown-command -Wno-missing-field-initializers -Wno-missing-variable-declarations -Wno-padded -Wno-reserved-id-macro -Wno-sign-conversion -Wno-static-in-inline -Wno-switch-enum -Wno-undef -Wno-unreachable-code -Wno-used-but-marked-unused $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir) -I/usr/include/mysql -I/usr/include/mysql/mysql
-DEFS     = 
+DEFS     =
 CPPFLAGS = -DHAVE_RB_ABSINT_SIZE -DHAVE_RB_ABSINT_SINGLEBIT_P -DHAVE_RB_GC_MARK_MOVABLE -DHAVE_RB_WAIT_FOR_SINGLE_FD -DHAVE_RB_ENC_INTERNED_STR -DHAVE_MYSQL_H -DHAVE_ERRMSG_H -DHAVE_CONST_MYSQL_OPT_SSL_VERIFY_SERVER_CERT -DHAVE_CONST_MYSQL_OPT_SSL_ENFORCE -DHAVE_MYSQL_NET_PVIO -DHAVE_ST_NET_PVIO -DHAVE_CONST_MYSQL_DEFAULT_AUTH -DHAVE_CONST_MYSQL_ENABLE_CLEARTEXT_PLUGIN -DHAVE_CONST_SERVER_QUERY_NO_GOOD_INDEX_USED -DHAVE_CONST_SERVER_QUERY_NO_INDEX_USED -DHAVE_CONST_SERVER_QUERY_WAS_SLOW -DHAVE_CONST_MYSQL_OPTION_MULTI_STATEMENTS_ON -DHAVE_CONST_MYSQL_OPTION_MULTI_STATEMENTS_OFF -DHAVE_TYPE_MY_BOOL  $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS)  $(ARCH_FLAG)
 ldflags  = -L. -fstack-protector-strong -rdynamic -Wl,-export-dynamic -Wl,--no-as-needed
-dldflags = -Wl,--compress-debug-sections=zlib 
-ARCH_FLAG = 
+dldflags = -Wl,--compress-debug-sections=zlib
+ARCH_FLAG =
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -shared
 LDSHAREDXX = $(CXX) -shared
 AR = gcc-ar
-EXEEXT = 
+EXEEXT =
 
 RUBY_INSTALL_NAME = $(RUBY_BASE_NAME)
 RUBY_SO_NAME = ruby
-RUBYW_INSTALL_NAME = 
+RUBYW_INSTALL_NAME =
 RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
@@ -125,31 +125,31 @@ TOUCH = exit >
 
 #### End of system configuration section. ####
 
-preload = 
+preload =
 libpath = . $(libdir) /usr/lib64/
 LIBPATH =  -L. -L$(libdir) -Wl,-rpath,$(libdir) -L/usr/lib64/ -Wl,-rpath,/usr/lib64/
-DEFFILE = 
+DEFFILE =
 
 CLEANFILES = mkmf.log
-DISTCLEANFILES = 
-DISTCLEANDIRS = 
+DISTCLEANFILES =
+DISTCLEANDIRS =
 
-extout = 
-extout_prefix = 
+extout =
+extout_prefix =
 target_prefix = /mysql2
-LOCAL_LIBS = 
+LOCAL_LIBS =
 LIBS = $(LIBRUBYARG_SHARED) -L/usr/lib64/ -lmariadb  -lm  -lc
 ORIG_SRCS = client.c infile.c mysql2_ext.c result.c statement.c
-SRCS = $(ORIG_SRCS) 
+SRCS = $(ORIG_SRCS)
 OBJS = client.o infile.o mysql2_ext.o result.o statement.o
 HDRS = $(srcdir)/client.h $(srcdir)/infile.h $(srcdir)/mysql2_ext.h $(srcdir)/mysql_enc_name_to_ruby.h $(srcdir)/mysql_enc_to_ruby.h $(srcdir)/result.h $(srcdir)/statement.h $(srcdir)/wait_for_single_fd.h
-LOCAL_HDRS = 
+LOCAL_HDRS =
 TARGET = mysql2
 TARGET_NAME = mysql2
 TARGET_ENTRY = Init_$(TARGET_NAME)
 DLLIB = $(TARGET).so
-EXTSTATIC = 
-STATIC_LIB = 
+EXTSTATIC =
+STATIC_LIB =
 
 TIMESTAMP_DIR = .
 BINDIR        = $(bindir)

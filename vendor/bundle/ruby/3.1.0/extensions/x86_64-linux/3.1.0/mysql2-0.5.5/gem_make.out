@@ -1,56 +1,45 @@
 current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
-/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230628-17258-pkiy9d.rb extconf.rb
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230628-24311-iofswy.rb extconf.rb
 checking for rb_absint_size()... yes
 checking for rb_absint_singlebit_p()... yes
 checking for rb_gc_mark_movable()... yes
 checking for rb_wait_for_single_fd()... yes
 checking for rb_enc_interned_str() in ruby.h... yes
-*** extconf.rb failed ***
-Could not create Makefile due to some reason, probably lack of necessary
-libraries and/or headers.  Check the mkmf.log file for more details.  You may
-need configuration options.
+-----
+Using mysql_config at /usr/bin/mysql_config
+-----
+checking for mysql.h... yes
+checking for errmsg.h... yes
+checking for SSL_MODE_DISABLED in mysql.h... no
+checking for MYSQL_OPT_SSL_VERIFY_SERVER_CERT in mysql.h... yes
+checking for MYSQL_OPT_SSL_ENFORCE in mysql.h... yes
+checking for MYSQL.net.vio in mysql.h... no
+checking for MYSQL.net.pvio in mysql.h... yes
+checking for MYSQL_DEFAULT_AUTH in mysql.h... yes
+checking for MYSQL_ENABLE_CLEARTEXT_PLUGIN in mysql.h... yes
+checking for SERVER_QUERY_NO_GOOD_INDEX_USED in mysql.h... yes
+checking for SERVER_QUERY_NO_INDEX_USED in mysql.h... yes
+checking for SERVER_QUERY_WAS_SLOW in mysql.h... yes
+checking for MYSQL_OPTION_MULTI_STATEMENTS_ON in mysql.h... yes
+checking for MYSQL_OPTION_MULTI_STATEMENTS_OFF in mysql.h... yes
+checking for my_bool in mysql.h... yes
+-----
+Setting libpath to /usr/lib64/
+-----
+creating Makefile
 
-Provided configuration options:
-	--with-opt-dir
-	--without-opt-dir
-	--with-opt-include
-	--without-opt-include=${opt-dir}/include
-	--with-opt-lib
-	--without-opt-lib=${opt-dir}/lib
-	--with-make-prog
-	--without-make-prog
-	--srcdir=.
-	--curdir
-	--ruby=/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/$(RUBY_BASE_NAME)
-	--with-openssl-dir
-	--without-openssl-dir
-	--with-mysql-dir
-	--without-mysql-dir
-	--with-mysql-include
-	--without-mysql-include=${mysql-dir}/include
-	--with-mysql-lib
-	--without-mysql-lib=${mysql-dir}/lib
-	--with-mysql-config
-	--without-mysql-config
-	--with-mysqlclient-dir
-	--without-mysqlclient-dir
-	--with-mysqlclient-include
-	--without-mysqlclient-include=${mysqlclient-dir}/include
-	--with-mysqlclient-lib
-	--without-mysqlclient-lib=${mysqlclient-dir}/lib
-	--with-mysqlclientlib
-	--without-mysqlclientlib
-/home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `block in find_library': undefined method `split' for nil:NilClass (NoMethodError)
+current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
+make DESTDIR\= clean
 
-    paths = paths.flat_map {|path| path.split(File::PATH_SEPARATOR)}
-                                       ^^^^^^
-	from /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `each'
-	from /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `flat_map'
-	from /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0/mkmf.rb:1086:in `find_library'
-	from extconf.rb:131:in `<main>'
+current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
+make DESTDIR\=
+compiling client.c
+compiling infile.c
+compiling mysql2_ext.c
+compiling result.c
+compiling statement.c
+linking shared-object mysql2/mysql2.so
 
-To see why this extension failed to compile, please check the mkmf.log which can be found here:
-
-  /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/extensions/x86_64-linux/3.1.0/mysql2-0.5.5/mkmf.log
-
-extconf failed, exit code 1
+current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/mysql2-0.5.5/ext/mysql2
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 mysql2.so ./.gem.20230628-24311-m83hhn/mysql2

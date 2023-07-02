@@ -1,5 +1,5 @@
 current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
-/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230628-14507-gv5sda.rb extconf.rb
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230628-24311-nrbw5e.rb extconf.rb
 creating Makefile
 
 current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
@@ -77,4 +77,4 @@ linking shared-object sassc/libsass.so
 
 current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/sassc-2.4.0/ext
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 libsass.so ./.gem.20230628-14507-7dulb8/sassc
+/usr/bin/install -c -m 0755 libsass.so ./.gem.20230628-24311-q7uuci/sassc

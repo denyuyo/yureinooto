@@ -1,5 +1,5 @@
 current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/date-3.3.3/ext/date
-/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230628-14507-h4sfgf.rb extconf.rb
+/home/ec2-user/.rvm/rubies/ruby-3.1.2/bin/ruby -I /home/ec2-user/.rvm/rubies/ruby-3.1.2/lib/ruby/3.1.0 -r ./siteconf20230628-24311-8ooim8.rb extconf.rb
 checking for rb_category_warn()... yes
 checking for timezone in time.h with  -Werror... yes
 checking for altzone in time.h with  -Werror... no
@@ -18,4 +18,4 @@ linking shared-object date_core.so
 
 current directory: /home/ec2-user/environment/yureinooto/vendor/bundle/ruby/3.1.0/gems/date-3.3.3/ext/date
 make DESTDIR\= install
-/usr/bin/install -c -m 0755 date_core.so ./.gem.20230628-14507-r096ek
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20230628-24311-sk7lcy

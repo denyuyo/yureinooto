@@ -1,0 +1,57 @@
+ .navbar-brand img {
+    margin-right: 10px;
+  }
+
+  .navbar-brand .title {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 22px;
+  }
+
+  .navbar-nav .nav-link {
+    font-family: 'Potta One', cursive;
+    padding: 0.5rem 1rem;
+    margin-right: 10px;
+    color: #333;
+    .nav-item {
+      color: white;
+    }
+  }
+  
+  .input-group {
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 14px;
+  }
+  
+  .footer {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer p {
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+  }
+  
+  .button-depress {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #66cdaa;
+    border: none;
+    border-radius: 4px;
+    font-family: 'New Tegomin', sans-serif;
+    transition: transform 0.3s ease;
+  }
+  
+  .button-depress:hover {
+    transform: translateY(3px);
+  }
+  
+  body {
+    background-image: url("../images/p_02434.jpg");
+  }
+  
+  header {
+    background-image: url("../images/p_00085.jpg");
+  }

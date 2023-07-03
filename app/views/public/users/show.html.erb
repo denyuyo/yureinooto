@@ -1,43 +1,56 @@
-<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container mt-2 mb-2" style="font-family: 'New Tegomin', sans-serif;">
   <% unless @user.withdrawn? %>
-    <!-- ユーザープロフィールの表示コード -->
     <h3><%= @user.name %>さんのプロフィール</h3>
-    <!-- 以下省略 -->
   <% else %>
     <p>このユーザーは退会済みです</p>
   <% end %>
   <br>
 
-   <% if @user.withdrawn? %>
-    <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
-  <% elsif @user.profile_image.attached? %>
-    <%= image_tag url_for(@user.profile_image.variant(resize: "100x100")), class: "profile-image", style: "border-radius: 40%;" %>
-  <% else %>
-    <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
-  <% end %>
-
-  <p><strong>Email:</strong> <%= @user.email %></p>
-  <p><strong>作成日時:</strong> <%= @user.created_at %></p>
-
-  <h3>つぶやき</h3>
-  <ul>
-    <% @posts.each do |post| %>
-      <% if current_user || @user == current_user %>
-        <li><%= link_to post.title, post_path(post), id: "access-denied-link" %></li>
-      <% else %>
-        <li><%= link_to post.title, "#", onclick: "showAccessDeniedMessage(event);" %></li>
-      <% end %>
-    <% end %>
-  </ul>
+　<div class="row">
+    <div class="col-md-4">
+      <div class="profile-image-container text-center">
+        <% if @user.withdrawn? %>
+          <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
+        <% elsif @user.profile_image.attached? %>
+          <%= image_tag url_for(@user.profile_image.variant(resize: "300x300")), class: "profile-image rounded-circle" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", class: "profile-image", size: "120x120" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="content-wrapper">
+        <h3 class="tweet-heading">つぶやき</h3>
+        <ul class="tweet-list">
+          <% @posts.each do |post| %>
+            <% if current_user || @user == current_user %>
+              <li class="tweet-item">
+                <%= link_to post.title, post_path(post), id: "access-denied-link" %>
+                <% if post.image.attached? %>
+                  <%= image_tag url_for(post.image.variant(resize: "600x400")), class: "tweet-image" %>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="tweet-item">
+                <%= link_to post.title, "#", onclick: "showAccessDeniedMessage(event);" %>
+                <% if post.image.attached? %>
+                  <%= image_tag url_for(post.image.variant(resize: "600x400")), class: "tweet-image" %>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <% if user_signed_in? && current_user == @user %>
-    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
+    <%= link_to "編集", edit_user_path(@user), class: "btn btn-primary text-right button-depress" %>
   <% end %>
 
   <% if user_signed_in? && @user.id == current_user.id %>
-  		<%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger", style: "font-family: 'Yusei Magic', sans-serif;" %>
+    <%= link_to "退会", users_hide_path(current_user), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
   <% end %>
-
 </div>
 
 <script>
@@ -105,5 +118,54 @@
     color: #f4f4f4;
     padding: 8px;
     border-radius: 4px;
+  }
+  
+  
+  .profile-header {
+    margin-bottom: 20px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .profile-image-container {
+    margin-bottom: 20px;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .tweet-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .tweet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tweet-item {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .tweet-item a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .tweet-image {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
   }
 </style>

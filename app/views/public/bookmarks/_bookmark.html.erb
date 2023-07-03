@@ -1,11 +1,29 @@
 <% if post.bookmarked?(current_user) %>
-  <%= link_to bookmarks_user_path(post), method: :delete, remote: true do %>
-    <i class="fas fa-heart" aria-hidden="true" style="color: red; font-size: 16px;"></i>
+  <%= link_to bookmarks_user_path(post), method: :delete, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-umbrella" aria-hidden="true" style="color: #5b2fac;"></i>
     <%= post.bookmarks.count %>
   <% end %>
 <% else %>
-  <%= link_to post_bookmarks_path(post), method: :post, remote: true do %>
-    <i class="far fa-heart" aria-hidden="true" style="font-size: 16px;"></i>
+  <%= link_to post_bookmarks_path(post), method: :post, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-umbrella" aria-hidden="true" style="color: #d1d0e1;"></i>
     <%= post.bookmarks.count %>
   <% end %>
 <% end %>
+
+<style>
+  .bookmark-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bookmark-link i {
+  margin-right: 5px;
+}
+
+.bookmark-link:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+</style>

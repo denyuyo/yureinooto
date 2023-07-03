@@ -49,7 +49,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     put "/users/:id/hide" => "users#hide", as: 'users_hide'
   end
 
-    resources :notifications, only: :index
+    resources :notifications, only: :index do
+      patch :mark_as_read, on: :collection
+    end
     post '/guests/user_login', to: 'guests#user_guest'
     post '/guests/admin_login', to: 'guests#admin_guest'
 end

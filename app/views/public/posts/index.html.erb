@@ -1,5 +1,5 @@
-<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
-  <div class="row">
+<div class="container mb-2 mt-2 px-3 px-sm-0">
+  <div class="row mt-4">
     <% @posts.each do |post| %>
       <div class="col-md-6">
         <div class="card mb-4">
@@ -8,65 +8,34 @@
               <%= image_tag post.image, class: "card-img-top" %>
             <% end %>
             <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text"><%= post.content %></p>
+            <p class="card-text"><%= truncate(post.content, length: 50, omission: "...") %></p>
             <p class="card-text">投稿主: <%= post.user.name %></p>
-            <p class="card-text">作成日時: <%= post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
             <% post.tags.each do |tag| %>
-              <span class="badge badge-primary" style="margin-bottom: 10px;"><%= tag.tag_name %></span>
+              <span class="badge badge-primary mb-1"><%= tag.tag_name %></span>
             <% end %>
             <br>
             <%= link_to "詳細", post_path(post), class: "btn btn-secondary button-depress" %>
-            <div class="col-3" id="favorite_buttons_<%= post.id %>">
+            <div class="col-3 d-flex align-items-center">
               <%= render "public/bookmarks/bookmark", post: post %>
+              <a href="#" class="icon-link">
+                <i class="fas fa-comment"></i>
+              </a>
+              <a href="#" class="icon-link">
+                <i class="fas fa-eye"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  
+
   <% if user_signed_in? %>
-    <%= link_to "つぶやく？", new_post_path, class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
-    <%= link_to "コメントたち", comments_user_path(current_user), class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
-    <%= link_to "タグたち", tags_path, class: "btn btn-primary button-depress", style: "font-family: 'Yusei Magic', sans-serif;" %>
+    <%= link_to "つぶやく？", new_post_path, class: "btn btn-primary button-depress" %>
+    <%= link_to "コメント", comments_user_path(current_user), class: "btn btn-primary button-depress" %>
+    <%= link_to "タグ", tags_path, class: "btn btn-primary button-depress" %>
   <% end %>
-  <div class="pagination-container">
-    <%= paginate @posts, theme: 'twitter-bootstrap-4', class: 'custom-pagination' %>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @posts, theme: "twitter-bootstrap-4" %>
   </div>
 </div>
-
-<style>
-  .card-img-top {
-    width: 100%; /* 画像の幅 */
-    height: 200px; /* 画像の高さ */
-    object-fit: cover; /* アスペクト比を保ったまま画像を表示 */
-  }
-  
-  .pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.custom-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.custom-pagination .page-item {
-  margin: 0 5px;
-}
-
-.custom-pagination .page-link {
-  border-radius: 5px;
-  padding: 6px 12px;
-  transition: background-color 0.3s ease;
-}
-
-.custom-pagination .page-link:focus {
-  box-shadow: none;
-}
-
-</style>

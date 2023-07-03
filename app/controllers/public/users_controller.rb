@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   before_action :hide_withdrawn_user
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(18)
     @post = Post.new
   end
 
@@ -19,40 +19,41 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-  
+
     if params[:user][:profile_image].present?
       # アップロードされたファイルを保存する処理
       @user.profile_image.attach(params[:user][:profile_image])
     end
-  
+
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "新しいキミになったよ！"
+      redirect_to user_path(@user.id), notice: "プロフィールを更新しました"
     else
-      render "edit"
+      flash.now[:alert] = "プロフィールを更新できませんでした"
+      render :edit
     end
   end
-  
+
   def hide
 		@user = User.find(params[:id])
 		#is_deletedカラムにフラグを立てる(defaultはfalse)
   	@user.update(is_deleted: true)
   	#ログアウトさせる
   	reset_session
-  	flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております"
+  	flash[:notice] = "退会処理が完了しました"
   	redirect_to root_path
 	end
-	
+
 	def hide_withdrawn_user
     redirect_to(root_path) if current_user&.withdrawn?
   end
 
-	
+
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_image)
   end
-  
+
   def ensure_correct_user
     if current_user.nil?
       redirect_to edit_user_path

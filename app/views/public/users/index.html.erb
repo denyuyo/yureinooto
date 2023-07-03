@@ -1,28 +1,31 @@
-<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 22px; margin-bottom: 11px;">
-  <h3>マニアたち</h3>
+<div class="container mb-2 mt-2" style="font-family: 'New Tegomin', sans-serif;">
+  <h3 class="mb-4">マニアたち</h3>
+  <hr>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>ユーザーネーム</th>
-        <th>Eメール</th>
-        <th>ステータス</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= image_tag user.get_profile_image(50, 50), style: "border-radius: 20%;", class: "profile-image" if user.profile_image.attached? %></td>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-          <td style="font-family: 'DotGothic16', sans-serif;"><%= user.withdrawn? ? "<span style='color: red;'>退会済み</span>".html_safe : "" %></td>
-          <td style="font-family: 'DotGothic16', sans-serif;">
-            <%= link_to "詳細", user_path(user), class: "btn btn-primary button-depress" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <%= image_tag user.get_profile_image(100, 100), class: "profile-image rounded-circle mr-3" if user.profile_image.attached? %>
+              <div>
+                <h5 class="card-title mb-0"><%= user.name %></h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            <% if user.withdrawn? %>
+              <p class="card-text text-danger">退会済み</p>
+            <% end %>
+          </div>
+          <div class="card-footer">
+            <%= link_to "詳細", user_path(user), class: "btn btn-primary button-depress btn-block" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @users, theme: "twitter-bootstrap-4" %>
+  </div>
 </div>

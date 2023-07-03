@@ -11,7 +11,7 @@ class Public::TagsController < ApplicationController
   def create
     @tag = Tag.new(tag_params)
     if @tag.save
-      redirect_to tags_path, notice: "タグを追加したよ"
+      redirect_to tags_path, notice: "タグを追加しました"
     else
       render :index
     end

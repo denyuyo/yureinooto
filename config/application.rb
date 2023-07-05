@@ -10,6 +10,7 @@ module Ooo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.paths.add 'lib', eager_load: true # 追加
     config.i18n.default_locale = :ja
     
     # config/locales/以下に設定した翻訳ファイルを全て読み込めるようにする

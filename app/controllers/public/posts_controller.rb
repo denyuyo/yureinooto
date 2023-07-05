@@ -30,7 +30,10 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      @post.save_tags(params[:post][:tag])
+      tag_names = params[:post][:tags].split(/\s*,\s*/)
+      tag_names.each do |tag_name|
+        @post.tags.create(name: tag_name)
+      end
       redirect_to post_path(@post.id), notice: "つぶやきが投稿されました"
     else
       @tags = Tag.all
@@ -75,6 +78,6 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :image)
+    params.require(:post).permit(:title, :content, :image, :input_tag_name)
   end
 end

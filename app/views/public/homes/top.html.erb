@@ -1,12 +1,78 @@
-<div class="top">
-  <div class="main">
-    <%= image_tag("splatter.png", alt: "幽霊のイラスト", class: "ghost-image") %>
-  </div>
-
-  <div class="content text-center">
-    <h2>ようこそ、廃墟の世界へ</h2>
-    <p>廃墟と幽霊についての情報を発信しています。</p>
-    <%= video_tag("sleep_ruins.mp4", autoplay: true, loop: true, muted: true, class: 'ruins-image') %>
-    <p>廃墟の探索や幽霊の怪談、不思議な出来事についての記事や情報を提供しています。お楽しみください。</p>
+<div class="w_section" style="font-family: 'DotGothic16', sans-serif;">
+  <div class="gutter">
+    <div class="loop-wrap">
+      <ul class="loop-area">
+        <li class="content">京都御所</li>
+        <li class="content">伏見稲荷大社</li>
+        <li class="content">金閣寺</li>
+        <li class="content">銀閣寺</li>
+      </ul>
+      <ul class="loop-area">
+        <li class="content">熊本城</li>
+        <li class="content">中尊寺金色堂</li>
+        <li class="content">厳島神社</li>
+        <li class="content">出雲大社</li>
+      </ul>
+      <ul class="loop-area">
+        <li class="content">名古屋城</li>
+        <li class="content">眼鏡橋</li>
+        <li class="content">日光東照宮</li>
+        <li class="content">姫路城</li>
+      </ul>
+    </div>
   </div>
 </div>
+
+<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+  <p class="textTitle">どこか、遠くへ。</p>
+  <p class="typeWriter">そうだ。遠くへ行こう。<br>明日、明後日。明明後日。<br>気の向くままに。</p>
+</div>
+
+<br></br>
+
+<div class="topSection" style="position: relative;">
+  <div class="topImage text-center" style="display: flex; justify-content: center; margin-left: -550px;">
+    <%= image_tag "j449_7_13.png", alt: "Top Image", style: "width: 300px;" %>
+  </div>
+  <div class="balloon" style="position: absolute; top: -20px;">
+    <p id="randomMessage">法隆寺でも見に行く？</p>
+  </div>
+</div>
+
+
+<script>
+　// タイプライターのjs
+  const doObserve = (element) => {
+  const targets = document.querySelectorAll('.typeWriter'); /* ターゲットの指定 */
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0
+  };
+  const observer = new IntersectionObserver((items) => {
+    items.forEach((item) => {
+      if (item.isIntersecting) {
+
+  const typeWriter = selector => {
+    const el = document.querySelector(selector);
+    const text = el.innerHTML;
+
+    (function _type(i = 0) {
+      if (i === text.length) return;
+      el.innerHTML = text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
+      setTimeout(() => _type(i + 1), 150);
+    })();
+  };
+
+  typeWriter(".typeWriter");
+        } else {
+          item.target.classList.remove('typing'); /* 表示域から外れた時にターゲットから削除するclassの指定 */
+        }
+      });
+    }, options);
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+  };
+  doObserve('.observe_target');
+</script>

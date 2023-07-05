@@ -1,89 +1,64 @@
-<header class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <% if user_signed_in? %>
-      <a class="navbar-brand" href="<%= user_path(current_user) %>">
-        <span class="title">幽霊の足音</span>
-      </a>
-    <% else %>
-      <a class="navbar-brand" href="/">
-        <span class="title">幽霊の足音</span>
-      </a>
-    <% end %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <nav class="navbar navbar-expand-lg">
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to users_path, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>マニアたち
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to posts_path, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>つぶやき
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to bookmarks_user_path(current_user.id), class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>いいね
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>ログアウト
-              <% end %>
-            </li>
-          <% elsif admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to admin_users_path, class: "nav-link" do %>
-                <i class="fa-solid fa-house"></i>マニアたち
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to admin_posts_path, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>つぶやき
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to admin_tags_path, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>タグ
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>ログアウト
-              <% end %>
-            </li>
+<div style="background-color: #A5D9D6;">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="row w-100">
+        <div class="col-3">
+          <% if current_admin %>
+            <%= link_to admin_root_path, class: 'nav-link nav-brand' do %>
+              <%= image_tag "j444_15_1.png", size: "100x50" %>
+              <h2 class="title mt-2" style="font-family: 'DotGothic16', sans-serif;"><font class="none">幽霊の足音</font></h2>
+            <% end %>
           <% else %>
-            <li class="nav-item">
-              <%= link_to new_user_registration_path, class: "nav-link m-2 rounded-pill shadow" do %>
-                <i class="fa-solid fa-house"></i>ちょっと覗いてみる?
-              <% end %>
-            </li>
-          <% end %>
-          <% if user_signed_in? %>
-            <li class="nav-item m-2 rounded-pill shadow">
-              <%= render partial: "partial/circle" %>
-            </li>
-          <% end %>
-        </ul>
-        <div class="col mt-2 search_form">
-          <%= form_with url: searches_search_path, local: true, method: :get, html: { class: 'input-group' } do |f| %>
-            <div class="input-group">
-              <%= f.select :range, options_for_select([['ユーザー'], ['つぶやき'], ['タグ']]), class: 'form-control' %>
-              <%= f.text_field :word, class: 'form-control' %>
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-primary">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
+            <%= link_to root_path, class: 'nav-link nav-brand' do %>
+              <%= image_tag "j444_15_1.png", size: "100x50" %>
+              <h2 class="title mt-2" style="font-family: 'DotGothic16', sans-serif;"><font class="none">幽霊の足音</font></h2>
+            <% end %>
           <% end %>
         </div>
+        <div class="col-9">
+          <div class="row w-100 justify-content-end">
+            <div class="col search_form" style="font-family: 'Monomaniac One', sans-serif;">
+              <%= form_with url: searches_search_path, local: true, method: :get do |f| %>
+                <%= f.select :range, options_for_select([['ユーザー'], ['つぶやき'], ['タグ']]) %>
+                <%= f.text_field :word %>
+                <%= f.submit "さがす", class: 'btn btn-sm btn-primary' %>
+              <% end %>
+            </div>
+          
+            <nav class="navbar">
+              <button class="navbar-toggler col-1 offset-9 navbar-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                  <% if user_signed_in? %>
+                    <!--ユーザーがログインしていたら-->
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to users_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to posts_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-pen-alt"></i>つぶやき</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to bookmarks_user_path(current_user.id), class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-ghost"></i>ブックマーク</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to destroy_user_session_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
+                  <% elsif admin_signed_in? %>
+                    <!--管理者がログインしていたら-->
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to admin_users_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-kiwi-bird"></i>マニアたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to admin_posts_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-mail-bulk"></i>つぶやきたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to admin_tags_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-list-alt"></i>タグたち</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to destroy_admin_session_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;", method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト</li> <% end %>
+                  <% else %>
+                    <!--ログイン前画面-->
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to about_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-paw"></i> About</li> <% end %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip"><%= link_to new_user_registration_path, class: 'nav-link text-right', style: "font-family: 'Monomaniac One', sans-serif;" do %><i class="fas fa-sign-out-alt"></i>Sign in?</li> <% end %>
+                  <% end %>
+                  <% if user_signed_in? %>
+                    <li class="nav-item mx-auto" data-toggle="tooltip">
+                      <%= render partial: 'partial/circle' %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
       </div>
-    </nav>
-  </div>
-</header>
+    </div>
+  </nav>
+</div>

@@ -9,6 +9,7 @@
             <% end %>
             <h5 class="card-title"><%= post.title %></h5>
             <p class="card-text"><%= truncate(post.content, length: 50, omission: "...") %></p>
+            <span class="sentiment-score">本文の感情分析スコア<%= post.score %></span>
             <p class="card-text">投稿主: <%= post.user.name %></p>
             <% post.tags.each do |tag| %>
               <span class="badge badge-primary mb-1"><%= tag.tag_name %></span>

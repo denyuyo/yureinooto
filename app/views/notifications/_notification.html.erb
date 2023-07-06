@@ -5,11 +5,12 @@
         <td>
           <% case notification.action %>
             <% when 'bookmark' %>
-              <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
-              をブックマークしました
+              <%= link_to notification.post.title, notification.post, style: "font-weight: bold;" %>
+              を <%= link_to notification.visited.name, user_path(notification.visited) %>
+              がブックマークしました
             <% when 'comment' %>
               <% if notification.post.user_id == notification.visited.id %>
-                <%= link_to "きみのつぶやき", notification.post, style: "font-weight: bold;" %>
+                <%= link_to notification.post.title, notification.post, style: "font-weight: bold;" %>
               <% else %>
                 <%= link_to post_path(notification.post) do %>
                   <%= image_tag notification.post.user.get_profile_image(80, 80) %>

@@ -1,22 +1,9 @@
-<div id="flash" class="col-5 mx-auto">
-  <% flash.each do |message_type, message| %>
-    <% if flash[:notice] %>
-      <div class="alert alert-success text-center" style="font-family: 'Monomaniac One', sans-serif;">
-        <%= message %>
-      </div>
-    <% else %>
-      <div class="alert alert-danger text-center" style="font-family: 'Monomaniac One', sans-serif;">
-        <%= message %>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-
-<script>
-  $(document).ready(function() {
-    $('#flash').fadeIn();
-    setTimeout(function() {
-      $('#flash').fadeOut();
-    }, 2000);
-  });
-</script>
+<% if flash[:notice] %>
+  <div class="alert alert-success col-8 offset-2 text-center">
+    <%= notice %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="alert alert-danger col-8 offset-2 text-center">
+    <%= alert %>
+  </div>
+<% end %>

@@ -1,0 +1,85 @@
+ .container {
+   font-family: 'New Tegomin', serif;
+ }
+ 
+ .card-img-top {
+    width: 100%; /* 画像の幅 */
+    height: 200px; /* 画像の高さ */
+    object-fit: cover; /* アスペクト比を保ったまま画像を表示 */
+  }
+
+  .card-body {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .icon-link {
+      display: inline-block;
+      margin-right: 10px;
+      color: #6c757d;
+      transition: opacity 0.3s ease;
+  }
+  
+  .icon-link:hover {
+      opacity: 0.7;
+  }
+  
+   #image-preview img {
+    max-width: 200px; /* 画像の最大幅 */
+    max-height: 200px; /* 画像の最大高さ */
+  }
+  
+  // show
+  #post-image {
+  max-width: 100%;
+}
+
+.post-content {
+  margin-bottom: 1.5rem;
+}
+
+.comment-box {
+  background-color: #f5f5f5;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.comment-content {
+  margin-bottom: 0;
+  color: #5599dd;
+}
+
+.heart-icon {
+  font-size: 24px;
+}
+
+.badge {
+  margin-bottom: 0.5rem;
+}
+
+.tag-form {
+  margin-top: 1rem;
+}
+
+.tag-submit {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #5599dd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+ .profile-image {
+    border-radius: 50%;
+  }

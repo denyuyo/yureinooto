@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :bookmark]
 
   def index
-    @posts = Post.page(params[:page]).per(4)
+    @posts = Post.page(params[:page]).per(8)
   end
 
   def show
@@ -27,15 +27,20 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.score = Language.get_data(post_params[:content])  #この行を追加
+    tags = Vision.get_image_data(post_params[:image])
     @post.user_id = current_user.id
     selected_tag_ids = Array(params[:post][:tag_ids]) # 選択されたタグのIDを取得します
     @post.tags = Tag.where(id: selected_tag_ids) # タグを関連付けます
   
     if @post.save
-      redirect_to post_path(@post.id), notice: "キミの情報は頂いた！"
+       tags.each do |tag|
+        @post.tags.create(tag_name: tag)
+      end
+      redirect_to post_path(@post.id), notice: "つぶやきました"
     else
       @tags = Tag.all
-      flash.now[:alert] = "なぬっ...!そうきたか"
+      flash.now[:alert] = "少し時間を置いてみましょう"
       render :new
     end
   end
@@ -43,7 +48,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "うむ...！"
+      redirect_to post_path(@post), notice: "更新に成功しました"
     else
       render :edit
     end
@@ -75,6 +80,6 @@ class Public::PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title, :content, :image)
+    params.require(:post).permit(:title, :content, :image, tag_ids: [])
   end
 end

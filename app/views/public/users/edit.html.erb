@@ -1,4 +1,4 @@
-<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container mb-2 mt-2 px-3 px-sm-0">
   <%= form_for([:public, @user], url: user_path(@user), multipart: true) do |f| %>
     <% if @user.profile_image.attached? %>
       <div class="form-group">
@@ -33,7 +33,7 @@
     <div id="profile-image-preview-container"></div>
      
     <div class="text-align: right;">
-      <%= f.submit "更新", class: "btn btn-primary button-depress" %>
+      <%= f.submit class: "btn btn-primary button-depress" %>
       <%= link_to user_path(@user),  class: 'btn btn-secondary button-depress' do %>
         <i class="fas fa-undo-alt"></i>
       <% end %>

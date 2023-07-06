@@ -1,4 +1,4 @@
-<div class="container" style="font-family: 'Yusei Magic', sans-serif; margin-top: 33px; margin-bottom: 22px;">
+<div class="container mt-2 mb-2">
   <div class="bookmark-count" data-toggle="tooltip" data-placement="top" title="<%= @bookmarks.count %>件">
     <span class="bookmark-count"><%= @bookmarks.count %>件のいいね</span>
   </div>
@@ -13,10 +13,10 @@
             <h5 class="card-title"><%= bookmark.post.title %></h5>
             <p class="card-text"><%= bookmark.post.content %></p>
             <p class="card-text">投稿主: <%= bookmark.post.user.name %></p>
-            <p class="card-text">作成日時: <%= bookmark.post.created_at.strftime("%Y-%m-%d %H:%M:%S") %></p>
+            <p class="card-text">作成日時: <%= bookmark.post.created_at.strftime("%Y-%m-%d") %></p>
             <div class="selected-tags">
               <% bookmark.post.tags.each do |tag| %>
-                <span class="badge badge-primary" style="margin-bottom: 10px; font-size: 13px;"><%= tag.tag_name %></span>
+                <span class="badge badge-primary mb-1" style="font-size: 13px;"><%= tag.tag_name %></span>
               <% end %>
             </div>
             <%= link_to "詳細", post_path(bookmark.post), class: "btn btn-secondary button-depress" %>
@@ -32,14 +32,3 @@
     $('.bookmark-count').tooltip();
   });
 </script>
-
-<style>
-  .bookmark-count {
-    font-size: 22px;
-    color: #999;
-    margin-right: 10px;
-    background-color: #f2f2f2;
-    padding: 2px 5px;
-    border-radius: 3px;
-  }
-</style>

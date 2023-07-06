@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update, :bookmark]
 
   def index
-    @posts = Post.page(params[:page]).per(6)
+    @posts = Post.page(params[:page]).per(8)
   end
 
   def show
@@ -21,7 +21,6 @@ class Public::PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.tags.new
     @tag = Tag.new
     @tags = Tag.all
   end
@@ -29,15 +28,14 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    selected_tag_ids = Array(params[:post][:tag_ids]) # 選択されたタグのIDを取得します
+    @post.tags = Tag.where(id: selected_tag_ids) # タグを関連付けます
+  
     if @post.save
-      tag_names = params[:post][:tags].split(/\s*,\s*/)
-      tag_names.each do |tag_name|
-        @post.tags.create(name: tag_name)
-      end
-      redirect_to post_path(@post.id), notice: "つぶやきが投稿されました"
+      redirect_to post_path(@post.id), notice: "つぶやきました"
     else
       @tags = Tag.all
-      flash.now[:alert] = "あれ？おかしいですね..."
+      flash.now[:alert] = "少し時間を置いてみましょう"
       render :new
     end
   end
@@ -45,9 +43,8 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "つぶやきを改訂しました"
+      redirect_to post_path(@post), notice: "更新に成功しました"
     else
-      flash.now[:alert] = "つぶやきの改訂に失敗しました"
       render :edit
     end
   end
@@ -55,7 +52,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash.now[:alert] = "機密情報は保持されました"
+    flash.now[:alert] = "機密情報は保持された"
     redirect_to posts_path
   end
 
@@ -76,8 +73,8 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
     end
   end
-
+  
   def post_params
-    params.require(:post).permit(:title, :content, :image, :input_tag_name)
+    params.require(:post).permit(:title, :content, :image)
   end
 end

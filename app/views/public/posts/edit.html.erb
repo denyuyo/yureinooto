@@ -1,5 +1,4 @@
-<div class="container" style="font-family: 'Monomaniac One', sans-serif; margin-top: 33px; margin-bottom: 22px;">
-  <h3 style="font-size: 33px;">つぶやきの改訂</h3>
+<div class="container">
 
   <%= form_for(@post, html: { multipart: true }) do |f| %>
     <div class="form-group">
@@ -18,7 +17,7 @@
       <%= f.file_field :image, class: "form-control-file", multiple: true, id: "image-upload" %>
     </div>
 
-    <%= f.submit "これでいい?", class: "btn btn-primary button-depress" %>
+    <%= f.submit "更新", class: "btn btn-primary button-depress" %>
   <% end %>
 </div>
 

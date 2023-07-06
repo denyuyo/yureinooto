@@ -27,11 +27,15 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    tags = Vision.get_image_data(post_params[:image])
     @post.user_id = current_user.id
     selected_tag_ids = Array(params[:post][:tag_ids]) # 選択されたタグのIDを取得します
     @post.tags = Tag.where(id: selected_tag_ids) # タグを関連付けます
   
     if @post.save
+       tags.each do |tag|
+        @post.tags.create(tag_name: tag)
+      end
       redirect_to post_path(@post.id), notice: "つぶやきました"
     else
       @tags = Tag.all
@@ -75,6 +79,6 @@ class Public::PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title, :content, :image)
+    params.require(:post).permit(:title, :content, :image, tag_ids: [])
   end
 end

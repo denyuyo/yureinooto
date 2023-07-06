@@ -27,6 +27,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.score = Language.get_data(post_params[:content])  #この行を追加
     tags = Vision.get_image_data(post_params[:image])
     @post.user_id = current_user.id
     selected_tag_ids = Array(params[:post][:tag_ids]) # 選択されたタグのIDを取得します

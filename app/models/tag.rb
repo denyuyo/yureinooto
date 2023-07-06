@@ -6,8 +6,4 @@ class Tag < ApplicationRecord
   def self.looks(word)
     where("tag_name LIKE ?", "%#{word}%")
   end
-
-  def self.tag_names
-    pluck(:name).join(",").split(/[,，、\s　]+/).map(&:to_s)
-  end
 end

@@ -27,6 +27,23 @@ class User < ApplicationRecord
     bookmarks.exists?(post_id: post.id)
   end
   
+  def bookmarked_thumbs_up?(post)
+    bookmark = bookmarks.find_by(post_id: post.id)
+    bookmark.present? && bookmark.type == 'thumbs_up'
+  end
+  
+  def bookmarked_heart?(user)
+    bookmark = bookmarked_by(user)
+    bookmark && bookmark.type == 'heart'
+  end
+
+  def bookmarked_star?(post)
+    bookmark = bookmarks.find_by(post_id: post.id, type: 'star')
+    bookmark&.type == 'star'
+  end
+
+
+  
   def self.looks(word)
     User.where("name LIKE ?", "%#{word}%")
   end

@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new
     @tags = @mypost.tags
     @comment = Comment.new
-    @bookmark_count = @mypost.bookmarks.count
+    @bookmark_count = @mypost.bookmarks.where(type: 'thumbs_up').count
   end
 
   def edit

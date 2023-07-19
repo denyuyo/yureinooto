@@ -11,7 +11,6 @@
       <!-- タイトルとコンテンツの表示 -->
       <h1><%= @mypost.title %></h1>
       <p class="post-content"><%= @mypost.content %></p>
-      <p class="sentiment-score">感情分析スコア[<%= @mypost.score %>]</p>
     </div>
     <div class="col-md-6">
       <div class="card mb-3">
@@ -38,20 +37,45 @@
       </div>
 
       <div class="card mb-3">
-        <div class="card-body">
-          <% if user_signed_in? && current_user && @mypost.bookmarked?(current_user) %>
-            <!-- すでにいいね済みの場合はdestroyアクションへ -->
-            <%= link_to post_bookmarks_path(@mypost.id), method: :delete, class: "text-danger heart-icon" do %>
-              <span>♡︎</span>
-            <% end %>
-          <% elsif user_signed_in? %>
-            <!-- まだいいねしていない場合はcreateアクションへ -->
-            <%= link_to post_bookmarks_path(@mypost.id), method: :post, class: "heart-icon" do %>
-              <span>♡︎</span>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+  <div class="card-body">
+    <% if user_signed_in? %>
+      <% if current_user.bookmarked_by(@mypost) %>
+        <!-- すでにいいね済みの場合はdestroyアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost, type: 'heart'), method: :delete, class: "text-danger heart-icon" do %>
+          <i class="fas fa-heart" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <!-- まだいいねしていない場合はcreateアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost, type: 'heart'), method: :post, class: "heart-icon" do %>
+          <i class="far fa-heart" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+      <% if current_user.bookmarked_thumbs_up?(@mypost) %>
+        <!-- すでにいいね済みの場合はdestroyアクションへ -->
+        <%= link_to post_bookmark_path(@mypost, type: 'thumbs_up'), method: :delete, class: "text-success thumbs-up-icon" do %>
+          <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <!-- まだいいねしていない場合はcreateアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost, type: 'thumbs_up'), method: :post, class: "thumbs-up-icon" do %>
+          <i class="far fa-thumbs-up" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+      <% if current_user.bookmarked_star?(@mypost) %>
+        <!-- すでにいいね済みの場合はdestroyアクションへ -->
+        <%= link_to post_bookmark_path(@mypost, type: 'star'), method: :delete, class: "text-warning star-icon" do %>
+          <i class="fas fa-star" aria-hidden="true"></i>
+        <% end %>
+      <% else %>
+        <!-- まだいいねしていない場合はcreateアクションへ -->
+        <%= link_to post_bookmarks_path(@mypost, type: 'star'), method: :post, class: "star-icon" do %>
+          <i class="far fa-star" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 
       <div class="card mb-3">
         <div class="card-body">

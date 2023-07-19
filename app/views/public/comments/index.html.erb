@@ -5,16 +5,17 @@
     </div>
   <% else %>
     <% @comments.each do |comment| %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">ID: <%= comment.id %></h5>
-          <h5 class="card-title"><%= comment.user.name %></h5>
-          <p class="card-text"><%= comment.content %></p>
-          <p class="card-text"><small class="text-muted"><%= comment.created_at.strftime("%Y-%m-%d") %></small></p>
-          <p class="card-text">つぶやき: <%= link_to comment.post.title, post_path(comment.post) %></p>
-          <%= link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      <% if comment.user == current_user %> <!-- ログインユーザーのコメントのみ表示 -->
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= comment.user.name %></h5>
+            <p class="card-text"><%= comment.content %></p>
+            <p class="card-text"><small class="text-muted"><%= comment.created_at.strftime("%Y-%m-%d") %></small></p>
+            <p class="card-text">つぶやき: <%= link_to comment.post.title, post_path(comment.post) %></p>
+            <%= link_to '削除', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   <% end %>
 </div>

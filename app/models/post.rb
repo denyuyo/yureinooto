@@ -16,6 +16,26 @@ class Post < ApplicationRecord
   def bookmarked?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+  
+  def bookmarked_by(user)
+    bookmarks.find_by(user_id: user.id)
+  end
+
+  def bookmarked_heart?(user)
+    bookmark = bookmarked_by(user)
+    bookmark && bookmark.type == 'heart'
+  end
+
+  def bookmarked_thumbs_up?(user)
+    bookmark = bookmarked_by(user)
+    bookmark && bookmark.type == 'thumbs_up'
+  end
+
+  def bookmarked_star?(user)
+    bookmark = bookmarked_by(user)
+    bookmark && bookmark.type == 'star'
+  end
+
 
   def get_image(width, height)
     images.variant(resize_to_limit: [width, height]).processed

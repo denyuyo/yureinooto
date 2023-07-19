@@ -3,9 +3,33 @@
     <i class="fas fa-umbrella" aria-hidden="true" style="color: #5b2fac;"></i>
     <%= post.bookmarks.count %>
   <% end %>
+  <%= link_to bookmarks_user_path(post), method: :delete, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: #ff0000;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+  <%= link_to bookmarks_user_path(post), method: :delete, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-thumbs-up" aria-hidden="true" style="color: #00ff00;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+  <%= link_to bookmarks_user_path(post), method: :delete, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-star" aria-hidden="true" style="color: #ffd700;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
 <% else %>
   <%= link_to post_bookmarks_path(post), method: :post, remote: true, class: "bookmark-link" do %>
     <i class="fas fa-umbrella" aria-hidden="true" style="color: #d1d0e1;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+  <%= link_to post_bookmarks_path(post), method: :post, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: #ff0000;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+  <%= link_to post_bookmarks_path(post), method: :post, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-thumbs-up" aria-hidden="true" style="color: #00ff00;"></i>
+    <%= post.bookmarks.count %>
+  <% end %>
+  <%= link_to post_bookmarks_path(post), method: :post, remote: true, class: "bookmark-link" do %>
+    <i class="fas fa-star" aria-hidden="true" style="color: #ffd700;"></i>
     <%= post.bookmarks.count %>
   <% end %>
 <% end %>

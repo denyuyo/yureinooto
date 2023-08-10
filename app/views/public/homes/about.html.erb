@@ -1,13 +1,213 @@
-<div class="container mb-2 mt-2 px-3 px-sm-0">
-  <div class="row mt-4">
-    <h1>幽霊の足音とは？</h1>
-  </div>
-  
-  <div class="col-md-6">
-    <div class="card mb-4">
-      <p>心理、恐怖、ミステリー、ホラー、歴史や過去の事件について”恐怖”の種をつぶやくホラーコミュニティです。</p>
-      <p>あなたの種が、いつか誰かの心を震わす”恐怖”に開花するかもしれませんし、はたまた有意義な人生の浪費になるかもしれません。</p>
-      <p>お好きなように、あなたの感性で”恐怖”の種を植え付けてみましょう。</p>
-    </div>
-  </div>
+<div class="top" style="margin-top: 33px; font-family: 'DotGothic16', sans-serif; text-align: center; color: #787891;">
+  <h1><i class="fas fa-list" style="color: #cd478e;"></i><i class="fas fa-space-shuttle" style="color: #5d49ab;"></i> 適度にルールを守って快適な世界遺産ライフを！</h1>
 </div>
+
+<!-- 弾幕 -->
+<canvas id="canvas_text_animation" style="margin-top: 28px;"></canvas>
+
+<script defer>
+  window.addEventListener('load', function() {
+    const canvas = document.getElementById('canvas_text_animation');
+    canvas.height = 820;
+    canvas.width = 1800;
+    const ctx = canvas.getContext('2d');
+    const commands = [
+      '混雑している場合は入場制限があることもあるので、事前に情報を確認しましょう。',
+      '世界遺産は保護されるべき貴重な遺産ですので、立ち入り禁止の場所や写真撮影の制限などを守りましょう。',
+      '長時間歩くことが多いので、歩きやすい服装と靴を選ぶことが重要です。天候や地形に合わせて服装を調整しましょう。',
+      '世界遺産のいくつかは広大な敷地を持っており、歩く距離が長いことがあります。十分な水分を摂りながら体調管理を行いましょう。',
+      '訪れる国や地域の文化や習慣を尊重し、適切なマナーや行動を心掛けましょう。',
+      '世界遺産には豊かな自然環境も含まれています。ゴミを持ち帰ったり、植物や動物に触れたりしないようにし、自然保護に協力しましょう。',
+      '🍑',
+      '現地のガイドや専門家の案内に従うことで、より深い理解や情報を得ることができます。また、グループでの観光は安全性や楽しさの面でもメリットがあります。',
+      '一部の世界遺産は季節や天候によってアクセスや営業時間が変動することがあります。訪れる前に営業情報や最適な時期を調べましょう。',
+      '世界遺産は美しい景観や歴史的な価値を持っていますので、思い出に残る写真や体験を楽しみましょう。ただし、写真撮影の際に他の観光客や環境に配慮しましょう。',
+    ];
+
+    // LineManager実装
+    class LineManager {
+      constructor(maxLines) {
+        this.lines = [];
+        this.texts = [];
+        for (let i = 0; i < maxLines; i++) {
+          this.lines.push(new Line(i));
+        }
+      }
+      push(text) {
+        if (text) {
+          this.texts.push(text);
+        }
+      }
+      update() {
+        if (this.texts.length > 0) {
+          for (let i = 0; i < this.texts.length; i++) {
+            // 使えるLineオブジェクトを取得する
+            const line = this.getPushEnableLine();
+            // 使えるLineオブジェクトにテキストをプッシュする
+            if (line) {
+              line.push(this.texts[i]);
+              this.texts.splice(i, 1);
+              i--;
+            }
+          }
+        }
+        for (const line of this.lines) {
+          line.update();
+        }
+      }
+      draw(context) {
+        for (const line of this.lines) {
+          line.draw(context);
+        }
+      }
+      getPushEnableLine() {
+        for (const line of this.lines) {
+          if (line.getPushEnable()) {
+            return line;
+          }
+        }
+        return undefined;
+      }
+    }
+
+    // Lineクラス実装
+    class Line {
+      constructor(index) {
+        // Lineの行番
+        this.index = index;
+        // Lineの高さ
+        this.lineHeight = 40;
+        this.textEnemies = [];
+      }
+      push(text) {
+        const textEnemy = new TextEnemy(
+          text,
+          (this.index + 1) * (this.lineHeight + 30),
+          canvas.width,
+          canvas.height
+        );
+        this.textEnemies.push(textEnemy);
+      }
+      update() {
+        this.textEnemies = this.textEnemies.filter((e) => !e.markForDeletion);
+        for (const textEnemy of this.textEnemies) {
+          textEnemy.update();
+        }
+      }
+      draw(context) {
+        for (const textEnemy of this.textEnemies) {
+          textEnemy.draw(context);
+        }
+      }
+      getPushEnable() {
+        if (this.textEnemies.length > 0) {
+          return this.textEnemies[this.textEnemies.length - 1].hasFinishedShowed();
+        }
+        return true;
+      }
+    }
+
+    // 弾幕クラス実装する
+    class TextEnemy {
+      constructor(text, y, screenWidth, screenHeight) {
+        // 弾幕開始の位置設定する
+        this.x = screenWidth + Math.random() * 200; // ランダムな初期値を設定
+        this.y = y;
+
+        // 長さと高さ、記録するように変数を宣言する
+        this.height = 30;
+        this.width = 0;
+
+        // screenのサイズ記録する
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
+
+        // この弾幕スピードを設定する
+        this.speed = -2;
+
+        //弾幕色ランダムにする
+        this.color = 'rgb('+Math.random()*255+','+Math.random()*255+','+Math.random()*255+')';
+
+        // 文字サイズ
+        this.fontSize = 44;
+        this.font = this.fontSize + 'px \'DotGothic16\', sans-serif';
+
+        // 弾幕内容
+        this.text = text;
+
+        // 削除用フラグ
+        this.markForDeletion = false;
+
+        // 次の弾幕とスペース
+        this.nextSpace = 50000;
+
+      }
+      hasFinishedShowed() {
+        return this.x < this.screenWidth - this.width - this.nextSpace;
+      }
+      update() {
+        this.x += this.speed;
+        if (this.x < -this.width) {
+          this.markForDeletion = true;
+        }
+      }
+      draw(context) {
+        context.save();
+        context.font = this.font;
+        context.fillStyle = this.color;
+        context.fillText(this.text, this.x, this.y);
+        if (this.text && this.width === 0) {
+          let metrics = context.measureText(this.text);
+          this.width = metrics.width;
+        }
+        context.restore();
+      }
+    }
+
+    //LineManagerのオブジェクトを新規する　最大行数を8を設定する
+    const lineManager = new LineManager(8);
+    let lastTime = 0;
+    // 弾幕発射スピード
+    let createTextInterval = 50;
+    function animate(timeStamp) {
+      if (timeStamp - lastTime > createTextInterval) {
+        lineManager.push(commands[Math.floor(Math.random() * 11)]);
+        lastTime = timeStamp;
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      lineManager.update();
+      lineManager.draw(ctx);
+      requestAnimationFrame(animate);
+    }
+    animate(0);
+  });
+</script>
+
+<style>
+  /* 弾幕 */
+  #canvas_text_animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #b6dae7;
+    border-radius: 60px;
+  　opacity: 1; /* キャンバスが透明でないことを確認 */
+    transform: translate(-50%, -50%);
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 748px) {
+    #canvas_text_animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #b6dae7;
+    border-radius: 60px;
+  　opacity: 1; /* キャンバスが透明でないことを確認 */
+    transform: translate(-50%, -50%);
+    max-height: 100%;
+    max-width: 100%;
+    }
+  }
+</style>
